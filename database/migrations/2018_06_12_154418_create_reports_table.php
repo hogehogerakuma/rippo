@@ -13,10 +13,16 @@ class CreateMicropostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('microposts', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->string('content');
+            $table->string('goal_1');
+            $table->string('goal_2');
+            $table->string('goal_3');
+            $table->integer('result_1');
+            $table->integer('result_2');
+            $table->integer('result_3');
             $table->timestamps();
             
             
@@ -31,6 +37,6 @@ class CreateMicropostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('microposts');
+        Schema::dropIfExists('reports');
     }
 }

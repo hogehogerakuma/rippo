@@ -14,11 +14,12 @@
             </div>
             <div>
                 @if (Auth::id() == $micropost->user_id)
-                    {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => ['microposts.destroy', $micropost->id], 'method' => 'delete',
+                    'style'=>'display:inline-block;']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
                     {!! Form::close() !!}
                 @endif
-                <div>@include('user_favorite.favorite_button', ['microposts' => $microposts])</div>
+                @include('user_favorite.favorite_button', ['m' => $micropost])
             </div>
         </div>
     </li>
