@@ -10,8 +10,8 @@
 
             {!! Form::open(['route' => 'signup.post']) !!}
                 <div class="form-group">
-                    {!! Form::label('name', 'Username') !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                    {!! Form::label('username', 'Username') !!}
+                    {!! Form::text('username', old('name'), ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
-use App\Microposts;
+use App\Reports;
 
 class UsersController extends Controller
 {
@@ -21,15 +21,13 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
-
+        $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $data = [
             'user' => $user,
-            'microposts' => $microposts,
+            'reports' => $reports,
         ];
-
-        $data += $this->counts($user);
         
+        // $data += $this->counts($user);
         return view('users.show', $data);
     }
     

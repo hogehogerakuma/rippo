@@ -28,9 +28,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function microposts()
+    public function reports()
     {
-        return $this->hasMany(Micropost::class);
+        return $this->hasMany(Report::class);
     }
     
     public function followings()
@@ -79,11 +79,11 @@ class User extends Authenticatable
         return $this->followings()->where('follow_id', $userId)->exists();
     }
     
-    public function feed_microposts()
+    public function feed_reports()
     {
         $follow_user_ids = $this->followings()-> pluck('users.id')->toArray();
         $follow_user_ids[] = $this->id;
-        return Micropost::whereIn('user_id', $follow_user_ids);
+        return Report::whereIn('user_id', $follow_user_ids);
     }
     
     // microposts_at_favorites
@@ -91,36 +91,36 @@ class User extends Authenticatable
     public function favorites()
     {
         return $this->belongsToMany(
-         Micropost::class, // User
+         Report::class, // User
          'user_favorite', 
          'user_id',
-         'microposts_id')->withTimestamps();
+         'reports_id')->withTimestamps();
     }
         
-    public function favorite($micropostsId)
+    public function favorite($reportsId)
     {
-        $exist = $this->is_favoriting($micropostsId);
+        $exist = $this->is_favoriting($reportsId);
         if ($exist) {
             return false;
         }else {
-            $this->favorites()->attach($micropostsId);
+            $this->favorites()->attach($reportsId);
             return true;
         }
     }
 
-    public function unfavorite($micropostsId)
+    public function unfavorite($reportsId)
     {
-        $exist = $this->is_favoriting($micropostsId);
+        $exist = $this->is_favoriting($reportsId);
         if($exist) {
-            $this->favorites()->detach($micropostsId);
+            $this->favorites()->detach($reportsId);
             return true;
         } else {
             return false;
         }
     }
 
-    public function is_favoriting($micropostsId) {
-        return $this->favorites()->where('microposts_id', $micropostsId)->exists();
+    public function is_favoriting($reportsId) {
+        return $this->favorites()->where('reports_id', $reportsId)->exists();
     }
 
 }
