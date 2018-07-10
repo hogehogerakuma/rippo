@@ -20,7 +20,7 @@ class ReportsController extends Controller
         $data = [];
         if (\Auth::check()) {
             $user = \Auth::user();
-            $reports =   Report::orderBy('created_at', 'desc')->paginate(10);
+            $reports = Report::orderBy('created_at', 'desc')->paginate(10);
            // $reports = $user->feed_reports()->orderBy('created_at', 'desc')->paginate(10);
             $data = [
                 'user' => $user,
@@ -76,7 +76,6 @@ class ReportsController extends Controller
     
     public function show($id)
     { 
-        // $reports = $user->reports();
         $report = Report::find($id);
         $user = $report->user;
         $comments = Comment::orderBy('created_at', 'desc')->paginate(10);

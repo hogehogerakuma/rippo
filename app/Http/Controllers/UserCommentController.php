@@ -30,4 +30,5 @@ class UserCommentController extends Controller
         \Auth::user()->uncomment($id);
         return redirect()->back();
     }
+    
 }
