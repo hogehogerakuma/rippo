@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="row">
-        <aside class="col-md-14">
-            <div class="panel panel-default">
+        <aside class="col-md-24">
+            <div class="panel panel-default col-xs-4">
                 <div class="panel-heading">
                     <h3 class="panel-title">{{ $user->username }}</h3>
                 </div>
