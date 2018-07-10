@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMicropostsTable extends Migration
+class CreateReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,11 +18,14 @@ class CreateMicropostsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('content');
             $table->string('goal_1');
-            $table->string('goal_2');
-            $table->string('goal_3');
+            $table->string('goal_2')->nullable();
+            $table->string('goal_3')->nullable();
             $table->integer('result_1');
-            $table->integer('result_2');
-            $table->integer('result_3');
+            $table->integer('result_2')->nullable();
+            $table->integer('result_3')->nullable();
+            $table->string('object_1');
+            $table->string('object_2')->nullable();
+            $table->string('object_3')->nullable();
             $table->timestamps();
             
             

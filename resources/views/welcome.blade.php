@@ -3,16 +3,6 @@
 @section('content')
     @if (Auth::check())
         <div class="row">
-            <aside class="col-xs-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ $user->username }}</h3>
-                </div>
-                <div class="panel-body">
-                    <img class="media-object img-rounded img-responsive" src="{{ Gravatar::src($user->username, 500) }}" alt="">
-                </div>
-            </div>
-            </aside>
             <div class="col-xs-8">
                 @if (count($reports) > 0)
                     @include('reports.reports', ['reports' => $reports])

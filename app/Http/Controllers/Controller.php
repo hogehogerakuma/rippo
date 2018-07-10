@@ -16,12 +16,14 @@ class Controller extends BaseController
         $count_followings = $user->followings()->count();
         $count_followers = $user->followers()->count();
         $count_favorites = $user->favorites()->count();
+        $count_comments = $user->comments()->count();
         
         return [
             'count_reports' => $count_reports,
             'count_followings' => $count_followings,
             'count_followers' => $count_followers,
             'count_favorites' => $count_favorites,
+            'count_comments' => $count_comments,
         ];
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Report;
+use App\User;
 
 class ReportsController extends Controller
 {
@@ -18,7 +19,8 @@ class ReportsController extends Controller
         $data = [];
         if (\Auth::check()) {
             $user = \Auth::user();
-            $reports = $user->feed_reports()->orderBy('created_at', 'desc')->paginate(10);
+            $reports =   Report::orderBy('created_at', 'desc')->paginate(10);
+           // $reports = $user->feed_reports()->orderBy('created_at', 'desc')->paginate(10);
             $data = [
                 'user' => $user,
                 'reports' => $reports,
@@ -33,6 +35,7 @@ class ReportsController extends Controller
             'content' => 'required',
             'goal_1' => 'required',
             'result_1' => 'required',
+            'object_1' => 'required',
            ]);
 
         $request->user()->reports()->create([
@@ -43,6 +46,9 @@ class ReportsController extends Controller
             'result_1' => $request->result_1,
             'result_2' => $request->result_2,
             'result_3' => $request->result_3,
+            'object_1' => $request->object_1,
+            'object_2' => $request->object_2,
+            'object_3' => $request->object_3,
         ]);
 
         return redirect('/');
@@ -65,5 +71,18 @@ class ReportsController extends Controller
         return view('reports.create', [
             'report' => $report,
         ]);
+    }
+    
+    public function show($id)
+    { 
+        // $reports = $user->reports();
+        $report = Report::find($id);
+        $user = $report->user;
+        $data = [
+            'user' => $user,
+            'report' => $report,
+        ];
+            
+        return view('reports.show', $data);
     }
 }

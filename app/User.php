@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use App\Micropost;
+use App\Report;
 
 class User extends Authenticatable
 {
@@ -81,9 +81,11 @@ class User extends Authenticatable
     
     public function feed_reports()
     {
-        $follow_user_ids = $this->followings()-> pluck('users.id')->toArray();
-        $follow_user_ids[] = $this->id;
-        return Report::whereIn('user_id', $follow_user_ids);
+        $reports = Report::all();
+        //$user_ids = $this->reports()->pluck('users.id')->toArray();
+        // $follow_user_ids = $this->followings()-> pluck('users.id')->toArray();
+        // $follow_user_ids[] = $this->id;
+        // return Report::whereIn('user_id', $follow_user_ids);
     }
     
     // microposts_at_favorites
@@ -122,5 +124,9 @@ class User extends Authenticatable
     public function is_favoriting($reportsId) {
         return $this->favorites()->where('reports_id', $reportsId)->exists();
     }
-
+    
+    public function comment() {
+        $this->comments()->attach($reportsId);
+        return true;
+    }
 }
