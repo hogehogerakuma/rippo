@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 use App\Report;
 use App\User;
+use App\Comment;
 
 class ReportsController extends Controller
 {
@@ -78,9 +79,11 @@ class ReportsController extends Controller
         // $reports = $user->reports();
         $report = Report::find($id);
         $user = $report->user;
+        $comments = Comment::orderBy('created_at', 'desc')->paginate(10);
         $data = [
             'user' => $user,
             'report' => $report,
+            'comments' => $comments,
         ];
             
         return view('reports.show', $data);

@@ -1,12 +1,19 @@
-<div class="col-xs-10">
-    
-    {!! Form::open(['route' => ['user.comment', $report->id]]) !!}
-
-    <div class="form-group">
-        {!! Form::label('comment', '■ Wanna reply?? Why not!! ■') !!}
-        {!! Form::text('comment', null, ['class' => 'form-control']) !!}    
-    </div>
-        
-    {!! Form::submit('投稿', ['class' => 'btn btn-primary']) !!}
-
-</div>            
+<ul class="media-list">
+    <h2>Replies</h2>
+@foreach ($comments as $comment)
+    <?php $user = $comment->user; ?>
+    <li class="media">
+        <div class="media-left">
+            <img class="media-object img-rounded" src="{{ Gravatar::src($user->username, 50) }}" alt="">
+        </div>
+        <div class="media-body">
+            <div>
+                {!! link_to_route('users.show', $user->username, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $comment->created_at }}</span>
+            </div>
+            <div>
+                <p>{!! nl2br(e($comment->comment)) !!}</p>
+            </div>
+        </div>
+    </li>
+@endforeach
+</ul>

@@ -12,14 +12,14 @@ class UserCommentController extends Controller
 {
    public function store(Request $request, $id)
     {
+//        var_dump($_POST);return;
         // バリデーション
-
         $report = Report::find($id);
 
             $report->comments()->create([
-            'user_id' => $request->user()->id,
-            'reports_id' => $request->reports_id,
-            'comments' => $request->comments,
+            'user_id' => $id,
+            'report_id' => $request->report_id,
+            'comment' => $request->comment,
         ]);
         
         return redirect()->back();

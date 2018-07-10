@@ -30,7 +30,8 @@
                 <h4>Goal of Tomorrow3</h4>
                     <p>{!! nl2br(e($report->object_3)) !!}</p>    
     </div>
-                @include('comments.comments', ['report' => $report])
+                @include('comments.create', ['report' => $report])
+                @include('comments.comments', ['comments' =>$comments])
 </aside>
 
 @endsection        

@@ -96,7 +96,7 @@ class User extends Authenticatable
          Report::class, // User
          'user_favorite', 
          'user_id',
-         'reports_id')->withTimestamps();
+         'report_id')->withTimestamps();
     }
         
     public function favorite($reportsId)
@@ -122,7 +122,7 @@ class User extends Authenticatable
     }
 
     public function is_favoriting($reportsId) {
-        return $this->favorites()->where('reports_id', $reportsId)->exists();
+        return $this->favorites()->where('report_id', $reportsId)->exists();
     }
     
     public function comment() {
