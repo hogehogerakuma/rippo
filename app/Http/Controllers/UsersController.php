@@ -22,10 +22,30 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
+        
+        $day = date("y/m/d");
+        $week = date("y/m/d", strtotime("-1 week"));
+        $month = date("y/m/d", strtotime("-1 month"));
+        
+        $graph_data = [
+            ['Date', 'Favorites', 'Followings', 'Followers'],
+        ];
+    
+        $searches = [$day, $week, $month];
+        foreach ($searches as $value) {
+            $favorites = $user-> favorites()->where('user_favorite.created_at', '>', $value)->get()->count();
+            $followings = $user->followings()->where('user_follow.created_at', '>', $value)->get()->count();
+            $followers = $user->followers()->where('user_follow.created_at', '>', $value)->get()->count();
+
+            $graph_data = array_merge($graph_data, [[$value, $favorites, $followings, $followers]]);
+        }
+
         $data = [
             'user' => $user,
             'reports' => $reports,
+            'graph_data' => $graph_data
         ];
+
         
         // $data += $this->counts($user);
         return view('users.show', $data);
