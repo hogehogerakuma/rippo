@@ -1,7 +1,7 @@
 <div class="col-xs-10">
     
     {!! Form::open(['route' => ['user.comment', $report->id]]) !!}
-
+    <br>
     <div class="form-group">
         {!! Form::label('comment', '■ Wanna reply?? Why not!! ■') !!}
         {!! Form::text('comment', null, ['class' => 'form-control']) !!}    
