@@ -6,14 +6,13 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Report;
+use App\Comment;
 
 
 class UserCommentController extends Controller
 {
    public function store(Request $request, $id)
     {
-//        var_dump($_POST);return;
-        // バリデーション
         $report = Report::find($id);
 
             $report->comments()->create([
@@ -27,8 +26,12 @@ class UserCommentController extends Controller
 
     public function destroy($id)
     {
-        \Auth::user()->uncomment($id);
+        $comment = \App\Comment::find($id);
+        
+        if (\Auth::id() == $comment->user_id) {
+            $comment->delete();
+        }
+             
         return redirect()->back();
     }
-    
 }
