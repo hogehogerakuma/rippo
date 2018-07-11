@@ -13,7 +13,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::check())
-                        <li><a href='{{route('users.index')}}'><span class = "glyphicon glyphicon-home"></span> HOME</a></li>
+                        <li><a href='{{route('home')}}'><span class = "glyphicon glyphicon-home"></span> HOME</a></li>
                         <li><a href='{{route('reports.create')}}'><span class = "glyphicon glyphicon-pencil"></span> POST</a></li>
                         <li><a href='{{route('users.index')}}'><span class = "glyphicon glyphicon-search" aria-hidden="true"></span> SEARCH</a></li>
                         <li><a href='{{route('users.index')}}'><span class = "glyphicon glyphicon-heart" aria-hidden="true"></span> FEED</a></li>
