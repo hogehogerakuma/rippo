@@ -1,5 +1,4 @@
 <ul class="media-list">
-    <h2>Replies</h2>
 @foreach ($comments as $comment)
     <?php $user = $comment->user; ?>
     <li class="media">
