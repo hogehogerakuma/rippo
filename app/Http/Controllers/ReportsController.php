@@ -78,7 +78,8 @@ class ReportsController extends Controller
     { 
         $report = Report::find($id);
         $user = $report->user;
-        $comments = Comment::orderBy('created_at', 'desc')->paginate(10);
+        $comments = $report->comments()->orderBy('created_at', 'desc')->paginate(10);
+
         $data = [
             'user' => $user,
             'report' => $report,

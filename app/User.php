@@ -125,6 +125,10 @@ class User extends Authenticatable
         return $this->favorites()->where('report_id', $reportsId)->exists();
     }
     
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
     public function comment() {
         $this->comments()->attach($reportsId);
         return true;
