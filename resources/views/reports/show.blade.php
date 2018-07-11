@@ -49,6 +49,7 @@
                 @endif
     </div>
                 @include('comments.create', ['report' => $report])
+                <h2>Replies</h2>
                 @include('comments.comments', ['comments' =>$comments])
 </aside>
 

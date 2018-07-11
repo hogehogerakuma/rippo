@@ -66,9 +66,16 @@
     
         </aside>
         <div class="col-xs-8">
+            <h3>Your reports</h3>
             @if (count($reports) > 0)
                 @include('reports.reports', ['reports' => $reports])
             @endif
         </div>
+        <div class="col-xs-8">
+            <h3>Your replies</h3>
+            @if (count($comments) > 0)
+                @include('comments.comments', ['comments' =>$comments])
+            @endif
+        </div>
     </div>
-@endsection 
+@endsection
