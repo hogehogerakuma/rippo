@@ -15,7 +15,7 @@ class UserCommentController extends Controller
     {
         $report = Report::find($id);
 
-            $report->comments()->create([
+        $report->comments()->create([
             'user_id' => $id,
             'report_id' => $request->report_id,
             'comment' => $request->comment,

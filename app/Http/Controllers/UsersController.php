@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
-use App\Reports;
+use App\Report;
 use App\Comment;
 
 class UsersController extends Controller
