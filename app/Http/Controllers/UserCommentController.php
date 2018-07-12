@@ -11,16 +11,22 @@ use App\Comment;
 
 class UserCommentController extends Controller
 {
+    public function index()
+    {
+        $data = [];
+        
+        
+    }
    public function store(Request $request, $id)
     {
         $report = Report::find($id);
 
         $report->comments()->create([
-            'user_id' => $id,
+            'user_id' => \Auth::user()->id,
             'report_id' => $request->report_id,
             'comment' => $request->comment,
         ]);
-        
+        // var_dump($id); exit;
         return redirect()->back();
     }
 
