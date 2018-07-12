@@ -12,35 +12,6 @@
                 </div>
             </div>
             @include('user_follow.follow_button', ['user' => $user])
-<?php
-
-    $number = mt_rand(1, 100);
-    
-
-    if ($number > 99) {
-        print '今日の達成率'. $number . '% おめでとう！' . PHP_EOL;
-    }
-    
-    elseif ($number >= 80) {
-        print '今日の達成率'. $number . '% あとちょっとだね！' . PHP_EOL;
-    }
-    
-    elseif ($number >= 60) {
-        print '今日の達成率'. $number . '% この調子だね！' . PHP_EOL;
-    }
-    
-    elseif ($number >= 40) {
-        print '今日の達成率'. $number . '% がんばって～！' . PHP_EOL;
-    }
-    
-     elseif ($number >= 1) {
-        print '今日の達成率'. $number . '%って、、やる気あるの？？' . PHP_EOL;
-    }
-    
-    else {
-        print '今日の達成率'. $number . '% おめでとう！' . PHP_EOL;
-    }
-?>    
 
 <?php
             date_default_timezone_set('Asia/Tokyo');
@@ -67,7 +38,7 @@
         </aside>
         <div class="col-xs-8">
             @if (count($reports) > 0)
-                @include('reports.reports', ['reports' => $reports])
+                @include('reports.reportsontheday', ['reports' => $reports])
             @endif
         </div>
     </div>
