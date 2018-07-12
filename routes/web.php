@@ -36,6 +36,6 @@ Route::group(['middleware' => ['auth']], function(){
         
         Route::post('comment', 'UserCommentController@store')->name('user.comment');
         Route::delete('uncomment', 'UserCommentController@destroy')->name('user.uncomment');
-        Route::get('comments', 'UserCommentController@comments')->name('users.comments');
+        Route::get('comments', 'UserCommentController@index')->name('comment.index');
     });
 });
