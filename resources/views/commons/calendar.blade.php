@@ -3,6 +3,27 @@
 @section('content')
 
 <?php
+     date_default_timezone_set('Asia/Tokyo');
+         $now_month =  (int)date("m");
+         $now_date = (int)date("d");
+?>
+
+<?php
+     $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
+        
+        if (isset ($popopo) && count($popopo)>0 ) {
+            $dashitaka = '既に日報は提出済みです';
+        }
+        
+        else {
+            $dashitaka =  '日報を出してください。';
+        }
+?>
+        
+        <h1>&nbspこんにちは。今日は<?php print $now_month; ?>月<?php print $now_date; ?>日です。</h1>
+        <h1>&nbsp<?php print $user->username; ?>さんは<?php print $dashitaka; ?></h1>
+
+<?php
   //Control 日付作成処理
   // １ヶ月分の日付を格納
   $days = array();
