@@ -12,9 +12,19 @@
                 </div>
             </div>
             @include('user_follow.follow_button', ['user' => $user])
+            
+            
 <?php
 
-    $number = mt_rand(1, 100);
+    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
+    if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
+    $number = 1;
+    } else {      
+    $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
+    }
+     
+    
+
     
 
     if ($number > 99) {
@@ -43,10 +53,11 @@
 ?>    
 
 <?php
-            date_default_timezone_set('Asia/Tokyo');
-            $now_month =  (int)date("m");
+date_default_timezone_set('Asia/Tokyo');
+$now_month =  (int)date("m");
             $now_date = (int)date("d");
-        ?>
+?>
+
 <?php
 
 
