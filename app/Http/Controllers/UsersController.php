@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
-use App\Reports;
+use App\Report;
+use App\Comment;
 
 class UsersController extends Controller
 {
@@ -27,6 +28,7 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
+        $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
         
         $day = date("y/m/d");
         $week = date("y/m/d", strtotime("-1 week"));
@@ -48,7 +50,8 @@ class UsersController extends Controller
         $data = [
             'user' => $user,
             'reports' => $reports,
-            'graph_data' => $graph_data
+            'graph_data' => $graph_data,
+            'comments' => $comments,
         ];
 
         
