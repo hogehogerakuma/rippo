@@ -15,11 +15,10 @@
                     @if (Auth::check())
                         <li><a href='{{route('users.index')}}'><span class = "glyphicon glyphicon-home"></span> HOME</a></li>
                         <li><a href='{{route('reports.create')}}'><span class = "glyphicon glyphicon-pencil"></span> POST</a></li>
-                        <li><a href='{{route('users.index')}}'><span class = "glyphicon glyphicon-search" aria-hidden="true"></span> SEARCH</a></li>
                         <li><a href='{{route('users.index')}}'><span class = "glyphicon glyphicon-heart" aria-hidden="true"></span> FEED</a></li>
                         <li><a href='{{route('users.index')}}'><span class = "glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> RANKING</a></li>
-                        <li><a href='{{route('users.index')}}'><span class = "glyphicon glyphicon-calendar" aria-hidden="true"></span> CALENDAR</a></li>
-
+                       <li><a href='{{route('users.showe')}}'><span class = "glyphicon glyphicon-calendar" aria-hidden="true"></span> CALENDAR</a></li>
+                 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="glyphicon glyphicon-user" aria-hidden="true""></span></a>
                             <ul class="dropdown-menu">
