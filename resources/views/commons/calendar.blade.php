@@ -21,7 +21,7 @@
 ?>
         
         <h1>&nbspこんにちは。今日は<?php print $now_month; ?>月<?php print $now_date; ?>日です。</h1>
-        <h1>&nbsp<?php print $user->username; ?>さんは<?php print $dashitaka; ?></h1>
+        <h1>&nbsp<?php print Auth::user()->username; ?>さんは<?php print $dashitaka; ?></h1>
 
 <?php
   //Control 日付作成処理
