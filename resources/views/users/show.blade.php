@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<<<<<<< HEAD
     <div class="row">
         <aside class="col-md-24">
             <div class="panel panel-default col-xs-4">
@@ -25,8 +26,31 @@
      
     
 
-    
+=======
+<div class="container">
+        <div class="row">
 
+<?php
+
+    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
+    
+    if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
+    $number = 0;
+    }
+    
+    elseif ($today_reports[0]->result_2 == false || empty($today_reports) || 0 == count($today_reports) && $today_reports[0]->result_3 ==false || empty($today_reports) || 0 == count($today_reports)){
+        $number = $today_reports[0]->result_1;
+    }
+    
+    elseif ($today_reports[0]->result_3 == false || empty($today_reports) || 0 == count($today_reports)) {
+        $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2) /2 ;
+    }
+    
+    else {
+        $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
+    }
+>>>>>>> 806da9457200ecac569455cc8a712dcf90ba7264
+    
     if ($number > 99) {
         print '今日の達成率'. $number . '% おめでとう！' . PHP_EOL;
     }
@@ -43,9 +67,10 @@
         print '今日の達成率'. $number . '% がんばって～！' . PHP_EOL;
     }
     
-     elseif ($number >= 1) {
+     else {
         print '今日の達成率'. $number . '%って、、やる気あるの？？' . PHP_EOL;
     }
+<<<<<<< HEAD
     
     else {
         print '今日の達成率'. $number . '% おめでとう！' . PHP_EOL;
@@ -69,17 +94,30 @@ $now_month =  (int)date("m");
     else {
         $dashitaka =  '日報を出してください。';
     }
+=======
+>>>>>>> 806da9457200ecac569455cc8a712dcf90ba7264
 ?>
-        
-        <h1>&nbspこんにちは。今日は<?php print $now_month; ?>月<?php print $now_date; ?>日です。</h1>
-        <h1>&nbsp<?php print $user->username; ?>さんは<?php print $dashitaka; ?></h1>
-        @include('commons.calendar')
-    
-        </aside>
-        <div class="col-xs-8">
-            @if (count($reports) > 0)
-                @include('reports.reports', ['reports' => $reports])
-            @endif
-        </div>
+                
+                <div class="panel panel-default col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ $user->username }}</h3>
+                    </div>
+                    <div class="panel-body col-lg-3 col-md-3 col-sm-4 col-xs-3">
+                        @include('users.google', ['graph_data' => $graph_data])
+                    </div>
+                </div>
+                
+             <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-6 col-sm-8 col-xs-12">
+                <h3>My Reports</h3>
+                @if (count($reports) > 0)
+                    @include('reports.reports', ['reports' => $reports])
+                @endif
+            </div>
+            <div class="col-xs-8">
+                <h3>My Replies</h3>
+                @if (count($comments) > 0)
+                    @include('comments.comments', ['comments' =>$comments])
+                @endif
+            </div>
     </div>
-@endsection 
+@endsection

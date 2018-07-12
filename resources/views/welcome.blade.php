@@ -2,7 +2,8 @@
 
 @section('content')
     @if (Auth::check())
-        <div class="row">
+<div class="row">
+    <div class="col-xs-8">
 <?php
         date_default_timezone_set('Asia/Tokyo');
         $hour = (int)date('H');
@@ -19,15 +20,14 @@
 
     else {$msg = "こんばんは！良い一日を過ごせたかな？" . PHP_EOL;
     }
-
-    print $msg
+        print $msg
+        
 ?>
-    <div class="col-xs-8">
         @if (count($reports) > 0)
             @include('reports.reports', ['reports' => $reports])
         @endif
     </div>
-    </div>
+</div>
     @else
         <div class="center jumbotron" style="background:rgba(0,0,0,0.0);">
             <div class="text-center">

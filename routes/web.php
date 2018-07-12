@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'ReportsController@index');
+Route::get('/', 'ReportsController@index')->name('home');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
@@ -36,6 +36,9 @@ Route::group(['middleware' => ['auth']], function(){
         
         Route::post('comment', 'UserCommentController@store')->name('user.comment');
         Route::delete('uncomment', 'UserCommentController@destroy')->name('user.uncomment');
-        Route::get('comments', 'UserCommentController@comments')->name('users.comments');
+
+        Route::get('comments', 'UserCommentController@index')->name('comment.index');
+        
+        Route::get('calendar' , 'CommonsController@show')->name('commons.calendar');
     });
 });

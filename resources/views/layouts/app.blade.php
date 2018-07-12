@@ -19,8 +19,8 @@
             }
         </style>
     </head>
-    <body
-    style="color: white; 
+    <body style=
+    "color: white; 
     min-height: 100vh;
     background-image:url('/images/hosizora.jpg');
     background-size: 100% 100%;
