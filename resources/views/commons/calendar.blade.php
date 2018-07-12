@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 @extends('layouts.app')
 
 @section('content')
->>>>>>> bb77ea20d8e5e9c82f80d299956fcf067b01f51a
 
 <?php
      date_default_timezone_set('Asia/Tokyo');
