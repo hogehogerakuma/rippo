@@ -12,4 +12,8 @@ class Comment extends Model
        
        return $this->belongsTo(User::class);
     }
+    
+    public function report() {
+        return $this->belongsTo(Report::class);
+    }
 }
