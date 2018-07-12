@@ -38,5 +38,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::delete('uncomment', 'UserCommentController@destroy')->name('user.uncomment');
 
         Route::get('comments', 'UserCommentController@index')->name('comment.index');
+        
+        Route::get('calendar' , 'CommonsController@show')->name('commons.calendar');
     });
 });
