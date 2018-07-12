@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 
 <?php
   //Control 日付作成処理
@@ -44,7 +47,7 @@
       $days[$i]['hori'] = '';
     }
     //その他必要な処理をここに追加する
-    $days[$i]['hoge'] = '';
+    $days[$i]['hoge'] = ' ';
 
     if ($day == $lastday){
       //月末日の処理
@@ -114,18 +117,35 @@
         }
         $first = false;
       }
+      
+  
+ $info = array();
+    $ps = App\Report::where('user_id', $user->id)->whereMonth('created_at', '7')->get();
+    foreach ($ps as $p) {
+        $t = $p->created_at->format('j');
+        $info[$t] = true;
+    }
+    
+    $thatday_date = $dayD->format('j');
+
+    if (in_array($thatday_date, array_keys($info))) {
+    $ok_post = "🔴";
+  } else {
+    $ok_post = "";
+  }
+      
       if ($dd['hori']){
         //祝日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況</a><br><a href="#">いいね<span class="badge">'. '</span></a><br><a href="#">フィードバック</a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'. '</span></a><br><a href="#">フィードバック</a></td>';
       } elseif($j == 0) {
         //日曜日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>日報提出状況<br>いいね<br>フィードバック</span></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br>いいね<br>フィードバック</span></td>';
       } elseif($j == 6) {
         //土曜日
-        echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>日報提出状況<br>いいね<br>フィードバック</span></td>';
+        echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br>いいね<br>フィードバック</span></td>';
       } else {
         //その他平日
-        echo '<td>'.$dayD->format('j').'<br>日報提出状況<br>いいね<br>フィードバック</td>';
+        echo '<td>'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br>いいね<br>フィードバック</td>';
 
       }
 
@@ -144,3 +164,5 @@
 <?php
   }  //１年分の foreach ここまで
 ?>
+
+@endsection

@@ -3,8 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <aside class="col-lg-16 col-md-16 col-sm-16 col-xs-16 ">
-            @include('user_follow.follow_button', ['user' => $user])
+        <aside class="col-lg-16 col-md-16 col-sm-16 col-xs-16">
     
     <?php
 
