@@ -135,6 +135,18 @@
    
    $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->whereDay('reports.created_at', $favday_date)->where( 'reports.user_id', $user->id )->count();
    
+    $favoriters = DB::table('user_favorite')
+        ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+        ->join('users', 'users.id', '=', 'user_favorite.user_id')
+        ->whereDay('reports.created_at' , $thatday_date)
+        ->where('reports.user_id', $user->id)
+        ->select('users.username')
+        ->get();
+      $fav_label = '';
+      foreach($favoriters as $f) {
+        $fav_label .= $f->username ." ";
+      }
+       
       if ($dd['hori']){
         //祝日
         echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
@@ -146,7 +158,7 @@
         echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
       } else {
         //その他平日
-        echo '<td>'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td>'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br><a href="#">いいね<span class="badge">'.$favorited.'</span></a>'.$fav_label.'<br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
 
       }
 

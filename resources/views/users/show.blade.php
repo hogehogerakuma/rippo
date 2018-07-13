@@ -34,7 +34,21 @@
         <h1>&nbspこんにちは。今日は<?php print $now_month; ?>月<?php print $now_date; ?>日です。</h1>
         <h1>&nbsp<?php print $user->username; ?>さんは<?php print $dashitaka; ?></h1>
         @include('commons.calendar')
+
+    <?php    
+
+    $favoriters = DB::table('user_favorite')
+        ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+        ->join('users', 'users.id', '=', 'user_favorite.user_id')
+        ->whereDay('reports.created_at' , 12)
+        ->where('reports.user_id', $user->id)
+        
+        ->get();
     
+    foreach($favoriters as $f){
+        echo $f->username . " ";
+    }
+?>     
         </aside>
         <div class="col-xs-8">
             @if (count($reports) > 0)
