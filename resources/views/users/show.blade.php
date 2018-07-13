@@ -13,11 +13,7 @@
                     @include('users.google', ['graph_data' => $graph_data])
                 </div>
             </div>
-            @include('user_follow.follow_button', ['user' => $user])
-            
-            
-            
-            
+            <!--@include('user_follow.follow_button', ['user' => $user])-->
             
 <?php
 
