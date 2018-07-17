@@ -1,4 +1,3 @@
-<h1>
 <?php
             date_default_timezone_set('Asia/Tokyo');
             $now_month =  (int)date("m");
@@ -13,7 +12,8 @@ $favoriters = DB::table('user_favorite')
         ->where('reports.user_id', $user->id)
         ->select('users.username')
         ->get();
-      $fav_label = '';
+
+$fav_label = '';
       foreach($favoriters as $f) {
           if($f !== end($favoriters)){
         $fav_label .= $f->username.", ";
@@ -21,8 +21,22 @@ $favoriters = DB::table('user_favorite')
       else{
           $fav_label .= $f->username .", ";
       }
-}
-   print 'あなたの今日の日報は' . $favorited .'つ、' .$fav_label.'さんからいいね！されています' 
+    }
+    if(count($favoriters)>0) {
+        $fav_label = substr( $fav_label,0,strlen( $fav_label)-2);
 
-?>
-</h1>
+     $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
+        
+        if (isset ($popopo) && count($popopo)>0 ) {
+            $dashitaka = '既に日報は提出済みです。';
+        }
+        
+        else {
+            $dashitaka =  '日報をまだ出していません。';
+        }
+    ?>
+        
+　　　<big><?php echo $user->username.'さんは'.$dashitaka ?></big>
+　　　<big><?php echo $user->username.'の今日の日報には'.$fav_label.'から計'. $favorited .'つのいいねがされています。' ?></big>
+
+
