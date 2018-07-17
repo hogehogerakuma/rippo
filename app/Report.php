@@ -19,4 +19,8 @@ class Report extends Model
        
        return $this->hasMany(Comment::class);
     }
+     public function favoriters() 
+     {
+         return $this->hasMany(User::class);
+     }
 }

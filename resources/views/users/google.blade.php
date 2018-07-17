@@ -23,10 +23,10 @@
         
         var chart = new google.visualization.ImageLineChart(document.getElementById('chart_div'));
         
-        chart.draw(data, {width: 273, height: 255, min: 0});
+        chart.draw(data, {width: 200, height: 200, min: 0});
       }
     </script>
   </head>
   <body>
-    <div id="chart_div" style="width: 273px; height: 255px;"></div>
+    <div id="chart_div" style="width: 200px; height: 200px;"></div>
   </body>

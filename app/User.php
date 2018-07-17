@@ -82,13 +82,8 @@ class User extends Authenticatable
     public function feed_reports()
     {
         $reports = Report::all();
-        //$user_ids = $this->reports()->pluck('users.id')->toArray();
-        // $follow_user_ids = $this->followings()-> pluck('users.id')->toArray();
-        // $follow_user_ids[] = $this->id;
-        // return Report::whereIn('user_id', $follow_user_ids);
+       
     }
-    
-    // microposts_at_favorites
 
     public function favorites()
     {
