@@ -88,7 +88,7 @@ class User extends Authenticatable
     public function favorites()
     {
         return $this->belongsToMany(
-         Report::class, // User
+         Report::class,
          'user_favorite', 
          'user_id',
          'report_id')->withTimestamps();

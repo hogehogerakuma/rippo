@@ -19,8 +19,9 @@ class Report extends Model
        
        return $this->hasMany(Comment::class);
     }
-     public function favoriters() 
-     {
-         return $this->hasMany(User::class);
-     }
+     
+    public function favorited() {
+        
+        return $this->belongsToMany(User::class, 'user_favorite', 'user_id', 'report_id')->withTimestamps();
+    }
 }

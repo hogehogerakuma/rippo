@@ -96,15 +96,17 @@ class UsersController extends Controller
     return view('users.followers', $data);
     }
     
-    public function favoriters($id){
-         $report = Report::find(id);
-         $favoriter_id = $report->users_id;
+    public function favorited($id){
+        $user = User::find($id);
+        $report = Report::find($id);
+        $favorited = $report->favorited;
          
-         $data = [
-             'report' => $report,
-             'favoriter_id' => $favoriter_id,
-             ];
+        $data = [
+            'user' => $user,
+            'report' => $report,
+            'favorited' => $favorited,
+        ];
         
-        return view('users.favoriters', $data);
+        return view('users.favorited', $data);
     }
 }
