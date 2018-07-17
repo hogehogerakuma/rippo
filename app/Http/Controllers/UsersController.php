@@ -18,11 +18,7 @@ class UsersController extends Controller
             'users' => $users,
         ]);
     }
-    
-    public function showe($id)
-    {
-     return view('users.showe');   
-    }
+
     
     public function show($id)
     {
