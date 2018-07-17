@@ -19,10 +19,6 @@ class UsersController extends Controller
         ]);
     }
     
-    public function showe($id)
-    {
-     return view('users.showe');   
-    }
     
     public function show($id)
     {
@@ -100,17 +96,19 @@ class UsersController extends Controller
     return view('users.followers', $data);
     }
     
-    public function favorites($id)
+    public function favoriters($id)
     {
+        $reports = Report::find($id);
         $user = User::find($id);
-        $favorites = $user->favorites()->paginate(10);
+        $favoriters = $user->is_favoriting($id);
+        //  $favoriter = $report->;
+         
+         $data = [
+             'reports' => $reports,
+             'user' => $user,
+             'favoriters' => $favoriters,
+             ];
         
-        $data = [
-            'user' => $user,
-            'microposts' => $favorites
-     ];
-        $data += $this->counts($user);
-        
-        return view('users.favorites', $data);
+        return view('users.favoriters', $data);
     }
 }

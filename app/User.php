@@ -82,13 +82,8 @@ class User extends Authenticatable
     public function feed_reports()
     {
         $reports = Report::all();
-        //$user_ids = $this->reports()->pluck('users.id')->toArray();
-        // $follow_user_ids = $this->followings()-> pluck('users.id')->toArray();
-        // $follow_user_ids[] = $this->id;
-        // return Report::whereIn('user_id', $follow_user_ids);
+       
     }
-    
-    // microposts_at_favorites
 
     public function favorites()
     {
@@ -132,5 +127,14 @@ class User extends Authenticatable
     public function comment() {
         $this->comments()->attach($reportsId);
         return true;
+    }
+    
+    public function favoriters()
+    {
+        return $this->belongsToMany(
+        Report::class,
+        'user_favorite', 
+        'user_id',
+        'report_id')->withTimestamps();
     }
 }

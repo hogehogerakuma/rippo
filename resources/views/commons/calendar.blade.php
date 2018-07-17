@@ -82,9 +82,6 @@
   }
 ?>
 
-
-
-
   <div class="container">
 <?php
   //View 表示処理
@@ -124,59 +121,70 @@
         <tbody>
           <tr>
 <?php
-    $j = 0;
-    $first = true;
-    foreach ($mm as $key => $dd) {
+      $j = 0;
+      $first = true;
+    
+  foreach ($mm as $key => $dd) {
       $dayD = new DateTime($dd['day']);
       $ww = $dayD->format('w');
 
-      if ($first){
+    if ($first){
         //月の初めの開始位置を設定する
-        for ($j = 0; $j < $ww; $j++) {
-          //$jはこの後も使用する
+      for ($j = 0; $j < $ww; $j++) {
+        //$jはこの後も使用する
           echo '<td></td>';
-        }
-        $first = false;
       }
+      $first = false;
+    }
       
   
- $info = array();
-    $ps = App\Report::where('user_id', $user->id)->whereMonth('created_at', '7')->get();
+      $info = array();
+      $ps = App\Report::where('user_id', $user->id)->whereMonth('created_at', '7')->get();
+    
     foreach ($ps as $p) {
         $t = $p->created_at->format('j');
         $info[$t] = true;
     }
     
-    $thatday_date = $dayD->format('j');
+      $thatday_date = $dayD->format('j');
 
     if (in_array($thatday_date, array_keys($info))) {
-    $ok_post = "🔴";
-  } else {
-    $ok_post = "";
-  }
+        $ok_post = "🔴";
+    } 
+    else {
+        $ok_post = "";
+    }
       
-      if ($dd['hori']){
+      $favday_date = $dayD->format('j');
+      $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $favday_date)->where( 'reports.user_id', $user->id )->count();
+   
+      $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->whereDay('reports.created_at', $favday_date)->where( 'reports.user_id', $user->id )->count();
+   
+    if ($dd['hori']){
         //祝日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'. '</span></a><br><a href="#">フィードバック</a></td>';
-      } elseif($j == 0) {
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+    } 
+    elseif($j == 0) {
         //日曜日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br>いいね<br>フィードバック</span></td>';
-      } elseif($j == 6) {
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+    }
+    elseif($j == 6) {
         //土曜日
-        echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br>いいね<br>フィードバック</span></td>';
-      } else {
-        //その他平日
-        echo '<td>'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br>いいね<br>フィードバック</td>';
-
+        echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+    }
+    else {
+        //平日
+        echo '<td>'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br>'. link_to_route('users.favoriters', 'いいね', ['id' => $id]). '<span class="badge">'.$favorited.'</span><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
       }
 
       $j = $j + 1;
-      if ($j >= 7){
+      
+    if ($j >= 7){
         //土曜日で折り返す
         echo '</tr><tr>';
-        $j = 0;
-      }
-    }  //月ごとの foreach ここまで
+      $j = 0;
+    }
+  }  //月ごとの foreach ここまで
 ?>
           </tr>
         </tbody>
@@ -185,5 +193,4 @@
 <?php
   }  //１年分の foreach ここまで
 ?>
-
 @endsection
