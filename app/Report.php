@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Report extends Model
 {
@@ -18,10 +19,5 @@ class Report extends Model
     public function comments() {
        
        return $this->hasMany(Comment::class);
-    }
-     
-    public function favorited() {
-        
-        return $this->belongsToMany(User::class, 'user_favorite', 'user_id', 'report_id')->withTimestamps();
     }
 }

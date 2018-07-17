@@ -66,11 +66,15 @@ class ReportsController extends Controller
     
     public function create()
     {
+        $user = \Auth::user();
         $report = new Report;
-
-        return view('reports.create', [
+        
+        $data = [
+            'user' => $user,
             'report' => $report,
-        ]);
+            ];
+
+        return view('reports.create', $data);
     }
     
     public function reportsFromUser($id) {

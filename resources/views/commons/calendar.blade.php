@@ -165,7 +165,7 @@
    
     if ($dd['hori']){
         //祝日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">いいね</a><span class="badge">'.$favorited. '</span><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
     } 
     elseif($j == 0) {
         //日曜日
@@ -177,7 +177,7 @@
     }
     else {
         //平日
-        echo '<td>'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br><a href="#">いいね<span class="badge">'.$favorited.'</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">いいね</a><span class="badge">'.$favorited. '</span><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
       }
 
       $j = $j + 1;
