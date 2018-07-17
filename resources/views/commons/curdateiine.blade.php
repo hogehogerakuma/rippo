@@ -21,8 +21,11 @@ $favoriters = DB::table('user_favorite')
       else{
           $fav_label .= $f->username .", ";
       }
-}
+    }
+    if(count($favoriters)>0) {
+        $fav_label = substr( $fav_label,0,strlen( $fav_label)-2);
+    }
    print 'あなたの今日の日報は' . $favorited .'つ、' .$fav_label.'さんからいいね！されています' 
 
 ?>
-</h1>
+</h1
