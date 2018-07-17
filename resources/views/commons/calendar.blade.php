@@ -12,7 +12,7 @@
      $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
         
         if (isset ($popopo) && count($popopo)>0 ) {
-            $dashitaka = '既に日報は提出済みです';
+            $dashitaka = '既に日報は提出済みです。';
         }
         
         else {

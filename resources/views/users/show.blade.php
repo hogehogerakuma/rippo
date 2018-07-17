@@ -2,7 +2,10 @@
 
 @section('content')
 
+@if (Auth::id() != $user->id)
 <h1>こちらは <?php print $user->username?>さんのカレンダーです。</h1>
+@endif
+
 
 @include('commons.curdateiine')
 
