@@ -29,15 +29,15 @@ Route::group(['middleware' => ['auth']], function(){
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
+        Route::get('favoriters', 'UsersController@favoriters')->name('users.favoriters');
         
         Route::post('favorite', 'UserFavoriteController@store')->name('user.favorite');
         Route::delete('unfavorite', 'UserFavoriteController@destroy')->name('user.unfavorite');
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
         
+        Route::get('comments', 'UserCommentController@index')->name('comment.index');
         Route::post('comment', 'UserCommentController@store')->name('user.comment');
         Route::delete('uncomment', 'UserCommentController@destroy')->name('user.uncomment');
-
-        Route::get('comments', 'UserCommentController@index')->name('comment.index');
         
         Route::get('calendar' , 'CommonsController@show')->name('commons.calendar');
         
