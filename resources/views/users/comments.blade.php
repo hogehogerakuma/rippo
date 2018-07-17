@@ -2,30 +2,6 @@
 
 @section('content')
 
-@include('commons.curdateiine')
-    <div class="row">
-        <aside class="col-md-24">
-            <div class="panel panel-default col-xs-4">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ $user->username }}</h3>
-                </div>
-                <div class="panel-body">
-                    @include('users.google', ['graph_data' => $graph_data])
-                </div>
-            </div>
-            <!--@include('user_follow.follow_button', ['user' => $user])-->
-            
-<?php
-
-    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
-    if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
-    $number = 1;
-    } else {      
-    $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
-    }
-?>
-
-
 <div class="panel panel-default col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-right:60px;">                
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ $user->username }}</h3>
@@ -56,7 +32,6 @@
     else {
         $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
     }
-
     
     if ($number > 99) {
         print '今日の達成率'. $number . '% おめでとう！' . PHP_EOL;
@@ -77,29 +52,20 @@
      else {
         print '今日の達成率'. $number . '%って、、やる気あるの？？' . PHP_EOL;
     }
-
 ?>
 </div>
 
 <div class="col-lg-12">
-    <ul class="nav nav-tabs">
-        <li role="activate" style="color:white;"><a href='{{route('reports.reports', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Reports&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
-        <!--<li role="activate" style="color:white;"><a href='{{route('users.comments', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Comments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>-->
-                  
-    <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="padding-top:20px;">
-                @if (count($reports) > 0)
-                    @include('reports.reports', ['reports' => $reports])
-                @endif
+        <ul class="nav nav-tabs">
+            <li role="activate" style="color:white;"><a href='{{route('reports.reports', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Reports&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+            <!--<li role="activate" style="color:black;"><a href='{{route('users.comments', ['id' => $comments[0]->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Comments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>-->
+                <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="padding-top:20px;">
+                    @if (count($reports) > 0)
+                        @include('comments.comments', ['comments' =>$comments])
+                    @endif
                 </div>
-            </div>
-            </ul>
-            
-            <!--<div class="col-xs-8">-->
-            <!--    <h3>My Replies</h3>-->
-            <!--    @if (count($comments) > 0)-->
-            <!--        @include('comments.comments', ['comments' =>$comments])-->
-            <!--    @endif-->
-            <!--</div>-->
-    </div>
+        </ul>
+</div>
+</div>
     
 @endsection

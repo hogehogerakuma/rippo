@@ -15,9 +15,9 @@ class UserCommentController extends Controller
     {
         $data = [];
         
-        
     }
-   public function store(Request $request, $id)
+    
+     public function store(Request $request, $id)
     {
         $report = Report::find($id);
 
@@ -29,6 +29,49 @@ class UserCommentController extends Controller
         // var_dump($id); exit;
         return redirect()->back();
     }
+    
+    public function show($id)
+    {  
+        $user = User::find($id);
+        $reports = $user->reports()->get();
+        $report_ids = array();
+        foreach($reports as $r) {
+            array_push($report_ids, $r->id);
+        }
+        
+        $comments = Comment::whereIn("id",$report_ids)->get();
+//      $comments = $report->comments()->orderBy('created_at', 'desc')->paginate(10);
+        dd($reports);
+        exit;
+        
+        $day = date("y/m/d");
+        $week = date("y/m/d", strtotime("-1 week"));
+        $month = date("y/m/d", strtotime("-1 month"));
+        
+        $graph_data = [
+            ['Date', 'Favorites', 'Followings', 'Followers'],
+        ];
+    
+        $searches = [$day, $week, $month];
+        foreach ($searches as $value) {
+            $favorites = $user-> favorites()->where('user_favorite.created_at', '>', $value)->get()->count();
+            $followings = $user->followings()->where('user_follow.created_at', '>', $value)->get()->count();
+            $followers = $user->followers()->where('user_follow.created_at', '>', $value)->get()->count();
+
+            $graph_data = array_merge($graph_data, [[$value, $favorites, $followings, $followers]]);
+        }
+
+        $data = [
+            'user' => $user,
+            'reports' => $reports,
+            'graph_data' => $graph_data,
+            'comments' => $comments,
+        ];
+            
+        return view('users.comments', $data);
+    }
+    
+ 
 
     public function destroy($id)
     {
