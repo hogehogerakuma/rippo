@@ -2,8 +2,8 @@
 
 @section('content')
     @if (Auth::check())
-<div class="row">
-    <div class="col-xs-8">
+<div class="panel panel-default col-lg-10 col-md-10 col-sm-12 col-xs-12" style="padding-top:0px; padding-bottom:20px; margin-left:90px;"> 
+<h2 style="color:black; background-color:pink;"><b>Today's NiPPO</b></h2>
 <?php
         date_default_timezone_set('Asia/Tokyo');
         $hour = (int)date('H');
@@ -27,7 +27,6 @@
             @include('reports.reports', ['reports' => $reports])
         @endif
     </div>
-</div>
     @else
         <div class="center jumbotron" style="background:rgba(0,0,0,0.0);">
             <div class="text-center">
