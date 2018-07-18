@@ -20,8 +20,8 @@
         }
 ?>
         
-        <h1>&nbspこんにちは。今日は<?php print $now_month; ?>月<?php print $now_date; ?>日です。</h1>
-        <h1>&nbsp<?php print Auth::user()->username; ?>さんは<?php print $dashitaka; ?></h1>
+        <h2 style="font-family:monospace;">&nbspこんにちは。今日は<?php print $now_month; ?>月<?php print $now_date; ?>日です。</h2>
+        <h2 style="font-family:monospace;">&nbsp<?php print Auth::user()->username; ?><span class= "glyphicon glyphicon-user"></span>さん、<?php print $dashitaka; ?></h2>
 
 <?php
   //Control 日付作成処理

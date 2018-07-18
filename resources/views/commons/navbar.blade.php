@@ -1,4 +1,7 @@
 <header>
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Lobster+Two');
+</style>
     <nav class="navbar navbar-inverse navbar-static-top" style="background:rgba(0,0,0,0.0);">
         <div class="container">
             <div class="navbar-header">
@@ -8,7 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Rippo</a>
+                <a class="navbar-brand" href="/" style= "font-family: 'Lobster Two', cursive;", sans-serif;">Rippo</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -29,8 +32,8 @@
                             </ul>
                         </li>
                     @else
-                        <li><a href='{{route('signup.get')}}'><span class = "glyphicon glyphicon-globe" aria-hidden="true"></span> Sign UP</a></li>
-                        <li><a href='{{route('login')}}'><span class = "glyphicon glyphicon-log-in" aria-hidden="true"></span> Log in</a></li>
+                        <li style= "font-family: 'Lobster Two', cursive;", sans-serif;"><a href='{{route('signup.get')}}'><span class = "glyphicon glyphicon-globe" aria-hidden="true" ></span> Sign UP</a></li>
+                        <li style= "font-family: 'Lobster Two', cursive;", sans-serif;"><a href='{{route('login')}}'><span class = "glyphicon glyphicon-log-in" aria-hidden="true"></span> Log in</a></li>
                     @endif
                 </ul>
             </div>

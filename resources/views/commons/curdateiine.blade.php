@@ -1,4 +1,3 @@
-<h1>
 <?php
             date_default_timezone_set('Asia/Tokyo');
             $now_month =  (int)date("m");
@@ -22,7 +21,7 @@ $favoriters = DB::table('user_favorite')
           $fav_label .= $f->username .", ";
       }
 }
-   print 'あなたの今日の日報は' . $favorited .'つ、' .$fav_label.'さんからいいね！されています' 
+   print '<h3 style="font-family:monospace;">今日の日報は'.$fav_label.'さんから' . $favorited .'つ
+   <span class= "glyphicon glyphicon-heart"></span>されています!</h3>' 
 
 ?>
-</h1>
