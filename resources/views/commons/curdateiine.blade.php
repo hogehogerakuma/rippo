@@ -9,15 +9,16 @@
 $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
         
         if (isset ($popopo) && count($popopo)>0 ) {
-            $dashitaka = '既に今日の日報は提出済みです。';
+            $dashitaka = '今日の日報は既に提出済みです。';
         }
         
         else {
-            $dashitaka =  '日報を出してください。';
+            $dashitaka =  'まだ今日の日報を出していません。';
         }
-        
-     print $user->username."さんは".$dashitaka. PHP_EOL;
+?>        
+<h1><?php print $user->username; ?>さんは<?php print $dashitaka; ?></h1>
 
+<?php
 $favoriters = DB::table('user_favorite')
         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
         ->join('users', 'users.id', '=', 'user_favorite.user_id')
@@ -38,10 +39,17 @@ $favoriters = DB::table('user_favorite')
         $fav_label = substr( $fav_label,0,strlen( $fav_label)-2);
     }
     
-    if(count($favoriters)>0){
-   print 'あなたの今日の日報は'.$fav_label.'さんから合計'.$favorited .'ついいね！されています。' ;
-}
+    if(count($favoriters)>0) {
+       $goukei = $user->username."さんの今日の日報は".$fav_label."さんから合計".$favorited."ついいね！されています。";
+    }
+    else{
+        $goukei = "";
+    }
+?>   
 
+
+
+<h1><?php print $goukei; ?></h1>
 
         
 
