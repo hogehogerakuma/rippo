@@ -6,26 +6,14 @@
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
-@include('commons.curdateiine')
-
-<?php
-
-    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
-    if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
-    $number = 1;
-    } else {      
-    $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
-    }
-?>
-
 <div class="panel panel-default col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-top: 20px; margin-right:60px; font-family: 'Lobster', cursive;">                
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ $user->username }}</h3>
+                        </div>
+                            <div class="panel-body col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                                @include('users.google', ['graph_data' => $graph_data])
                             </div>
-                    <div class="panel-body col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        @include('users.google', ['graph_data' => $graph_data])
-                    </div>
-                    </div>
+                        </div>
                     
 <div class="row col-lg-8">
     <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
@@ -80,11 +68,16 @@
                 @if (count($reports) > 0)
                     @include('reports.reports', ['reports' => $reports])
                 @endif
-                </div>
+                   </div>
+         </ul>
+         </div>
+</div>
+</div>
+<div class="row col-lg-10" style="margin-right:200px; margin-left:100px; font-family: 'Lobster', cursive;">
+                <a href="{{route('users.show', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button">Show Calendar</a>
+
             </div>
-            </ul>
             
-            
-    </div>
-    
 @endsection
+
+            

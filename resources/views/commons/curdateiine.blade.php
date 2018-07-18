@@ -2,7 +2,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Gaegu|Great+Vibes|Lobster+Two');
 </style>
-<div class style="font-family: 'Merienda', cursive;">
+<div class style="font-family: 'Lobster', cursive;">
 
 <?php
             date_default_timezone_set('Asia/Tokyo');
@@ -10,7 +10,6 @@
             $now_date = (int)date("j");
  
  $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $now_date)->where( 'reports.user_id', $user->id )->count();
-
 
 $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
         
@@ -22,8 +21,7 @@ $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user
             $dashitaka =  'Please submit your Daily Report';
         }
         
-     print $user->username." <span class="glyphicon glyphicon-user"></span>,".$dashitaka. PHP_EOL;
-
+     
 $favoriters = DB::table('user_favorite')
         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
         ->join('users', 'users.id', '=', 'user_favorite.user_id')
