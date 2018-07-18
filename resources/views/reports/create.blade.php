@@ -16,7 +16,7 @@
     
         <div class="form-group">
          {!! Form::label('content', '■ Thoughts on Today ■') !!}
-         {!! Form::text('content', null, ['class' => 'form-control', 'rows' => '2']) !!}    
+         {!! Form::text('content', null, ['class' => 'form-control']) !!}    
         </div>
         
         <div class="form-group form-inline" style='display:inline-block'>
