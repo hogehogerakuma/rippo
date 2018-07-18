@@ -1,10 +1,8 @@
-@extends('layouts.app')
+@if (Auth::id() != $user->id)
 
-@section('content')
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
-
 
 <?php
      date_default_timezone_set('Asia/Tokyo');
@@ -12,20 +10,7 @@
          $now_date = (int)date("d");
 ?>
 
-<?php
-     $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
-        
-        if (isset ($popopo) && count($popopo)>0 ) {
-            $dashitaka = 'Your Daily Report was already submitted';
-        }
-        
-        else {
-            $dashitaka =  'Please submit your Daily Report';
-        }
-?>
-        
-        <h2 style="font-family: 'Lobster', cursive;">&nbsp&nbspHi Guys!&nbsp&nbspToday is <?php print $now_month; ?>/<?php print $now_date; ?></h2>
-        <h2 style="font-family: 'Lobster', cursive;">&nbsp&nbsp<?php print Auth::user()->username; ?><span class= "glyphicon glyphicon-user"></span>、<?php print $dashitaka; ?></h2>
+
 
 <?php
   //Control 日付作成処理
@@ -92,7 +77,7 @@
   <div class="container" style="font-family: 'Merienda', cursive;">
 <?php
   //View 表示処理
-  //$weeklavel = array("", "月", "火", "水", "木", "金", "土");
+  //$weeklavel = array("日", "月", "火", "水", "木", "金", "土");
   //echo $weeklavel[$ww];
   foreach ($cals as $key => $mm) {
     foreach ($mm as $key => $dd) {
@@ -111,7 +96,7 @@
         }
         
     </style>
-    <div class="table-responsive" style = "font-family: 'Merienda', cursive;">
+    <div class="table-responsive" style="font-family: 'Merienda', cursive;">
       <!-- table class="table table-bordered" style="table-layout:fixed;" -->
       <table class="table table-bordered">
         <thead>
@@ -156,7 +141,7 @@
       $thatday_date = $dayD->format('j');
 
     if (in_array($thatday_date, array_keys($info))) {
-        $ok_post = "🔴";
+        $ok_post = " 🔴";
     } 
     else {
         $ok_post = "";
@@ -169,19 +154,19 @@
    
     if ($dd['hori']){
         //祝日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report$nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class="badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     } 
     elseif($j == 0) {
         //日曜日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class=" badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class=" badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class="badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     }
     elseif($j == 6) {
         //土曜日
-        echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class=" badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class=" badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class="badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     }
     else {
         //平日
-        echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'"></a>Like&nbsp;<span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td>'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'<br><a href="#">Like&nbsp;<span class="badge">'.$favorited.'</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
       }
 
       $j = $j + 1;
@@ -200,4 +185,4 @@
 <?php
   }  //１年分の foreach ここまで
 ?>
-@endsection
+@endif
