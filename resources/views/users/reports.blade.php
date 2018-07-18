@@ -2,7 +2,23 @@
 
 @section('content')
 
-<div class="panel panel-default col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-right:60px;">                
+<style>
+@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+</style>
+
+@include('commons.curdateiine')
+
+<?php
+
+    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
+    if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
+    $number = 1;
+    } else {      
+    $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
+    }
+?>
+
+<div class="panel panel-default col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-top: 20px; margin-right:60px; font-family: 'Lobster', cursive;">                
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ $user->username }}</h3>
                             </div>
@@ -11,8 +27,8 @@
                     </div>
                     </div>
                     
-<div class="row col-lg-9">
-    <div class="col-lg-12">
+<div class="row col-lg-8">
+    <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
 <?php
 
     $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
@@ -58,9 +74,9 @@
                 
           <div class="col-lg-12">
             <ul class="nav nav-tabs">
-                <li role="activate" style="color:white;"><a href='{{route('reports.reports', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Reports&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
-                <!--<li role="activate" style="color:white;"><a href='{{route('users.comments', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Comments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>-->
-                   <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="padding-top:20px;">
+                <li role="activate" style="color:white; font-family: 'Lobster', cursive;"><a href='{{route('reports.reports', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Reports&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+                <li role="activate" style="color:white; font-family: 'Lobster', cursive;"><a href='{{route('users.comments', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Comments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+                   <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="padding-top:20px; font-family: 'Gaegu', cursive;">
                 @if (count($reports) > 0)
                     @include('reports.reports', ['reports' => $reports])
                 @endif

@@ -1,3 +1,9 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Gaegu|Great+Vibes|Lobster+Two');
+</style>
+<div class style="font-family: 'Merienda', cursive;">
+
 <?php
             date_default_timezone_set('Asia/Tokyo');
             $now_month =  (int)date("m");
@@ -9,14 +15,14 @@
 $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
         
         if (isset ($popopo) && count($popopo)>0 ) {
-            $dashitaka = '既に今日の日報は提出済みです。';
+            $dashitaka = 'Your Daily Report was already submitted';
         }
         
         else {
-            $dashitaka =  '日報を出してください。';
+            $dashitaka =  'Please submit your Daily Report';
         }
         
-     print $user->username."さんは".$dashitaka. PHP_EOL;
+     print $user->username." <span class="glyphicon glyphicon-user"></span>,".$dashitaka. PHP_EOL;
 
 $favoriters = DB::table('user_favorite')
         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
@@ -39,9 +45,9 @@ $favoriters = DB::table('user_favorite')
     }
     
     if(count($favoriters)>0){
-   print 'あなたの今日の日報は'.$fav_label.'さんから合計'.$favorited .'ついいね！されています。' ;
+   print '<h3>Your Report   Get'. $favorited .'<span class= "glyphicon glyphicon-heart"></span>  from'.$fav_label.'</h3>' ;
 }
 
-
-        
+?>
+</div>
 
