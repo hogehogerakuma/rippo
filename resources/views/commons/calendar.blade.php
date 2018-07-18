@@ -15,12 +15,12 @@
 <?php
      $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
         
-        if (isset ($popopo) && count($popopo) {
-            $dashitaka = 'Your daily report was already submited!'
+        if (isset ($popopo) && count($popopo)>0 ) {
+            $dashitaka = 'Your Daily Report was already submitted';
         }
         
         else {
-            $dashitaka =  'Please submit your daily report';
+            $dashitaka =  'Please submit your Daily Report';
         }
 ?>
         

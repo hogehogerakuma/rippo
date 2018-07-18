@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
-    <nav class="navbar navbar-inverse navbar-static-top" style="background:rgba(0,0,0,0.0); font-family: 'Lobster', cursive;">
+    <nav class="navbar navbar-inverse navbar-static-top" style="background:rgba(0,0,0,0.0); font-family: 'Merienda', cursive;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
