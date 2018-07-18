@@ -2,6 +2,10 @@
 
 @section('content')
 
+<style>
+@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+</style>
+
 @include('commons.curdateiine')
 
 <?php
@@ -14,7 +18,7 @@
     }
 ?>
 
-<div class="panel panel-default col-lg-3 col-md-3 col-sm-12 col-xs-12" style=" margin-top:20px; margin-right:60px;">                
+<div class="panel panel-default col-lg-3 col-md-3 col-sm-12 col-xs-12" style=" font-family: 'Lobster', cursive; margin-top:20px; margin-right:60px;">                
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ $user->username }}</h3>
                             </div>
@@ -23,8 +27,8 @@
                     </div>
                     </div>
                     
-<div class="row col-lg-9">
-    <div class="col-lg-12" style="margin-top:20px;">
+<div class="row col-lg-8">
+    <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
 <?php
 
     $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
@@ -69,9 +73,9 @@
 
 <div class="col-lg-12">
         <ul class="nav nav-tabs">
-            <li role="activate" style="color:white;"><a href='{{route('reports.reports', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Reports&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
-            <li role="activate" style="color:white;"><a href='{{route('users.comments', ['id' => $comments[0]->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Comments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
-                <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="color:black; padding-top:20px; padding-bottom:20px;">
+            <li role="activate" style="color:white; font-family: 'Lobster', cursive;"><a href='{{route('reports.reports', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Reports&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+            <li role="activate" style="color:white; font-family: 'Lobster', cursive;"><a href='{{route('users.comments', ['id' => $comments[0]->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Comments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+                <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="font-family: 'Merienda', cursive; color:black; padding-top:20px; padding-bottom:20px;">
                     @if (count($reports) > 0)
                         @include('comments.comments', ['comments' =>$comments])
                     @endif

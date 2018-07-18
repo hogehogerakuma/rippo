@@ -1,3 +1,7 @@
+<style>
+@import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Gaegu|Great+Vibes|Lobster+Two');
+</style>
+<div class style="font-family: 'Merienda', cursive;">
 <?php
             date_default_timezone_set('Asia/Tokyo');
             $now_month =  (int)date("m");
@@ -21,7 +25,8 @@ $favoriters = DB::table('user_favorite')
           $fav_label .= $f->username .", ";
       }
 }
-   print '<h3 style="font-family:monospace;">今日の日報は'.$fav_label.'さんから' . $favorited .'つ
-   <span class= "glyphicon glyphicon-heart"></span>されています!</h3>' 
+   print '<h3>Your Report Get    '. $favorited .'<span class= "glyphicon glyphicon-heart"></span>  from'
+   .$fav_label.'</h3>' 
 
 ?>
+</div>

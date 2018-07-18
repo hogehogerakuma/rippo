@@ -1,4 +1,4 @@
-<div class="col-xs-10">
+<div class="col-xs-10" style= "font-family: 'Merienda', cursive;">
     
     {!! Form::open(['route' => ['user.comment', $report->id]]) !!}
 
@@ -7,6 +7,6 @@
         {!! Form::text('comment', null, ['class' => 'form-control']) !!}    
      </div>
             
-     {!! Form::submit('投稿', ['class' => 'btn btn-primary']) !!}
+     {!! Form::submit('Send', ['class' => 'btn btn-primary']) !!}
      {!! Form::close() !!}    
 </div>            
