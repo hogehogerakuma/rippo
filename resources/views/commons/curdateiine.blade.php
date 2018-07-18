@@ -28,4 +28,4 @@ $favoriters = DB::table('user_favorite')
    print 'あなたの今日の日報は' . $favorited .'つ、' .$fav_label.'さんからいいね！されています' 
 
 ?>
-</h1
+</h1>

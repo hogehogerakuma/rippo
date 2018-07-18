@@ -13,7 +13,11 @@
                     @include('users.google', ['graph_data' => $graph_data])
                 </div>
             </div>
-            <!--@include('user_follow.follow_button', ['user' => $user])-->
+            @include('user_follow.follow_button', ['user' => $user])
+            
+            
+            
+            
             
 <?php
 
@@ -25,18 +29,7 @@
     }
 ?>
 
-
-<div class="panel panel-default col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-right:60px;">                
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{ $user->username }}</h3>
-                            </div>
-                    <div class="panel-body col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                        @include('users.google', ['graph_data' => $graph_data])
-                    </div>
-                    </div>
-                    
-<div class="row col-lg-9">
-    <div class="col-lg-12">
+<h1>
 <?php
 
     $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
@@ -79,27 +72,40 @@
     }
 
 ?>
-</div>
+</h1>
 
-<div class="col-lg-12">
-    <ul class="nav nav-tabs">
-        <li role="activate" style="color:white;"><a href='{{route('reports.reports', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Reports&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
-        <!--<li role="activate" style="color:white;"><a href='{{route('users.comments', ['id' => $user->id])}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspMy Comments&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>-->
-                  
-    <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="padding-top:20px;">
+<?php
+date_default_timezone_set('Asia/Tokyo');
+$now_month =  (int)date("m");
+            $now_date = (int)date("d");
+?>
+
+<?php
+
+
+
+    $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
+    if (isset ($popopo) && count($popopo)>0 ) {
+        $dashitaka = '既に日報は提出済みです';
+    }
+    else {
+        $dashitaka =  '日報を出してください。';
+    }
+
+?>
+
+                
+             <div class="col-lg-offset-1 col-lg-7 col-md-offset-1 col-md-6 col-sm-8 col-xs-12">
+                <h3>My Reports</h3>
                 @if (count($reports) > 0)
                     @include('reports.reports', ['reports' => $reports])
                 @endif
-                </div>
             </div>
-            </ul>
-            
-            <!--<div class="col-xs-8">-->
-            <!--    <h3>My Replies</h3>-->
-            <!--    @if (count($comments) > 0)-->
-            <!--        @include('comments.comments', ['comments' =>$comments])-->
-            <!--    @endif-->
-            <!--</div>-->
+            <div class="col-xs-8">
+                <h3>My Replies</h3>
+                @if (count($comments) > 0)
+                    @include('comments.comments', ['comments' =>$comments])
+                @endif
+            </div>
     </div>
-    
 @endsection
