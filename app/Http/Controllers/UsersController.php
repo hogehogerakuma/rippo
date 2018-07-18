@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\User;
 use App\Report;
@@ -95,14 +96,25 @@ class UsersController extends Controller
     return view('users.followers', $data);
     }
     
-    public function favoriters($id){
-         $report = Report::find(id);
-         $favoriter_id = $report->users_id;
+    public function favoriters($id, $thatday_date) {
+        $user = User::find($id);
+        $favoriters = DB::table('user_favorite')
+         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+         ->join('users', 'users.id', '=', 'user_favorite.user_id')
+         ->whereDay('reports.created_at' ,$thatday_date)
+         ->where('reports.user_id', $user->id)
+         ->select('users.username')
+         ->get();
+    
+        $report = Report::find($id);
+        // $favoriters = $report->favoriters();
          
-         $data = [
-             'report' => $report,
-             'favoriter_id' => $favoriter_id,
-             ];
+         
+        $data = [
+            'user' => $user,
+            'report' => $report,
+            'favoriters' => $favoriters,
+        ];
         
         return view('users.favoriters', $data);
     }

@@ -21,7 +21,7 @@ class CreateCommentsTable extends Migration
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('report_id')->references('id')->on('reports');
+            $table->foreign('report_id')->references('id')->on('reports')->onDelete('cascade');
         });
     }
 

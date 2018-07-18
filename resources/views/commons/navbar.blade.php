@@ -20,7 +20,7 @@
                     @if (Auth::check())
                         <li><a href='{{route('home')}}'><span class = "glyphicon glyphicon-home"></span> HOME</a></li>
                         <li><a href='{{route('reports.create')}}'><span class = "glyphicon glyphicon-pencil"></span> POST</a></li>
-                        <li><a href='{{route('users.index')}}'><span class = "glyphicon glyphicon-heart" aria-hidden="true"></span> FEED</a></li>
+                        <li><a href='{{route('users.favoriters', ['id' => $user->id])}}'><span class = "glyphicon glyphicon-heart" aria-hidden="true"></span> FEED</a></li>
                         <li><a href='{{route('users.index')}}'><span class = "glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> RANKING</a></li>
                         
                        <li><a href='{{route('commons.calendar', ['id' => Auth::user()->id])}}'><span class = "glyphicon glyphicon-calendar" aria-hidden="true"></span> CALENDAR</a></li>

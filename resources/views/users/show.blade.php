@@ -2,12 +2,30 @@
 
 @section('content')
 
+
 <style>
 @import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Gaegu|Great+Vibes|Lobster+Two');
 </style>
 
+
+
+@if (Auth::id() != $user->id)
+<h1 style= "font-family: 'Merienda' , Cursive;">This is <?php print $user->username?>'s Calendar</h1>
+@endif
+
+
 @include('commons.curdateiine')
 
+
+@include ('commons.otherscalendar')
+
+
+　
+
+    <div class="row">
+        <aside class="col-md-24">
+            <!--@include('user_follow.follow_button', ['user' => $user])-->
+            
 <?php
 
     $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
@@ -20,6 +38,8 @@
 
 
 <div class="panel panel-default col-lg-3 col-md-3 col-sm-10 col-xs-12" style="margin-top:20px; margin-right:60px; font-family: 'Lobster Two', cursive;">                
+
+
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ $user->username }}</h3>
                             </div>
