@@ -33,8 +33,7 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('followings', 'UsersController@followings')->name('users.followings');
         Route::get('followers', 'UsersController@followers')->name('users.followers');
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
-        Route::get('favoriters', 'UsersController@favoriters')->name('users.favoriters');
-        Route::get('favoriters/{thatday_date}', 'UsersController@favoriters');
+        Route::get('favoriters/{thatday_date}', 'UsersController@favoriters')->name('users.favoriters');
     
         Route::get('comments', 'UserCommentController@index')->name('comment.index');
         Route::post('comment', 'UserCommentController@store')->name('user.comment');
