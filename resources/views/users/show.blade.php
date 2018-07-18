@@ -2,7 +2,19 @@
 
 @section('content')
 
+@if (Auth::id() != $user->id)
+<h1>こちらは <?php print $user->username?>さんのカレンダーです。</h1>
+@endif
+
+
 @include('commons.curdateiine')
+
+
+@include ('commons.otherscalendar')
+
+
+　
+
     <div class="row">
         <aside class="col-md-24">
             <!--@include('user_follow.follow_button', ['user' => $user])-->
