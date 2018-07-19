@@ -39,8 +39,9 @@ class UserCommentController extends Controller
             array_push($report_ids, $r->id);
         }
         
-        $comments=Comment::whereIn('report_id',$report_ids)->orderBy('created_at', 'desc')->get();
-//      $comments = $report->comments()->orderBy('created_at', 'desc')->paginate(1;
+        $comments = Comment::whereIn('report_id',$report_ids)->orderBy('created_at', 'desc')->get();
+        
+        //$comments = $report->comments()->orderBy('created_at', 'desc')->paginate(1;
         //  dd($report_ids);
         // exit;
         

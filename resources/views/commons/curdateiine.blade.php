@@ -2,7 +2,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Gaegu|Great+Vibes|Lobster+Two');
 </style>
-<div class style="font-family: 'Lobster', cursive;">
+<div class style="font-family: 'Merienda', cursive;">
 
 <?php
             date_default_timezone_set('Asia/Tokyo');
@@ -42,18 +42,16 @@ $favoriters = DB::table('user_favorite')
     if(count($favoriters)>0) {
         $fav_label = substr( $fav_label,0,strlen( $fav_label)-2);
     }
-    if(count($favoriters)>0) {
-       $goukei = $user->username.", your  today's report got total ".$favorited." like from ".$fav_label;
+
+   if(count($favoriters)>0) {
+       $goukei = $user->username.", You got ".$favorited." likes on your Daily Report ";
     }
     else{
         $goukei = "";
     }
 ?>
-<h1><?php print $goukei; ?></h1>
 
-        
-
-
+<h2><?php print $goukei; ?></h2>
 
 </div>
 
