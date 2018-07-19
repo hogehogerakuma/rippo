@@ -41,7 +41,6 @@ class ReportsController extends Controller
             'favoriters' => $favoriters,
             'thatday_date' => $thatday_date,
             ];
-        dd($favoriters); exit;
         return view('welcome', $data);
     }
 
@@ -134,6 +133,7 @@ class ReportsController extends Controller
             'reports' => $reports,
             'graph_data' => $graph_data,
             'comments' => $comments,
+        ];
         foreach ($searches as $value) {
             $favorites = $user-> favorites()->where('user_favorite.created_at', '>', $value)->get()->count();
             $followings = $user->followings()->where('user_follow.created_at', '>', $value)->get()->count();
