@@ -88,6 +88,5 @@
 </div>
 <div class="row col-lg-10" style="margin-right:200px; margin-left:100px; font-family: 'Lobster', cursive;">
 <a href="{{route('users.show', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button">Show Calendar</a>
-
-            </div>
+</div>
 @endsection
