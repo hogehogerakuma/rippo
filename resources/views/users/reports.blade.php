@@ -6,6 +6,7 @@
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
+@include('commons.curdateiine')
 <div class="panel panel-default col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-top: 20px; margin-right:60px; font-family: 'Lobster', cursive;">                
     <div class="panel-heading">
         <h3 class="panel-title">{{ $user->username }}</h3>
@@ -16,6 +17,7 @@
 </div>
 <div class="row col-lg-8">
     <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
+<h3 style="color:lightskyblue;">
 <?php
     $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
     
@@ -32,19 +34,19 @@
         $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
     }
     if ($number > 99) {
-        print '今日の達成率'. $number . '% おめでとう！' . PHP_EOL;
+        print 'Your accomplishment is ' . $number . '% Congrats!! ' . PHP_EOL;
     }
     elseif ($number >= 80) {
-        print '今日の達成率'. $number . '% あとちょっとだね！' . PHP_EOL;
+        print 'Your accomplishment is '. $number . '% You are very close! ' . PHP_EOL;
     }
     elseif ($number >= 60) {
-        print '今日の達成率'. $number . '% この調子だね！' . PHP_EOL;
+        print 'Your accomplishment is '. $number . '% Keep this going!' . PHP_EOL;
     }
     elseif ($number >= 40) {
-        print '今日の達成率'. $number . '% がんばって～！' . PHP_EOL;
+        print 'Your accomplishement is '. $number . '% You can do this! Hwaiting!' . PHP_EOL;
     }
      else {
-        print '今日の達成率'. $number . '%って、、やる気あるの？？' . PHP_EOL;
+        print 'Your accomplishement is '. $number . '% Need a motivation boost?' . PHP_EOL;
     }
 ?>
     </div>
