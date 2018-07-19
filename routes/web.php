@@ -42,6 +42,6 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('calendar' , 'CommonsController@show')->name('commons.calendar');
         
         Route::get('reports' , 'ReportsController@reportsFromUser')->name('reports.reports');
-        route::get('comments' , 'UserCommentController@show')->name('users.comments');
+        Route::get('comments' , 'UserCommentController@show')->name('users.comments');
     });
 });
