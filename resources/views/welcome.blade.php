@@ -27,7 +27,6 @@
     else {$msg = "こんばんは！良い一日を過ごせたかな？" . PHP_EOL;
     }
         print $msg
-        
 ?>
         @if (count($reports) > 0)
             @include('reports.reports', ['reports' => $reports, 'favoriters' => $favoriters, 'user' => $user])
