@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
-
+use App\Report;
 
 class CommonsController extends Controller
 {
+ 
     public function show($id)
     {
      $user = User::find($id);
@@ -27,6 +28,6 @@ class CommonsController extends Controller
          'favoriters' => $favoriters,
          ];
         
-     return view('commons.calendar', $data);   
+         return view('commons.calendar', ['user'=> $user]);
     }
 }

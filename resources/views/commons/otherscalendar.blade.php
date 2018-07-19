@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+@if (Auth::id() != $user->id)
 
 <?php
      date_default_timezone_set('Asia/Tokyo');
@@ -8,20 +6,7 @@
          $now_date = (int)date("d");
 ?>
 
-<?php
-     $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
-        
-        if (isset ($popopo) && count($popopo)>0 ) {
-            $dashitaka = '既に日報は提出済みです。';
-        }
-        
-        else {
-            $dashitaka =  '日報を出してください。';
-        }
-?>
-        
-        <h1>&nbspこんにちは。今日は<?php print $now_month; ?>月<?php print $now_date; ?>日です。</h1>
-        <h1>&nbsp<?php print Auth::user()->username; ?>さんは<?php print $dashitaka; ?></h1>
+
 
 <?php
   //Control 日付作成処理
@@ -81,6 +66,9 @@
     }
   }
 ?>
+
+
+
 
   <div class="container">
 <?php
@@ -162,7 +150,7 @@
    
     if ($dd['hori']){
         //祝日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">いいね</a><span class="badge">'.$favorited. '</span><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
     } 
     elseif($j == 0) {
         //日曜日
@@ -174,11 +162,7 @@
     }
     else {
         //平日
-<<<<<<< HEAD
-        echo '<td>'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br>'. link_to_route('users.favoriters', 'いいね', ['id' => $id]). '<span class="badge">'.$favorited.'</span><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
-=======
-        echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">いいね</a><span class="badge">'.$favorited. '</span><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
->>>>>>> e49dd6921e019f2e5c4037631192b56963a664bf
+        echo '<td>'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br><a href="#">いいね<span class="badge">'.$favorited.'</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
       }
 
       $j = $j + 1;
@@ -197,4 +181,4 @@
 <?php
   }  //１年分の foreach ここまで
 ?>
-@endsection
+@endif
