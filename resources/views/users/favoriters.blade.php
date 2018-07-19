@@ -1,15 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<<<<<<< HEAD
-    @foreach($favoriters as $favoriter)
-    <div class="row">
-        <div class="col-xs-8">
-            <?php echo $favoriter; ?>
-        </div>
-    </div>
-    @endforeach
-=======
     
 <h3>いいねしてくれた人</h3>
 
@@ -36,5 +27,4 @@
 </ul>
 @endif
 
->>>>>>> e49dd6921e019f2e5c4037631192b56963a664bf
 @endsection
