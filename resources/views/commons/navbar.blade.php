@@ -27,7 +27,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="glyphicon glyphicon-user" aria-hidden="true""></span></a>
                             <ul class="dropdown-menu">
-                                <li>{!! link_to_route('users.show', 'My profile', ['id' => Auth::id()]) !!}</li>
+                                <li>{!! link_to_route('reports.reports', 'My profile', ['id' => Auth::id()]) !!}</li>
                                 <li role="separator" class="divider"></li>
                                 <li>{!! link_to_route('logout.get', 'Logout') !!}</li>
                             </ul>
