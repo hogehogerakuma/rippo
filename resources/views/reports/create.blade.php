@@ -2,15 +2,19 @@
 
 @section('content')
 
+<style>
+@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+</style>
+
 <?php
     date_default_timezone_set('Asia/Tokyo');
     $now_month =  (int)date("m");
     $now_date = (int)date("d");
 ?>
     
-    <p><?php print $now_month; ?>月<?php print $now_date; ?>日の日報作成ページ</p>
+    <p style= "font-family: 'Merienda', cursive;"><?php print $now_month; ?>&nbsp/&nbsp<?php print $now_date; ?> Posting Page</p>
         
-<div class="row">
+<div class="row" style="font-family: 'Merienda', cursive;">
     <div class="col-xs-10">
     {!! Form::model($report, ['route' => 'reports.store']) !!}
     
@@ -63,7 +67,7 @@
          <label class="form-check-label" for="exampleCheck1">終業時間になったことを確認しました。</label>
         </div>
        
-       {!! Form::submit('投稿', ['class' => 'btn btn-primary']) !!}
+       {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
 
     {!! Form::close() !!}
     </div>

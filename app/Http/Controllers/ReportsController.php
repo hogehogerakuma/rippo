@@ -5,25 +5,57 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 use App\Report;
 use App\User;
 use App\Comment;
+use DateTime;
 
 class ReportsController extends Controller
 {
-    
+     
     
     
     public function index()
     {
         $data = [];
         if (\Auth::check()) {
+            date_default_timezone_set('Asia/Tokyo');
+            
             $user = \Auth::user();
+            $targetTable = DB::table('reports')->get();
+            // foreach($targetTable as $targeteach)
+            // {
+            //     $thatday_date = DateTime::createFromFormat('Y-m-d H:i:s', $targeteach->created_at)->format('d');
+            //     // thatday_dateをもったレポートをいいねしてくれた人を表示する？
+            //     $favoriters = DB::table('user_favorite')
+            //     ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+            //     ->join('users', 'users.id', '=', 'user_favorite.user_id')
+            //     ->whereDay('reports.created_at' ,$thatday_date)
+            //     ->select('users.username')
+            //     ->get();
+            //     $targeteach->favCnt = count($favoriters);
+            // }
+            // dd($favo_counter); exit;
             $reports = Report::orderBy('created_at', 'desc')->paginate(10);
+            foreach($reports as $report)
+            {
+                $thatday_date = DateTime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
+                // thatday_dateをもったレポートをいいねしてくれた人を表示する？
+                $favoriters = DB::table('user_favorite')
+                ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+                ->join('users', 'users.id', '=', 'user_favorite.user_id')
+                ->whereDay('reports.created_at' ,$thatday_date)
+                ->select('users.username')
+                ->get();
+                $report->favCnt = count($favoriters);
+            }
             $data = [
                 'user' => $user,
                 'reports' => $reports,
+                'favoriters' => $favoriters,
+                'thatday_date' => $thatday_date,
                 ];
         }
         return view('welcome', $data);
@@ -112,40 +144,40 @@ class ReportsController extends Controller
         return view('users.reports', $data);
     }
 
-// public function commentsFromUser($id) {
+public function commentsFromUser($id) {
          
-//       $user = User::find($id);
-//         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
-//         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
+      $user = User::find($id);
+        $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
+        $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
         
-//         $day = date("y/m/d");
-//         $week = date("y/m/d", strtotime("-1 week"));
-//         $month = date("y/m/d", strtotime("-1 month"));
+        $day = date("y/m/d");
+        $week = date("y/m/d", strtotime("-1 week"));
+        $month = date("y/m/d", strtotime("-1 month"));
         
-//         $graph_data = [
-//             ['Date', 'Favorites', 'Followings', 'Followers'],
-//         ];
+        $graph_data = [
+            ['Date', 'Favorites', 'Followings', 'Followers'],
+        ];
     
-//         $searches = [$day, $week, $month];
-//         foreach ($searches as $value) {
-//             $favorites = $user-> favorites()->where('user_favorite.created_at', '>', $value)->get()->count();
-//             $followings = $user->followings()->where('user_follow.created_at', '>', $value)->get()->count();
-//             $followers = $user->followers()->where('user_follow.created_at', '>', $value)->get()->count();
+        $searches = [$day, $week, $month];
+        foreach ($searches as $value) {
+            $favorites = $user-> favorites()->where('user_favorite.created_at', '>', $value)->get()->count();
+            $followings = $user->followings()->where('user_follow.created_at', '>', $value)->get()->count();
+            $followers = $user->followers()->where('user_follow.created_at', '>', $value)->get()->count();
 
-//             $graph_data = array_merge($graph_data, [[$value, $favorites, $followings, $followers]]);
-//         }
+            $graph_data = array_merge($graph_data, [[$value, $favorites, $followings, $followers]]);
+        }
 
-//         $data = [
-//             'user' => $user,
-//             'reports' => $reports,
-//             'graph_data' => $graph_data,
-//             'comments' => $comments,
-//         ];
+        $data = [
+            'user' => $user,
+            'reports' => $reports,
+            'graph_data' => $graph_data,
+            'comments' => $comments,
+        ];
 
         
-//         // $data += $this->counts($user);
-//         return view('users.reports', $data);
-//     }
+        // $data += $this->counts($user);
+        return view('users.reports', $data);
+    }
 
     public function show($id)
     { 

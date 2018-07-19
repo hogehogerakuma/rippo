@@ -13,7 +13,6 @@
     
 <h3>いいねしてくれた人</h3>
 
-
 @if (count($favoriters) > 0)
 
 <ul class="media-list">
