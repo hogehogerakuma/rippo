@@ -30,7 +30,7 @@
         
 ?>
         @if (count($reports) > 0)
-            @include('reports.reports', ['reports' => $reports])
+            @include('reports.reports', ['reports' => $reports, 'favoriters' => $favoriters, 'user' => $user, 'thatday_date' => $thatday_date])
         @endif
     </div>
     @else

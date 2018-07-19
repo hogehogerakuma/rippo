@@ -181,7 +181,7 @@
     }
     else {
         //平日
-        echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'"></a>Like&nbsp;<span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
       }
 
       $j = $j + 1;
@@ -200,6 +200,4 @@
 <?php
   }  //１年分の foreach ここまで
 ?>
-
-<a href="{{route('reports.reports', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button" style="font-family: 'Lobster', cursive;" >User's page</a>
 @endsection
