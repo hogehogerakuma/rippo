@@ -1,11 +1,15 @@
 @extends('layouts.app')
 
+<style>
+@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+</style>
+
 @section('content')
-    <div class="text-center">
+    <div class="text-center" style= "font-family: 'Lobster Two', cursive;">
         <h1>Sign up</h1>
     </div>
 
-    <div class="row">
+    <div class="row" style= "font-family: 'Lobster', cursive;">
         <div class="col-md-6 col-md-offset-3">
 
             {!! Form::open(['route' => 'signup.post']) !!}

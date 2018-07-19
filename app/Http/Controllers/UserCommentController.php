@@ -39,10 +39,11 @@ class UserCommentController extends Controller
             array_push($report_ids, $r->id);
         }
         
-        $comments = Comment::whereIn("id",$report_ids)->get();
-//      $comments = $report->comments()->orderBy('created_at', 'desc')->paginate(10);
-        dd($reports);
-        exit;
+        $comments = Comment::whereIn('report_id',$report_ids)->orderBy('created_at', 'desc')->get();
+        
+        //$comments = $report->comments()->orderBy('created_at', 'desc')->paginate(1;
+        //  dd($report_ids);
+        // exit;
         
         $day = date("y/m/d");
         $week = date("y/m/d", strtotime("-1 week"));

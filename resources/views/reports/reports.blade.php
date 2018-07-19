@@ -1,8 +1,12 @@
-<ul class="media-list">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+</style>
+
+<ul class="media-list" style= "font-family: 'Merienda', cursive;">
 @foreach ($reports as $report)
     <?php $user = $report->user; ?>
     <li class="media">
-        <div class="media-left">
+        <div class="media-left" style= "font-family: 'Gaegu', cursive;">
             <img class="media-object img-rounded" src="{{ Gravatar::src($user->username, 50) }}" alt="">
         </div>
         <div class="media-body" style="padding-top: 10px; padding-bottom:20px;">
@@ -55,7 +59,10 @@
                     {!! Form::close() !!}
                 @endif
                 @include('user_favorite.favorite_button', ['report' => $report])
-                    {!! link_to_route('reports.show', 'この日報を読む', ['id' => $report->id]) !!} 
+                    {!! link_to_route('reports.show', 'この日報を読む', ['id' => $report->id]) !!}
+                <div style="color: black">
+                    {!! link_to_route('users.favoriters', 'いいね　'.$report->favCnt. '件', ['id' => $user->id, 'thatday_date' => $thatday_date]) !!}
+                </div>
             </div>
         </div>
     </li>

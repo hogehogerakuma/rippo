@@ -10,7 +10,7 @@ class Report extends Model
     protected $fillable = [
         'content', 'goal_1', 'result_1', 'goal_2', 'result_2', 'goal_3', 'result_3', 'object_1', 'object_2', 'object_3', 'user_id',
         ];
-    
+
     public function user()
     {
         return $this->belongsTo(User::class);

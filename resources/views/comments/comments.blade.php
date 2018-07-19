@@ -1,4 +1,8 @@
-<ul class="media-list">
+<style>
+@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+</style>
+
+<ul class="media-list" style="font-family: 'Merienda', cursive;">
 @foreach ($comments as $comment)
     <?php $user = $comment->user; ?>
     <li class="media">

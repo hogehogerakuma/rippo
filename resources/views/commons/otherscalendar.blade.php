@@ -1,5 +1,9 @@
 @if (Auth::id() != $user->id)
 
+<style>
+@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+</style>
+
 <?php
      date_default_timezone_set('Asia/Tokyo');
          $now_month =  (int)date("m");
@@ -70,7 +74,7 @@
 
 
 
-  <div class="container">
+  <div class="container" style="font-family: 'Merienda', cursive;">
 <?php
   //View 表示処理
   //$weeklavel = array("日", "月", "火", "水", "木", "金", "土");
@@ -79,7 +83,7 @@
     foreach ($mm as $key => $dd) {
       //月を表示する
       $dayD = new DateTime($dd['day']);
-      echo '<h3>'.$dayD->format('Y').'年'.$dayD->format('n').'月</h3>';
+      echo '<h3>'.$dayD->format('Y').' / '.$dayD->format('n').'</h3>';
       break;
     }
 ?>
@@ -92,18 +96,18 @@
         }
         
     </style>
-    <div class="table-responsive">
+    <div class="table-responsive" style="font-family: 'Merienda', cursive;">
       <!-- table class="table table-bordered" style="table-layout:fixed;" -->
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th class="danger"><span class="text-danger">日</span></th>
-            <th>月</th>
-            <th>火</th>
-            <th>水</th>
-            <th>木</th>
-            <th>金</th>
-            <th class="info"><span class="text-info">土</span></th>
+            <th class="danger"><span class="text-danger">SUN</span></th>
+            <th>MON</th>
+            <th>TUE</th>
+            <th>WED</th>
+            <th>THU</th>
+            <th>FRI</th>
+            <th class="info"><span class="text-info">SAT</span></th>
           </tr>
         </thead>
         <tbody>
@@ -137,7 +141,7 @@
       $thatday_date = $dayD->format('j');
 
     if (in_array($thatday_date, array_keys($info))) {
-        $ok_post = "🔴";
+        $ok_post = " 🔴";
     } 
     else {
         $ok_post = "";
@@ -150,19 +154,19 @@
    
     if ($dd['hori']){
         //祝日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report$nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class="badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     } 
     elseif($j == 0) {
         //日曜日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class="badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     }
     elseif($j == 6) {
         //土曜日
-        echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'</a><br><a href="#">いいね<span class="badge">'.$favorited. '</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class="badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     }
     else {
         //平日
-        echo '<td>'.$dayD->format('j').'<br>日報提出状況'.$ok_post.'<br><a href="#">いいね<span class="badge">'.$favorited.'</span></a><br><a href="#">フィードバック<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td>'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'<br><a href="#">Like&nbsp;<span class="badge">'.$favorited.'</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
       }
 
       $j = $j + 1;

@@ -1,8 +1,9 @@
-<style>
-@import url('https://fonts.googleapis.com/css?family=Caveat%7CDancing+Script%7CGaegu%7CGreat+Vibes%7CLobster+Two');
-</style>
-<div class style="font-family: 'Lobster', cursive;">
 
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Gaegu|Great+Vibes|Lobster+Two');
+</style>
+<div class style="font-family: 'Merienda', cursive;">
 <?php
             date_default_timezone_set('Asia/Tokyo');
             $now_month =  (int)date("m");
@@ -40,10 +41,21 @@ $favoriters = DB::table('user_favorite')
     if(count($favoriters)>0) {
         $fav_label = substr( $fav_label,0,strlen( $fav_label)-2);
     }
-    
+
     if(count($favoriters)>0){
    print '<h3>Your Report   Get'. $favorited .'<span class= "glyphicon glyphicon-heart"></span>  from'.$fav_label.'</h3>' ;
 }
 
 ?>
 </div>
+
+   if(count($favoriters)>0) {
+       $goukei = $user->username.", You got ".$favorited." likes on your Daily Report ";
+    }
+    else{
+        $goukei = "";
+    }
+?>
+<h2><?php print $goukei; ?></h2>
+</div>
+
