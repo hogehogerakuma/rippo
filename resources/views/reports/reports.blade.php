@@ -59,7 +59,8 @@
                     {!! Form::close() !!}
                 @endif
                 @include('user_favorite.favorite_button', ['report' => $report])
-                    {!! link_to_route('reports.show', 'この日報を読む', ['id' => $report->id]) !!}
+                <a href="{{route('reports.show', ['id' => $report->id])}}" class="btn btn-success btn- btn-xs" role="button">Show Report</a>
+    
                 <div style="color: black">
                     {!! link_to_route('users.favoriters', 'いいね　'.$report->favCnt. '件', ['id' => $user->id, 'thatday_date' => $thatday_date]) !!}
                 </div>
