@@ -1,4 +1,8 @@
-<h1>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Caveat%7CDancing+Script%7CGaegu%7CGreat+Vibes%7CLobster+Two');
+</style>
+<div class style="font-family: 'Lobster', cursive;">
+
 <?php
             date_default_timezone_set('Asia/Tokyo');
             $now_month =  (int)date("m");
@@ -6,6 +10,17 @@
  
  $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $now_date)->where( 'reports.user_id', $user->id )->count();
 
+$popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
+        
+        if (isset ($popopo) && count($popopo)>0 ) {
+            $dashitaka = 'Your Daily Report was already submitted';
+        }
+        
+        else {
+            $dashitaka =  'Please submit your Daily Report';
+        }
+        
+     
 $favoriters = DB::table('user_favorite')
         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
         ->join('users', 'users.id', '=', 'user_favorite.user_id')
@@ -25,7 +40,10 @@ $favoriters = DB::table('user_favorite')
     if(count($favoriters)>0) {
         $fav_label = substr( $fav_label,0,strlen( $fav_label)-2);
     }
-   print 'あなたの今日の日報は' . $favorited .'つ、' .$fav_label.'さんからいいね！されています' 
+    
+    if(count($favoriters)>0){
+   print '<h3>Your Report   Get'. $favorited .'<span class= "glyphicon glyphicon-heart"></span>  from'.$fav_label.'</h3>' ;
+}
 
 ?>
-</h1>
+</div>
