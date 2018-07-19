@@ -15,16 +15,8 @@ class Report extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
-    public function comments() {
-       
+    public function comments()
+    {
        return $this->hasMany(Comment::class);
     }
-<<<<<<< HEAD
-    //  public function favoriters() 
-    //  {
-    //      return $this->hasMany(User::class);
-    //  }
-=======
->>>>>>> e49dd6921e019f2e5c4037631192b56963a664bf
 }
