@@ -8,7 +8,7 @@
     
 <h3 style="font-family: 'Lobster', cursive;">&nbsp&nbsp&nbspThe person who likes your Daily Report</h3><br>
 
-@if (count($report->favoriters) > 0)
+@if (count($favoriters) > 0)
 
 <ul class="media-list">
 @foreach ($favoriters as $favoriter)

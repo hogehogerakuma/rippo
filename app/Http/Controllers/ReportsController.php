@@ -17,24 +17,9 @@ class ReportsController extends Controller
     public function index()
     {
         $data = [];
-        if (\Auth::check()) {
             date_default_timezone_set('Asia/Tokyo');
             
             $user = \Auth::user();
-            // $targetTable = DB::table('reports')->get();
-            // foreach($targetTable as $targeteach)
-            // {
-            //     $thatday_date = DateTime::createFromFormat('Y-m-d H:i:s', $targeteach->created_at)->format('d');
-            //     // thatday_dateをもったレポートをいいねしてくれた人を表示する？
-            //     $favoriters = DB::table('user_favorite')
-            //     ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
-            //     ->join('users', 'users.id', '=', 'user_favorite.user_id')
-            //     ->whereDay('reports.created_at' ,$thatday_date)
-            //     ->select('users.username')
-            //     ->get();
-            //     $targeteach->favCnt = count($favoriters);
-            // }
-            // dd($favo_counter); exit;
             $reports = Report::orderBy('created_at', 'desc')->paginate(10);
             foreach($reports as $report)
             {
@@ -48,15 +33,16 @@ class ReportsController extends Controller
                 ->get();
                 $report->favCnt = count($favoriters);
             }
+//            dd($report); exit;
+
             $data = [
                 'user' => $user,
                 'reports' => $reports,
                 'favoriters' => $favoriters,
                 // 'thatday_date' => $thatday_date,
                ];
-        return view('welcome', $data);
+            return view('welcome', $data);
     }
-}
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -106,6 +92,7 @@ class ReportsController extends Controller
     }
     
     public function reportsFromUser($id) {
+        date_default_timezone_set('Asia/Tokyo');
          
         $user = User::find($id);
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
@@ -146,21 +133,7 @@ class ReportsController extends Controller
             'reports' => $reports,
             'graph_data' => $graph_data,
             'comments' => $comments,
-        ];
-        foreach ($searches as $value) {
-            $favorites = $user-> favorites()->where('user_favorite.created_at', '>', $value)->get()->count();
-            $followings = $user->followings()->where('user_follow.created_at', '>', $value)->get()->count();
-            $followers = $user->followers()->where('user_follow.created_at', '>', $value)->get()->count();
-
-            $graph_data = array_merge($graph_data, [[$value, $favorites, $followings, $followers]]);
-        }
-
-        $data = [
-            'user' => $user,
-            'reports' => $reports,
-            'graph_data' => $graph_data,
-            'comments' => $comments,
-            'thatday_date' =>$thatday_date,
+            // 'thatday_date' =>$thatday_date,
             'favoriters' => $favoriters,
         ];
 

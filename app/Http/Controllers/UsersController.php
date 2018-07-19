@@ -105,15 +105,11 @@ class UsersController extends Controller
          ->where('reports.user_id', $user->id)
          ->select('users.username')
          ->get();
-    
-        $report = Report::find($id);
-        // $favoriters = $report->favoriters();
-         
          
         $data = [
             'user' => $user,
-            'report' => $report,
             'favoriters' => $favoriters,
+            'thatday_date' => $thatday_date,
         ];
         
         return view('users.favoriters', $data);
