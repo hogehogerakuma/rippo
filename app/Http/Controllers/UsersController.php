@@ -139,6 +139,7 @@ class UsersController extends Controller
          ->where('reports.user_id', $id)
          ->select('reports.id')
          ->first();
+         dd($reportid); exit;
         // $thatday_date = DateTime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
         $favoriters = DB::table('user_favorite')
          ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
@@ -147,10 +148,6 @@ class UsersController extends Controller
         //  ->whereDay('reports.created_at' ,$thatday_date)
          ->select('users.username')
          ->get();
-<<<<<<< HEAD
-=======
-         
->>>>>>> 9bf707bad0760efdaae7c472753e1644610d5f8e
          
         $data = [
             'user' => $user,
