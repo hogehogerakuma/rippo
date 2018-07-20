@@ -29,7 +29,7 @@
         print $msg
 ?>
         @if (count($reports) > 0)
-            @include('reports.reports', ['reports' => $reports, 'favoriters' => $favoriters, 'user' => $user])
+            @include('reports.reports', ['reports' => $reports,  'user' => $user])
         @endif
     </div>
     @else

@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::resource('reports', 'ReportsController');
     
+    Route::get('reports/{id}/favoriters', 'ReportsController@favoriters')->name('reports.favoriters');
+    
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::post('follow', 'UserFollowController@store')->name('user.follow');
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');

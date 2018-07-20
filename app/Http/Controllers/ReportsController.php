@@ -19,31 +19,20 @@ class ReportsController extends Controller
     
     public function index()
     {
-        $data = [];
-        if (\Auth::check()) {
-            date_default_timezone_set('Asia/Tokyo');
+        date_default_timezone_set('Asia/Tokyo');
             
-            $user = \Auth::user();
-            $reports = Report::orderBy('created_at', 'desc')->paginate(10);
-            foreach($reports as $report)
-            {
-                $report->thatday_date = DateTime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
-                // thatday_dateをもったレポートをいいねしてくれた人を表示する？
-                $favoriters = DB::table('user_favorite')
-                ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
-                ->join('users', 'users.id', '=', 'user_favorite.user_id')
-                ->whereDay('reports.created_at' ,$report->thatday_date)
-                ->select('users.username')
-                ->get();
-                $report->favCnt = count($favoriters);
-            }
-            $data = [
-                'user' => $user,
-                'reports' => $reports,
-                'favoriters' => $favoriters,
-                // 'thatday_date' => $thatday_date,
-                ];
+        $user = \Auth::user();
+        $reports = Report::orderBy('created_at', 'desc')->paginate(10);
+        foreach($reports as $report)
+        {
+            $report->favCnt = DB::table('user_favorite')
+            ->where('report_id', $report->id)
+            ->count();
         }
+        $data = [
+            'user' => $user,
+            'reports' => $reports,
+        ];
         return view('welcome', $data);
     }
 
@@ -189,5 +178,24 @@ public function commentsFromUser($id) {
         ];
             
         return view('reports.show', $data);
+    }
+    
+    public function favoriters ($id) {
+        $report = Report::find($id);
+        $user = $report->user;
+        
+        $favoriters = DB::table('user_favorite')
+         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+         ->join('users', 'users.id', '=', 'user_favorite.user_id')
+         ->where('report_id', $report->id)
+         ->select('users.username')
+         ->get();
+         
+        $data = [
+            'user' => $user,
+            'favoriters' => $favoriters,
+        ];
+        
+        return view('reports.favoriters', $data);
     }
 }
