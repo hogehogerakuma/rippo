@@ -1,6 +1,5 @@
-
 <style>
-@import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Gaegu|Great+Vibes|Lobster+Two');
+@import url('https://fonts.googleapis.com/css?family=Caveat%7CDancing+Script%7CGaegu%7CGreat+Vibes%7CLobster+Two');
 </style>
 <div class style="font-family: 'Merienda', cursive;">
 
@@ -27,8 +26,8 @@ $favoriters = DB::table('user_favorite')
         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
         ->join('users', 'users.id', '=', 'user_favorite.user_id')
         ->whereDay('reports.created_at' , $now_date)
-        ->where('reports.user_id', $user->id)
-        ->select('users.username')
+        // ->where('reports.user_id', $user->id)
+        // ->select('users.username')
         ->get();
         
         
@@ -52,7 +51,7 @@ $favoriters = DB::table('user_favorite')
    }
 
    if(count($favoriters)>0) {
-       $goukei = "got ".$favorited." ".$like."  ";
+
     }
     else{
         $goukei = "";
@@ -75,6 +74,7 @@ $favoriters = DB::table('user_favorite')
     } else{
         $goukeifeed = $numfeedtoday." ".$comment;
     }
+
 if (  $numfeedtoday !== 0 || $favorited !== 0){
         $commentfeed ="on the Daily Report !!";
     }  else{
