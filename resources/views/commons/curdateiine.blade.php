@@ -48,6 +48,6 @@ $favoriters = DB::table('user_favorite')
         $goukei = "";
     }
 ?>
-<h2><?php print $goukei; ?></h2>
+<h3><?php print $goukei; ?></h3>
 </div>
 
