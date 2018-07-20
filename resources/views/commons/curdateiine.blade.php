@@ -51,7 +51,7 @@ $favoriters = DB::table('user_favorite')
    }
 
    if(count($favoriters)>0) {
-       $goukei = " ".$favorited." ".$like."  "."on Daily Report";
+
     }
     else{
         $goukei = "";
@@ -74,21 +74,27 @@ $favoriters = DB::table('user_favorite')
     } else{
         $goukeifeed = $numfeedtoday." ".$comment;
     }
+
+if (  $numfeedtoday !== 0 || $favorited !== 0){
+        $commentfeed ="on the Daily Report !!";
+    }  else{
+        $commentfeed = "";
+    }
+        
 ?>
+
 
 <h2>
 
+<?php 
+if(false == empty($goukei) || false == empty($goukeifeed)){echo $user->username ;}?>
 
- <?php 
-// if(false == empty($goukei) || false == empty($goukeifeed)){echo $user->username . ", ";}?>
- <?php print $goukei; 
-// if(false == empty($goukei) && false == empty($goukeifeed)){echo " and ";}?>
 
-<?php
-if(false == empty($goukei) && false == empty($goukeifeed)){echo "on Daily Report!! ";}?>
-
-<!--<?php print $goukeifeed; ?> -->
-<!-- on your Daily Report !!-->
-
+<?php print $goukei; 
+if(false == empty($goukei) && false == empty($goukeifeed)){echo " and ";}?><?php print $goukeifeed; ?> 
+ <?php print $commentfeed; ?>
 </h2>
+ 
 </div>
+
+
