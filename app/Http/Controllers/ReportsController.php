@@ -25,20 +25,21 @@ class ReportsController extends Controller
             {
                 $report->thatday_date = DateTime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
                 // thatday_dateをもったレポートをいいねしてくれた人を表示する？
-                $favoriters = DB::table('user_favorite')
+                $report->favoriters = DB::table('user_favorite')
                 ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
                 ->join('users', 'users.id', '=', 'user_favorite.user_id')
                 ->whereDay('reports.created_at' ,$report->thatday_date)
+                // ->where('users.username', $report->user->username)
                 ->select('users.username')
                 ->get();
-                $report->favCnt = count($favoriters);
+                $report->favCnt = count($report->favoriters);
             }
-//            dd($report); exit;
+            // dd($reports); exit;
 
             $data = [
                 'user' => $user,
                 'reports' => $reports,
-                'favoriters' => $favoriters,
+                // 'favoriters' => $favoriters,
                 // 'thatday_date' => $thatday_date,
                ];
             return view('welcome', $data);
@@ -93,7 +94,6 @@ class ReportsController extends Controller
     
     public function reportsFromUser($id) {
         date_default_timezone_set('Asia/Tokyo');
-         
         $user = User::find($id);
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
@@ -127,18 +127,13 @@ class ReportsController extends Controller
 
             $graph_data = array_merge($graph_data, [[$value, $favorites, $followings, $followers]]);
         }
-
         $data = [
             'user' => $user,
             'reports' => $reports,
             'graph_data' => $graph_data,
             'comments' => $comments,
-            // 'thatday_date' =>$thatday_date,
-            'favoriters' => $favoriters,
+            // 'favoriters' => $favoriters,
         ];
-
-        
-        // $data += $this->counts($user);
         return view('users.reports', $data);
     }
 
