@@ -1,4 +1,4 @@
-@if (Auth::id() != $user->id)
+
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
@@ -9,7 +9,6 @@
          $now_month =  (int)date("m");
          $now_date = (int)date("d");
 ?>
-
 
 
 <?php
@@ -169,6 +168,7 @@
     echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;<span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
             }
 
+
       $j = $j + 1;
       
     if ($j >= 7){
@@ -185,4 +185,3 @@
 <?php
   }  //１年分の foreach ここまで
 ?>
-@endif

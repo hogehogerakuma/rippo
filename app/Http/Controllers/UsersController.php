@@ -141,14 +141,14 @@ class UsersController extends Controller
          ->select('users.username')
          ->get();
     
-        $report = Report::find($id);
         // $favoriters = $report->favoriters();
          
          
         $data = [
             'user' => $user,
-            'report' => $report,
+            // 'report' => $report,
             'favoriters' => $favoriters,
+            'thatday_date' => $thatday_date,
         ];
         
         return view('users.favoriters', $data);
