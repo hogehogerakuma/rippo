@@ -83,12 +83,10 @@ if (  $numfeedtoday !== 0 || $favorited !== 0){
         
 ?>
 
-
 <h2>
 
 <?php 
 if(false == empty($goukei) || false == empty($goukeifeed)){echo $user->username ;}?>
-
 
 <?php print $goukei; 
 if(false == empty($goukei) && false == empty($goukeifeed)){echo " and ";}?><?php print $goukeifeed; ?> 
