@@ -1,4 +1,4 @@
-@if (Auth::id() != $user->id)
+
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
@@ -9,7 +9,6 @@
          $now_month =  (int)date("m");
          $now_date = (int)date("d");
 ?>
-
 
 
 <?php
@@ -154,20 +153,21 @@
    
     if ($dd['hori']){
         //祝日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report$nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class="badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     } 
     elseif($j == 0) {
         //日曜日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class="badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+     echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     }
     elseif($j == 6) {
         //土曜日
-        echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="#">Like&nbsp;<span class="badge">'.$favorited. '</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+    echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     }
     else {
         //平日
-        echo '<td>'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'<br><a href="#">Like&nbsp;<span class="badge">'.$favorited.'</span></a><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
-      }
+    echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;<span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+            }
+
 
       $j = $j + 1;
       
@@ -185,4 +185,3 @@
 <?php
   }  //１年分の foreach ここまで
 ?>
-@endif
