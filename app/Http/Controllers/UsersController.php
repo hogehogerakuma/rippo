@@ -135,31 +135,49 @@ class UsersController extends Controller
     public function favoriters($id, $thatday_date)
     {
         $user = User::find($id);
-        $reports = DB::table('reports')
-         ->where('reports.user_id', $id)
-        //  ->select('created_at')
-         ->get();
-        // $favoriters = [];
-        foreach($reports as $report)
-        {
-            // $report->thatday_data = DateTime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
-            // $report->number = DB:: table('user_favorite')
-            //     ->join('users', 'users.id', '=', 'user_favorite.user_id')
-            //     ->where('user_favorite.user_id', )
-            //     ->select('report_id')
-            //     ->get();
-            $report->favoriters = DB::table('user_favorite')
-                ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
-                ->join('users', 'users.id', '=', 'user_favorite.user_id')
-                ->whereDay('reports.created_at', $thatday_date)
-                ->where('user_favorite.report_id', $report->id)
-                ->select('users.username')
-                ->get()->toArray();
+        $report = DB::table('reports')
+        ->where('user_id', $id)
+        ->whereDate('reports.created_at' ,$thatday_date)
+        ->first();
+
+        $favoriters = null;
+        if (!is_null($report)) {
+            $favoriters = DB::table('user_favorite')
+            ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+            ->join('users', 'users.id', '=', 'user_favorite.user_id')
+            ->where('user_favorite.report_id', $report->id)
+            ->whereDate('reports.created_at' ,$thatday_date)
+            ->select('users.username')
+            ->get();
         }
-        // dd($reports); exit;
+
+
+
+/*
+        $user = User::find($id);
+        $reports = DB::table('reports')
+        ->where('user_id', $id)
+        ->get();
+        
+        dd($reports->toArray());
+
+    foreach ($reports as $report) {
+
+        $favoriters = DB::table('user_favorite')
+        ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+        ->join('users', 'users.id', '=', 'user_favorite.user_id')
+        ->where('user_favorite.report_id', $report->id)
+        ->whereDate('reports.created_at' ,$thatday_date)
+        // ->select('users.username')
+        ->select()
+        ->get()->toArray();
+    }
+    dd($favoriters);
+*/    
         $data = [
             'user' => $user,
-            'reports' => $reports,
+            'favoriters' => $favoriters,
+            'thatday_date' => $thatday_date,
         ];
         
         return view('users.favoriters', $data);

@@ -18,7 +18,6 @@
     }
 ?>
 
-
 <div class="row col-lg-10" style="margin-left:100px;">
     <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
 <h3 style="color:lightskyblue;">
