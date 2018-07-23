@@ -132,27 +132,34 @@ class UsersController extends Controller
     return view('users.followers', $data);
     }
     
-    public function favoriters($id)
+    public function favoriters($id, $thatday_date)
     {
         $user = User::find($id);
-        $reportid = DB::table('reports')
+        $reports = DB::table('reports')
          ->where('reports.user_id', $id)
-         ->select('reports.id')
-         ->first();
-         dd($reportid); exit;
-        // $thatday_date = DateTime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
-        $favoriters = DB::table('user_favorite')
-         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
-         ->join('users', 'users.id', '=', 'user_favorite.user_id')
-         ->where('user_favorite.report_id', $reportid->id)
-        //  ->whereDay('reports.created_at' ,$thatday_date)
-         ->select('users.username')
+        //  ->select('created_at')
          ->get();
-         
+        // $favoriters = [];
+        foreach($reports as $report)
+        {
+            // $report->thatday_data = DateTime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
+            // $report->number = DB:: table('user_favorite')
+            //     ->join('users', 'users.id', '=', 'user_favorite.user_id')
+            //     ->where('user_favorite.user_id', )
+            //     ->select('report_id')
+            //     ->get();
+            $report->favoriters = DB::table('user_favorite')
+                ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+                ->join('users', 'users.id', '=', 'user_favorite.user_id')
+                ->whereDay('reports.created_at', $thatday_date)
+                ->where('user_favorite.report_id', $report->id)
+                ->select('users.username')
+                ->get()->toArray();
+        }
+        // dd($reports); exit;
         $data = [
             'user' => $user,
-            'favoriters' => $favoriters,
-            // 'thatday_date' => $thatday_date,
+            'reports' => $reports,
         ];
         
         return view('users.favoriters', $data);
