@@ -24,7 +24,20 @@
 
 //  $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->where( 'reports.user_id', $user->id )->get();
 $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user_id', $user->id )->limit(1)->get();
-
+// $recent_feed = App\Comment::orderBy('created_at', 'desc')->where( 'comments.report_id', $user->id)->get();
+// $recent_feed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->whereDate('created_at', DB::raw('CURDATE()'))->where( 'comments.user_id', $user->id )->count();
+// $recent_feed = App\Comment::whereDate('created_at', DB::raw('CURDATE()'))
+//               ->orderBy('created_at', 'desc')
+//               ->
+//               ->where( 'reports.user_id', $user->id )
+//               ->count();  
+//   $recent_feed = DB::table('comments')
+//               ->join('reports', 'reports.id', '=', 'comments.report_id')
+//               ->where( 'reports.user_id', $user->id )
+//               ->orderBy('created_at', desc')
+//               ->limit(1)
+//               ->count();
+              
     if($recent_reports == false || empty($recent_reports) || 0 == count($recent_reports)) {
     $number = 0;
     }
@@ -85,8 +98,12 @@ $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user
     }
     
    }
+   
+//   print $recent_feed;
 ?>
+ 
 </h3>
+
 </div>
 
                 

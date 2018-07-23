@@ -22,7 +22,7 @@ $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user
             $dashitaka =  'Please submit your Daily Report';
         }
         
-     
+        
 $favoriters = DB::table('user_favorite')
         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
         ->join('users', 'users.id', '=', 'user_favorite.user_id')
@@ -52,7 +52,7 @@ $favoriters = DB::table('user_favorite')
    }
 
    if(count($favoriters)>0) {
-       $goukei = "got ".$favorited." ".$like."  ";
+    $goukei = "got ".$favorited." ".$like."  ";
     }
     else{
         $goukei = "";

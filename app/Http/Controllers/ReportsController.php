@@ -136,7 +136,7 @@ class ReportsController extends Controller
             'reports' => $reports,
             'graph_data' => $graph_data,
             'comments' => $comments,
-            'favoriters' => $favoriters,
+            // 'favoriters' => $favoriters,
         ];
         return view('users.reports', $data);
     }
