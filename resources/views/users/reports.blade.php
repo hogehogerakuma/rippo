@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
 </style>
 
 @include('commons.curdateiine')
@@ -17,9 +17,6 @@
     $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
     }
 ?>
-<div>
-    @include(user_follow.follow_button, ['user' => $user])
-</div>
 
 <div class="row col-lg-10" style="margin-left:100px;">
     <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
@@ -114,5 +111,3 @@ $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user
             </div>
             
 @endsection
-
-        

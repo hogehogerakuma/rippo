@@ -5,7 +5,6 @@
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
-
 <?php
      date_default_timezone_set('Asia/Tokyo');
          $now_month =  (int)date("m");
@@ -163,9 +162,17 @@
     }
       
       $favday_date = $dayD->format('j');
-      $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $favday_date)->where( 'reports.user_id', $user->id )->count();
+      $favorited = DB::table('user_favorite')
+        ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+        ->whereDay('reports.created_at', $favday_date)
+        ->where('reports.user_id', $user->id)
+        ->count();
    
-      $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->whereDay('reports.created_at', $favday_date)->where( 'reports.user_id', $user->id )->count();
+      $feedfeed = DB::table('comments')
+        ->join('reports', 'reports.id', '=', 'comments.report_id')
+        ->whereDay('reports.created_at', $favday_date)
+        ->where( 'reports.user_id', $user->id )
+        ->count();
    
     if ($dd['hori']){
         //祝日
@@ -200,7 +207,4 @@
 <?php
   }  //１年分の foreach ここまで
 ?>
-
-<a href="{{route('reports.reports', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button" style="font-family: 'Lobster', cursive;" >User's page</a>
-
 @endsection

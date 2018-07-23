@@ -137,4 +137,13 @@ class User extends Authenticatable
         $this->comments()->attach($reportsId);
         return true;
     }
+    
+    public function favoriters()
+    {
+        return $this->belongsToMany(
+        Report::class,
+        'user_favorite', 
+        'user_id',
+        'report_id')->withTimestamps();
+    }
 }
