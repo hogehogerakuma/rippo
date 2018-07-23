@@ -17,7 +17,10 @@
     $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
     }
 ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a7014bdcc278867f33d6be58e7466ceac4dbfd10
 
 <div class="row col-lg-10" style="margin-left:100px;">
     <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
@@ -83,5 +86,4 @@
 <a href="{{route('users.show', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button">Show Calendar</a>
 
             </div>
-            
 @endsection
