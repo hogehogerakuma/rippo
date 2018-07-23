@@ -140,7 +140,7 @@ class UsersController extends Controller
         ->whereDate('reports.created_at' ,$thatday_date)
         ->first();
 
-        $favoriters = null;
+        $favoriters = [];
         if (!is_null($report)) {
             $favoriters = DB::table('user_favorite')
             ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
