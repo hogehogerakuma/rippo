@@ -17,7 +17,9 @@
     $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
     }
 ?>
-
+<div>
+    @include(user_follow.follow_button, ['user' => $user])
+</div>
 
 <div class="row col-lg-10" style="margin-left:100px;">
     <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
