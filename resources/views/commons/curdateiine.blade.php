@@ -51,7 +51,7 @@ $favoriters = DB::table('user_favorite')
    }
 
    if(count($favoriters)>0) {
-
+        $goukei = "got ".$favorited." ".$like."  ";
     }
     else{
         $goukei = "";
