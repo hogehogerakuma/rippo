@@ -11,7 +11,6 @@
 
 <ul class="media-list">
 @foreach ($reports as $report)
-<?php $report->favoriters; exit; ?>
 <li class="container col-lg-9 col-md-19 col-sm-12 col-xs-12">
 <div class="panel panel-default col-lg-9 col-md-9 col-sm-12 col-xs-12" style="color:black; padding-top:20px; padding-bottom:20px; font-family: 'Lobster', cursive;"> 
         <div class="media-left">

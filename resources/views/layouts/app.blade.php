@@ -30,7 +30,7 @@
         
         @include('commons.navbar')
 
-        <div class="container" >
+        <div class="container">
             @include('commons.error_messages')
 
             @yield('content')
