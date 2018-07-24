@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
 </style>
 
 @if (Auth::check())
@@ -29,7 +29,7 @@
         print $msg
 ?>
         @if (count($reports) > 0)
-            @include('reports.reports', ['reports' => $reports, 'favoriters' => $favoriters, 'user' => $user])
+            @include('reports.reports', ['reports' => $reports,  'user' => $user])
         @endif
     </div>
     @else

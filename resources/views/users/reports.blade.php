@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
 </style>
 
 @include('commons.curdateiine')
@@ -19,9 +19,11 @@
 <div class="row col-lg-8">
     <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
 <h3 style="color:lightskyblue;">
+    
+<?php // CSSをうめこみたい   ?>
+<?php ('Content-Type: text/css; charset=utf-8'); ?>
+<link href="/css/RippoRikoCSSpractice.css" rel="stylesheet" type="text/css">
 <?php
-
-
 //  $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->where( 'reports.user_id', $user->id )->get();
 $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user_id', $user->id )->limit(1)->get();
 
@@ -109,5 +111,3 @@ $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user
             </div>
             
 @endsection
-
-        

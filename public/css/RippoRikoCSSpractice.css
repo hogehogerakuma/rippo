@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+html, body {
+  height: 100%;
+}
+body {
+  background: #7abde0;
+  display: table;
+  font-family: "Roboto", sans-serif;
+  margin: 0 2em;
+}
+h2 {
+  display: table-cell;
+  font-style: italic;
+  font-weight: 700;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.title  {
+  background-image: linear-gradient(to right, rgba(255,255,255,0) 50%, #ddd 50%);
+  background-position: -0% 0;
+  background-size: 200% auto;
+  color: #222;
+  font-size: 1.75em;
+  line-height: 1.15em;
+  text-decoration: none;
+  transition: background-position 0.5s ease-out;
+}
+.title:hover {
+  background-position: -99.99% 0;
+}
