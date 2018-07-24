@@ -89,6 +89,7 @@ class ReportsController extends Controller
                 ->whereDay('reports.created_at' ,$report->thatday_date)
                 ->select('users.username')
                 ->get();
+                
                 $report->favCnt = count($favoriters);
             }
             
