@@ -28,6 +28,23 @@ class ReportsController extends Controller
         ];
         return view('welcome', $data);
     }
+    
+    public function indextwo()
+{
+    $data = [];
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $reports = $user->respectuser_reports()->orderBy('created_at', 'desc')->paginate(10);
+
+            $data = [
+                'user' => $user,
+                'reports' => $reports,
+            ];
+        }
+        return view('users.feed', $data);
+}    
+    
+    
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -72,17 +89,16 @@ class ReportsController extends Controller
     }
     
     public function reportsFromUser($id) {
+        
         date_default_timezone_set('Asia/Tokyo');
  
         $user = User::find($id);
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
-        
         foreach($reports as $report)
             {
                 $report->thatday_date = Datetime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
                 
-                // thatday_dateをもったレポートをいいねしてくれた人を表示する？
                 $favoriters = DB::table('user_favorite')
                 ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
                 ->join('users', 'users.id', '=', 'user_favorite.user_id')
@@ -91,8 +107,10 @@ class ReportsController extends Controller
                 ->get();
                 
                 $report->favCnt = count($favoriters);
+                
+       
             }
-            
+        
         $day = date("Y/m/d");
         $week = date("Y/m/d", strtotime("-1 week"));
         $month = date("Y/m/d", strtotime("-1 month"));
@@ -113,7 +131,6 @@ class ReportsController extends Controller
             'reports' => $reports,
             'graph_data' => $graph_data,
             'comments' => $comments,
-            'favoriters' => $favoriters,
         ];
         return view('users.reports', $data);
     }
@@ -194,24 +211,26 @@ public function commentsFromUser($id) {
         $afterfive = date("Y/m/d", strtotime("-5 day"));
         
         $graph_data = [
-            ['Date', 'Favorites','Favorited', 'Comments'],
+            ['Date', 'Followers','Favorited', 'Comments'],
         ];
     
         $searches = [$day,$tomorrow,$aftertwo,$afterthree,$afterfour,$afterfive];
+        
         foreach ($searches as $value) {
             $favorites = $user-> favorites()->where('user_favorite.created_at', '>', $value)->get()->count();
-            $followers = $user->followers()->where('user_follow.created_at', '=', $value)->get()->count();
+            $followers = $user->followers()->where('user_follow.created_at', '>', $value)->count();
             $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->where( 'reports.user_id', '=', $user->id )->where('reports.created_at', '>', $value)->get()->count();
             $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->where( 'reports.user_id', '=', $user->id )->where( 'reports.created_at','>', $value )->get()->count();
-   
             $graph_data = array_merge($graph_data, [[$value, $favorites,$favorited,$feedfeed]]);
-                }
+        }
+                
         $data = [
             'user' => $user,
             'reports' => $reports,
             'graph_data' => $graph_data,
             'comments' => $comments,
         ];
+        
         return view('users.other', $data);
     }
     
@@ -242,17 +261,3 @@ public function commentsFromUser($id) {
         return view('users.report', $data);
     }
 }
-$user = \Auth::user();
-        $reports = Report::orderBy('created_at', 'desc')->paginate(10);
-        foreach($reports as $report)
-        {
-            $report->favCnt = DB::table('user_favorite')
-            ->where('report_id', $report->id)
-            ->count();
-        }
-        $data = [
-            'user' => $user,
-            'reports' => $reports,
-        ];
-        return view('welcome', $data);
-         $report->favCnt = count($favoriters);

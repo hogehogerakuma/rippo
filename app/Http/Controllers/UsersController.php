@@ -26,7 +26,7 @@ class UsersController extends Controller
         $afterfive = date("Y/m/d", strtotime("-5 day"));
         
         $graph_data = [
-            ['Date', 'Favorites','Favorited', 'Comments'],
+            ['Date', 'Followers','Favorited', 'Comments'],
         ];
     
         $searches = [$day,$tomorrow,$aftertwo,$afterthree,$afterfour,$afterfive];
@@ -37,8 +37,13 @@ class UsersController extends Controller
             $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->where( 'reports.user_id', '=', $user->id )->where( 'reports.created_at','>', $value )->get()->count();
    
 
-            $graph_data = array_merge($graph_data, [[$value, $favorites,$favorited,$feedfeed]]);
-                }
+            $graph_data = array_merge($graph_data, [[$value, $followers,$favorited,$feedfeed]]);
+         //   var_dump($followers);
+        //    var_dump($favorites);
+
+        }
+
+//exit;
 
         $data = [
             'user' => $user,
