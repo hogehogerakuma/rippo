@@ -80,7 +80,8 @@ class ReportsController extends Controller
         
         foreach($reports as $report)
             {
-                $report->thatday_date = DateTime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
+                $report->thatday_date = Datetime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
+                
                 // thatday_dateをもったレポートをいいねしてくれた人を表示する？
                 $favoriters = DB::table('user_favorite')
                 ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
@@ -91,10 +92,10 @@ class ReportsController extends Controller
                 $report->favCnt = count($favoriters);
             }
             
-        $day = date("y/m/d");
-        $week = date("y/m/d", strtotime("-1 week"));
-        $month = date("y/m/d", strtotime("-1 month"));
-        
+        $day = date("Y/m/d");
+        $week = date("Y/m/d", strtotime("-1 week"));
+        $month = date("Y/m/d", strtotime("-1 month"));
+    
         $graph_data = [
             ['Date', 'Favorites', 'Followings', 'Followers'],
         ];
