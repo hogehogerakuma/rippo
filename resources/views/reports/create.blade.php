@@ -1,4 +1,10 @@
+@if (Auth::check())
+<?php
+$bgimage = '/images/hosizora.jpg';
+?>
+@endif
 @extends('layouts.app')
+
 
 @section('content')
 

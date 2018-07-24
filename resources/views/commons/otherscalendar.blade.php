@@ -1,3 +1,4 @@
+
 @if (Auth::id() != $user->id)
 
 <style>
