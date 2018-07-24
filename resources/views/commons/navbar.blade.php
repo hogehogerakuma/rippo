@@ -4,9 +4,9 @@
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 @if (Auth::check())
-<nav class="navbar navbar-inverse navbar-static-top" style="height:80px; height:60px; background-color: transparent; width:100%; font-family: 'Merienda', cursive;">
+<nav class="navbar navbar-inverse navbar-static-top" style="height:50px; height:60px; background-color: transparent; width:100%; font-family: 'Merienda', cursive;">
 @else
-<nav class="navbar navbar-inverse navbar-static-top" style="height:80px; height:60px; width:100%; font-family: 'Merienda', cursive;">
+<nav class="navbar navbar-inverse navbar-static-top" style="height:50px; height:60px; width:100%; font-family: 'Merienda', cursive;">
 @endif
         <div class="container">
             <div class="navbar-header">

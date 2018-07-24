@@ -50,26 +50,3 @@ $bgimage = '/images/hosizora.jpg';
          </div>
          </div>
 
-
-    @else
-    <head></head>
-    
-    
-        <div class="center jumbotron" style="background:rgba(0,0,0,0.0); font-family: 'Lobster', cursive;">
-            <div class="text-center">
-                <br>
-                <br>
-                <h1 style= "color:black; font-family: 'Lobster', cursive;">Welcome To The</h1>
-                <h1 style= "color:black; font-family: 'Lobster', cursive;">RIPPO:)</h1><br>
-               </div>
-            
-            <div class="text-center" style="font-family: 'Oswald', sans-serif;">
-                <h4 style= "color:black; font-family: 'Oswald', sans-serif;">Havana, ooh na-na (ay)Half of my heart is in Havana, ooh-na-na (ay, ay)</h4>
-                <h4 style= "color:black; font-family: 'Oswald', sans-serif;">Oh, but my heart is in Havana (ay)There's somethin' 'bout his manners (uh huh)Havana</h4><br>
-                {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-danger']) !!}
-            </div>
-            
-        </div>
-        </body>
-    @endif
-@endsection

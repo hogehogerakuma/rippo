@@ -93,8 +93,8 @@ class UserCommentController extends Controller
             $graph_data = array_merge($graph_data, [[$value, $favorites,$favorited,$feedfeed]]);
         
         }
-// var_dump($graph_data);
-// exit;
+var_dump($graph_data);
+exit;
         $data = [
             'user' => $user,
             'reports' => $reports,
