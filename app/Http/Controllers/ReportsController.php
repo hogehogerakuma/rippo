@@ -28,6 +28,23 @@ class ReportsController extends Controller
         ];
         return view('welcome', $data);
     }
+    
+    public function indextwo()
+{
+    $data = [];
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $reports = $user->respectuser_reports()->orderBy('created_at', 'desc')->paginate(10);
+
+            $data = [
+                'user' => $user,
+                'reports' => $reports,
+            ];
+        }
+        return view('users.feed', $data);
+}    
+    
+    
     public function store(Request $request)
     {
         $this->validate($request, [

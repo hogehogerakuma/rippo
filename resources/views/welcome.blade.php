@@ -14,7 +14,7 @@ $bgimage = '/images/hosizora.jpg';
 @if (Auth::check())
 
 <div class="panel panel-default col-lg-10 col-md-10 col-sm-12 col-xs-12" style="padding-top:0px; padding-bottom:20px; margin-left:90px;"> 
-<h2 style="color:black; background-color:pink; font-family: 'Lobster', cursive;"><b>Today's Daily Reports</b></h2>
+<h2 style="color:black; background-color:pink; font-family: 'Lobster', cursive;"><b>Everyone's Daily Reports</b></h2>
 <?php
         date_default_timezone_set('Asia/Tokyo');
         $hour = (int)date('H');
@@ -33,6 +33,7 @@ $bgimage = '/images/hosizora.jpg';
     }
         print $msg
 ?>
+<a href="{{route('users.feed', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button" style="font-family: 'Lobster', cursive;" >My respect user Rippo</a>
         @if (count($reports) > 0)
             @include('reports.reports', ['reports' => $reports, 'user' => $user])
         @endif
@@ -58,4 +59,5 @@ $bgimage = '/images/hosizora.jpg';
         </div>
         </body>
     @endif
+    
 @endsection
