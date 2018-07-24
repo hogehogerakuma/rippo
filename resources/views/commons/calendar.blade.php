@@ -18,7 +18,7 @@ $bgimage = '/images/hosizora.jpg';
 ?>
 
 <?php
-     $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
+     $popopo = App\Report::whereDate('created_at', DB::raw('current_date'))->where('user_id', $user->id)->get();
         
         if (isset ($popopo) && count($popopo)>0 ) {
             $dashitaka = 'Your Daily Report was already submitted';
