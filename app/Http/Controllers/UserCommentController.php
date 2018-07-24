@@ -7,27 +7,40 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Report;
 use App\Comment;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 
 
 class UserCommentController extends Controller
 {
-    public function index($id)
+    public function index($id, $thatday_date)
     {
         $user = User::find($id);
-        $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
-        $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
+        $report = DB::table('reports')
+        ->where('reports.user_id', $id)
+        ->whereDate('reports.created_at' ,$thatday_date)
+        ->first();
         
-         $data = [
+        $comments = [];
+        if (!is_null($report)) {
+        $comments = DB::table('comments')
+        ->join('reports', 'reports.id', '=', 'comments.report_id')
+        ->join('users', 'users.id', '=', 'comments.user_id')
+        ->where('comments.report_id', $report->id)
+        ->whereDate('reports.created_at' ,$thatday_date)
+        ->get();
+        }
+        
+        $data = [
             'user' => $user,
-            'reports' => $reports,
             'comments' => $comments,
+            'thatday_date' => $thatday_date,
         ];
-            
-        return view('comments.comments', $data);
         
+        
+        return view('reports.comments', $data);
     }
-    
+        
      public function store(Request $request, $id)
     {
         $report = Report::find($id);

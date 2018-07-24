@@ -220,4 +220,24 @@ public function commentsFromUser($id) {
         ];
         return view('users.other', $data);
     }
+    
+    public function thatday_report($id, $thatday_date) {
+        $user = User::find($id);
+        
+        $report = DB::table('reports')
+        ->where('reports.user_id', $id)
+        ->whereDate('reports.created_at' ,$thatday_date)
+        ->first();
+        
+        $report->favCnt = DB::table('user_favorite')
+            ->where('report_id', $report->id)
+            ->count();
+        
+        $data = [
+            'user' => $user,
+            'report' => $report,
+            ];
+        
+        return view('users.report', $data);
+    }
 }
