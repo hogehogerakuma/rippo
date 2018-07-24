@@ -1,10 +1,15 @@
+@if (Auth::check())
+<?php
+$bgimage = '/images/hosizora.jpg';
+?>
+@endif
 @extends('layouts.app')
+
 
 @section('content')
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
-
 
 <?php
      date_default_timezone_set('Asia/Tokyo');
@@ -163,25 +168,33 @@
     }
       
       $favday_date = $dayD->format('j');
-      $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $favday_date)->where( 'reports.user_id', $user->id )->count();
+      $favorited = DB::table('user_favorite')
+        ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
+        ->whereDay('reports.created_at', $favday_date)
+        ->where('reports.user_id', $user->id)
+        ->count();
    
-      $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->whereDay('reports.created_at', $favday_date)->where( 'reports.user_id', $user->id )->count();
+      $feedfeed = DB::table('comments')
+        ->join('reports', 'reports.id', '=', 'comments.report_id')
+        ->whereDay('reports.created_at', $favday_date)
+        ->where( 'reports.user_id', $user->id )
+        ->count();
    
     if ($dd['hori']){
         //祝日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="'.url('users/'.$user->id.'/report/'.$dayD->format('Y-m-d')).'">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$dayD->format('Y-m-d')).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="'.url('users/'.$user->id.'/comments/'.$dayD->format('Y-m-d')).'">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     } 
     elseif($j == 0) {
         //日曜日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="'.url('users/'.$user->id.'/report/'.$dayD->format('Y-m-d')).'">Report&nbsp;'.$ok_post.'</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$dayD->format('Y-m-d')).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="'.url('users/'.$user->id.'/comments/'.$dayD->format('Y-m-d')).'">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     }
     elseif($j == 6) {
         //土曜日
-        echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="info"><span class="text-info">'.$dayD->format('j').$dd['hori'].'<br><a href="'.url('users/'.$user->id.'/report/'.$dayD->format('Y-m-d')).'">Report&nbsp;'.$ok_post.'</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$dayD->format('Y-m-d')).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="'.url('users/'.$user->id.'/comments/'.$dayD->format('Y-m-d')).'">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     }
     else {
         //平日
-        echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;<span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="'.url('users/'.$user->id.'/report/'.$dayD->format('Y-m-d')).'">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$dayD->format('Y-m-d')).'">Like&nbsp;<span class="badge">'.$favorited. '</span><br><a href="'.url('users/'.$user->id.'/comments/'.$dayD->format('Y-m-d')).'">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
       }
 
       $j = $j + 1;
@@ -200,7 +213,4 @@
 <?php
   }  //１年分の foreach ここまで
 ?>
-
-<a href="{{route('reports.reports', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button" style="font-family: 'Lobster', cursive;" >User's page</a>
-
 @endsection

@@ -1,9 +1,15 @@
+@if (Auth::check())
+<?php
+$bgimage = '/images/hosizora.jpg';
+?>
+@endif
 @extends('layouts.app')
+
 
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
 </style>
 
 @include('commons.curdateiine')
@@ -25,63 +31,41 @@
 <?php
 
 
-//  $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->where( 'reports.user_id', $user->id )->get();
 $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user_id', $user->id )->limit(1)->get();
-// $recent_feed = App\Comment::orderBy('created_at', 'desc')->where( 'comments.report_id', $user->id)->get();
-// $recent_feed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->whereDate('created_at', DB::raw('CURDATE()'))->where( 'comments.user_id', $user->id )->count();
-// $recent_feed = App\Comment::whereDate('created_at', DB::raw('CURDATE()'))
-//               ->orderBy('created_at', 'desc')
-//               ->
-//               ->where( 'reports.user_id', $user->id )
-//               ->count();  
-    //  $recent_feed = DB::table('comments')
-    //           ->join('reports', 'reports.id', '=', 'comments.report_id')
-    //           ->where( 'reports.user_id', $user->id )
-    //           ->orderBy('created_at', desc')
-    //           ->limit(1)
-    //           ->count();
-    
-    // $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->count();
+//  $chokin_report_day = App\Report::orderBy('created_at','desc')->where( 'reports.user_id', $user->id )->limit(1)->select('created_at')->get();
  
- $chokin_report_day = App\Report::orderBy('created_at','desc')->where( 'reports.user_id', $user->id )->limit(1)->select('created_at')->get();
- 
-       $chokin_count = DB::table('comments')
-        ->join('reports', 'reports.id', '=', 'comments.report_id')
-        ->where('reports.created_at', "=" , $chokin_report_day )
-        ->where('reports.user_id', $user->id)
-        ->count();      
-              
-            //   $cmtCnt = DB::table('comments')
-            //     ->join('reports', 'reports.id', '=', 'comments.report_id')
-            //     ->join('users', 'users.id', '=', 'comments.user_id')
-            //     ->whereDay('reports.created_at', $report->thatday_date)
-            //     ->where('comments.report_id', $report->id)
-            //     ->select('id')
-            //     ->count();
+//       $chokin_count = DB::table('comments')
+//         ->join('reports', 'reports.id', '=', 'comments.report_id')
+//         ->where('reports.created_at', "=" , $chokin_report_day )
+//         ->where('reports.user_id', $user->id)
+//         ->count();      
               
     if($recent_reports == false || empty($recent_reports) || 0 == count($recent_reports)) {
+    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
+    
+    if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
+
     $number = 0;
     }
     
-    elseif ($recent_reports[0]->result_2 == false || empty($recent_reports) || 0 == count($recent_reports) && $recent_reports[0]->result_3 ==false || empty($recent_reports) || 0 == count($recent_reports)){
-        $number = $recent_reports[0]->result_1;
+    elseif ($today_reports[0]->result_2 == false || empty($today_reports) || 0 == count($today_reports) && $today_reports[0]->result_3 ==false || empty($today_reports) || 0 == count($today_reports)){
+        $number = $today_reports[0]->result_1;
     }
     
-    elseif ($recent_reports[0]->result_3 == false || empty($recent_reports) || 0 == count($recent_reports)) {
-        $number = ($recent_reports[0]->result_1 +  $recent_reports[0]->result_2) /2 ;
+    elseif ($today_reports[0]->result_3 == false || empty($today_reports) || 0 == count($today_reports)) {
+        $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2) /2 ;
     }
     
     else {
-        $number = ($recent_reports[0]->result_1 +  $recent_reports[0]->result_2 +  $recent_reports[0]->result_3) /3 ;
+        $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
     }
-   if (Auth::id() == $user->id){
     
     if ($number > 99) {
         print 'Your accomplishment is ' . $number . '% Congrats!! ' . PHP_EOL;
     }
     
     elseif ($number >= 80) {
-        print "your accomplishment is ". $number ."% It is very close! " . PHP_EOL;
+        print 'Your accomplishment is '. $number . '% You are very close! ' . PHP_EOL;
     }
     
     elseif ($number >= 60) {
@@ -124,7 +108,7 @@ $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user
 //   print $chokin_report_day;
 //   print $chokin_count;
 
-  print $cmtCnt;
+
 ?>
  
 </h3>
@@ -149,7 +133,4 @@ $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user
 <a href="{{route('users.show', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button">Show Calendar</a>
 
             </div>
-            
 @endsection
-
-        

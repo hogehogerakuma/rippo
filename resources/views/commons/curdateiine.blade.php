@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Caveat%7CDancing+Script%7CGaegu%7CGreat+Vibes%7CLobster+Two');
 </style>
 <div class style="font-family: 'Merienda', cursive;">
-<p><a href="{{ route('reports.reportsfollowings', ['id' => $user->id]) }}">TimeLine</a></p>
+
 <?php
             date_default_timezone_set('Asia/Tokyo');
             $now_month =  (int)date("m");
@@ -51,7 +51,8 @@ $favoriters = DB::table('user_favorite')
    }
 
    if(count($favoriters)>0) {
-    $goukei = "got ".$favorited." ".$like."  ";
+
+        $goukei = "got ".$favorited." ".$like."  ";
     }
     else{
         $goukei = "";

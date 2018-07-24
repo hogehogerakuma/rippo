@@ -7,17 +7,40 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Report;
 use App\Comment;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 
 
 class UserCommentController extends Controller
 {
-    public function index()
+    public function index($id, $thatday_date)
     {
-        $data = [];
+        $user = User::find($id);
+        $report = DB::table('reports')
+        ->where('reports.user_id', $id)
+        ->whereDate('reports.created_at' ,$thatday_date)
+        ->first();
         
+        $comments = [];
+        if (!is_null($report)) {
+        $comments = DB::table('comments')
+        ->join('reports', 'reports.id', '=', 'comments.report_id')
+        ->join('users', 'users.id', '=', 'comments.user_id')
+        ->where('comments.report_id', $report->id)
+        ->whereDate('reports.created_at' ,$thatday_date)
+        ->get();
+        }
+        
+        $data = [
+            'user' => $user,
+            'comments' => $comments,
+            'thatday_date' => $thatday_date,
+        ];
+        
+        
+        return view('reports.comments', $data);
     }
-    
+        
      public function store(Request $request, $id)
     {
         $report = Report::find($id);
@@ -63,8 +86,8 @@ class UserCommentController extends Controller
         // var_dump($month);
         // exit;
         
-        $graph_data = [
-            ['Date', 'Favorites','Favorited', 'Comments'],
+       $graph_data = [
+            ['Date', 'Followers','Favorited', 'Comments'],
         ];
     
         $searches = [$day,$tomorrow,$aftertwo,$afterthree,$afterfour,$afterfive];
@@ -80,11 +103,15 @@ class UserCommentController extends Controller
             // $favorited = $user->favorited()->where('user_follow.created_at', '>', $value)->get()->count();
             // $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id', $user->id )->count();
 
-            $graph_data = array_merge($graph_data, [[$value, $favorites,$favorited,$feedfeed]]);
-        
+            $graph_data = array_merge($graph_data, [[$value, $followers,$favorited,$feedfeed]]);
+         //   var_dump($followers);
+        //    var_dump($favorites);
+
         }
-// var_dump($graph_data);
-// exit;
+
+
+// var_dump($followers);
+//exit;
         $data = [
             'user' => $user,
             'reports' => $reports,

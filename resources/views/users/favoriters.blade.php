@@ -8,10 +8,9 @@
     
 <h3 style="font-family: 'Lobster', cursive;">&nbsp&nbsp&nbspThe person who likes your Daily Report</h3><br>
 
-@if (count($favoriters) > 0)
 
 <ul class="media-list">
-@foreach ($favoriters as $favoriter)
+@foreach ($favoriters as $favoriter) 
 <li class="container col-lg-9 col-md-19 col-sm-12 col-xs-12">
 <div class="panel panel-default col-lg-9 col-md-9 col-sm-12 col-xs-12" style="color:black; padding-top:20px; padding-bottom:20px; font-family: 'Lobster', cursive;"> 
         <div class="media-left">
@@ -29,6 +28,5 @@
   </li>
 @endforeach
 </ul>
-@endif
 
 @endsection
