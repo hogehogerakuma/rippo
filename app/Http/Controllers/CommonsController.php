@@ -10,6 +10,7 @@ use App\Report;
 class CommonsController extends Controller
 {
  
+ 
     public function show($id)
     {
         $user = User::find($id);

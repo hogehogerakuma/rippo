@@ -29,7 +29,8 @@
         print $msg
 ?>
         @if (count($reports) > 0)
-            @include('reports.reports', ['reports' => $reports, 'favoriters' => $favoriters, 'user' => $user])
+            @include('reports.reports', ['reports' => $reports,  'user' => $user])
+            @include('user_follow.follow_button', ['user' => $user])
         @endif
     </div>
     @else

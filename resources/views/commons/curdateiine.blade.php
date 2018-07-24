@@ -1,9 +1,8 @@
-
 <style>
-@import url('https://fonts.googleapis.com/css?family=Caveat|Dancing+Script|Gaegu|Great+Vibes|Lobster+Two');
+@import url('https://fonts.googleapis.com/css?family=Caveat%7CDancing+Script%7CGaegu%7CGreat+Vibes%7CLobster+Two');
 </style>
 <div class style="font-family: 'Merienda', cursive;">
-
+<p><a href="{{ route('reports.reportsfollowings', ['id' => $user->id]) }}">TimeLine</a></p>
 <?php
             date_default_timezone_set('Asia/Tokyo');
             $now_month =  (int)date("m");
@@ -27,8 +26,8 @@ $favoriters = DB::table('user_favorite')
         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
         ->join('users', 'users.id', '=', 'user_favorite.user_id')
         ->whereDay('reports.created_at' , $now_date)
-        ->where('reports.user_id', $user->id)
-        ->select('users.username')
+        // ->where('reports.user_id', $user->id)
+        // ->select('users.username')
         ->get();
         
         
@@ -75,6 +74,7 @@ $favoriters = DB::table('user_favorite')
     } else{
         $goukeifeed = $numfeedtoday." ".$comment;
     }
+
 if (  $numfeedtoday !== 0 || $favorited !== 0){
         $commentfeed ="on the Daily Report !!";
     }  else{
@@ -82,13 +82,11 @@ if (  $numfeedtoday !== 0 || $favorited !== 0){
     }
         
 ?>
-
-
+@include('user_follow.follow_button', ['user' => $user])
 <h2>
 
 <?php 
 if(false == empty($goukei) || false == empty($goukeifeed)){echo $user->username ;}?>
-
 
 <?php print $goukei; 
 if(false == empty($goukei) && false == empty($goukeifeed)){echo " and ";}?><?php print $goukeifeed; ?> 

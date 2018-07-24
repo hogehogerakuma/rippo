@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::resource('reports', 'ReportsController');
     
+    Route::get('reports/{id}/favoriters', 'ReportsController@favoriters')->name('reports.favoriters');
+    
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::post('follow', 'UserFollowController@store')->name('user.follow');
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
@@ -41,7 +43,9 @@ Route::group(['middleware' => ['auth']], function(){
         
         Route::get('calendar' , 'CommonsController@show')->name('commons.calendar');
         
+        
         Route::get('reports' , 'ReportsController@reportsFromUser')->name('reports.reports');
         Route::get('comments' , 'UserCommentController@show')->name('users.comments');
+        Route::get('graphs' , 'ReportsController@graphs')->name('users.other');
     });
 });
