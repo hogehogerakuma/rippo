@@ -105,9 +105,7 @@ $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user
          </div>
 </div>
 </div>
-<div class="row col-lg-10" style="margin-right:200px; margin-left:100px; font-family: 'Lobster', cursive;">
+<div class="row col-lg-10" style="margin-right:200px; margin-left:120px; font-family: 'Lobster', cursive;">
 <a href="{{route('users.show', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button">Show Calendar</a>
 
             </div>
-            
-@endsection

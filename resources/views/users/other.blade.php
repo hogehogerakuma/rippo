@@ -6,7 +6,13 @@
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
-<h3 style="font-family: 'Merienda', cursive; color:lightskyblue; margin-left:110px;">
+<div>
+    @include(user_follow.follow_button, ['user' => $user])
+</div>
+
+<div class="row col-lg-10" style="margin-left:80px;">
+    <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
+<h3 style="color:lightskyblue;">
 <?php
 
     $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
@@ -47,8 +53,21 @@
         print 'Your accomplishement is '. $number . '% Need a motivation boost?' . PHP_EOL;
     }
 ?>
-</h3>
+@include('commons.curdateiine')
 
+<?php
+
+    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
+    if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
+    $number = 1;
+    } else {      
+    $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
+    }
+?>
+
+</h3>
+</div>
+</div>
 <div class="panel panel-default col-lg-10 col-md-10 col-sm-12 col-xs-12" style="width:auto: height:auto; margin-left:110px; font-family: 'Lobster', cursive; margin-top:20px; margin-right:60px;">                
                         
                     <div class="panel-body col-lg-10 col-md-10 col-sm-12 col-xs-12">
@@ -56,4 +75,16 @@
                     </div>
                     </div>
 
+
+                
+</div>
+</div>
+<div class="row col-lg-10" style="margin-right:200px; margin-left:120px; font-family: 'Lobster', cursive;">
+<a href="{{route('reports.reports', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button" style="font-family: 'Lobster', cursive;" >User's page</a>
+
+
+            </div>
+            
 @endsection
+
+        

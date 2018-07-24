@@ -59,6 +59,8 @@
                         @endif
                 
                         @include('user_favorite.favorite_button', ['report' => $report])
+                        <a href="{{route('home')}}" class="btn btn-info btn- btn-xs" role="button">Home</a>
+    
                     </div>
     </div>
     </div>

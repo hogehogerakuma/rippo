@@ -24,7 +24,9 @@
     min-height: 100vh;
     background-image:url('/images/hosizora.jpg');
     background-size: 100% 100%;
-    background-repeat: no-repeat;">
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    ">
         
         @include('commons.navbar')
 

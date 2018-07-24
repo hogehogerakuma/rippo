@@ -93,6 +93,15 @@ class User extends Authenticatable
          'user_id',
          'report_id')->withTimestamps();
     }
+    
+    public function favorited()
+    {
+        return $this->belongsToMany(
+         Report::class,
+         'user_favorite', 
+         'user_id',
+         'report_id')->withTimestamps();
+    }
         
     public function favorite($reportsId)
     {
@@ -127,5 +136,14 @@ class User extends Authenticatable
     public function comment() {
         $this->comments()->attach($reportsId);
         return true;
+    }
+    
+    public function favoriters()
+    {
+        return $this->belongsToMany(
+        Report::class,
+        'user_favorite', 
+        'user_id',
+        'report_id')->withTimestamps();
     }
 }
