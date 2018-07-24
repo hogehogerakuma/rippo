@@ -1,15 +1,17 @@
+@extends('layouts.app')
+@section('content')
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
+<div class="row col-lg-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
+<div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-left:auto;margin-right:auto; padding-top:20px; padding-bottom:20px;">
+<ul class="media-list" style="font-family: 'Merienda', cursive;">
 
-<ul class="media-list" style= "font-family: 'Merienda', cursive;">
-@foreach ($reports as $report)
-    <?php $user = $report->user; ?>
     <li class="media">
-        <div class="media-left" style= "font-family: 'Gaegu', cursive;">
+        <div class="media-left">
             <img class="media-object img-rounded" src="{{ Gravatar::src($user->username, 50) }}" alt="">
         </div>
-        <div class="media-body" style="padding-top: 10px; padding-bottom:20px;">
+        <div class="media-body">
             <div>
                 {!! link_to_route('users.show', $user->username, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $report->created_at }}</span>
             </div>
@@ -59,14 +61,14 @@
                     {!! Form::close() !!}
                 @endif
                 @include('user_favorite.favorite_button', ['report' => $report])
-                <a href="{{route('reports.show', ['id' => $report->id])}}" class="btn btn-success btn- btn-xs" role="button">Show Report</a>
     
                 <div style="color: black">
                     {!! link_to_route('reports.favoriters', 'いいね　'.$report->favCnt. '件', ['id' => $report->id, 'user' => $user, 'report' => $report]) !!}
                 </div>
             </div>
+          </div>
         </div>
+    </div>
     </li>
-@endforeach
 </ul>
-{!! $reports->render() !!}
+@endsection

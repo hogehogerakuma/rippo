@@ -1,4 +1,10 @@
+@if (Auth::check())
+<?php
+$bgimage = '/images/hosizora.jpg';
+?>
+@endif
 @extends('layouts.app')
+
 
 @section('content')
 
@@ -6,16 +12,12 @@
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
-<div>
-    @include(user_follow.follow_button, ['user' => $user])
-</div>
-
 <div class="row col-lg-10" style="margin-left:80px;">
     <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
 <h3 style="color:lightskyblue;">
 <?php
 
-    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
+    $today_reports = App\Report::whereDate('created_at', DB::raw('current_date'))->orderBy('created_at','desc')->get();
     
     if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
     $number = 0;
@@ -57,7 +59,7 @@
 
 <?php
 
-    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
+    $today_reports = App\Report::whereDate('created_at', DB::raw('current_date'))->orderBy('created_at','desc')->get();
     if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
     $number = 1;
     } else {      

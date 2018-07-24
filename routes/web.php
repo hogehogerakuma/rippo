@@ -37,15 +37,16 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('favorites', 'UsersController@favorites')->name('users.favorites');
         Route::get('favoriters/{thatday_date}', 'UsersController@favoriters')->name('users.favoriters');
     
-        Route::get('comments', 'UserCommentController@index')->name('comment.index');
         Route::post('comment', 'UserCommentController@store')->name('user.comment');
         Route::delete('uncomment', 'UserCommentController@destroy')->name('user.uncomment');
         
+        Route::get('comments' , 'UserCommentController@show')->name('users.comments');
         Route::get('calendar' , 'CommonsController@show')->name('commons.calendar');
         
-        
+        Route::get('comments/{thatday_date}', 'UserCommentController@index')->name('reports.comments');
+        Route::get('report/{thatday_date}', 'ReportsController@thatday_report')->name('users.report');
+       
         Route::get('reports' , 'ReportsController@reportsFromUser')->name('reports.reports');
-        Route::get('comments' , 'UserCommentController@show')->name('users.comments');
         Route::get('graphs' , 'ReportsController@graphs')->name('users.other');
     });
 });

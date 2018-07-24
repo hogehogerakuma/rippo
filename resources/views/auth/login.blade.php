@@ -1,16 +1,17 @@
 @extends('layouts.app')
-
+<head></head>
+<body>
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
 @section('content')
     <div class="text-center">
-        <h1 style= "font-family: 'Lobster', cursive;">Log in</h1>
+        <h1 style= "color:black; margin-top:120px; font-family: 'Lobster', cursive;">Log in</h1>
     </div>
 
-    <div class="row" style= "font-family: 'Lobster', cursive;">
-        <div class="col-md-6 col-md-offset-3">
+    <div class="row" style= "color:black; font-family: 'Lobster', cursive;">
+        <div class="col-md-6 col-md-offset-3" style="margin-top:20px;">
 
             {!! Form::open(['route' => 'login.post']) !!}
                 <div class="form-group">
@@ -29,4 +30,5 @@
             <p style= "font-family: 'Lobster', cursive;">New user? {!! link_to_route('signup.get', 'Sign up now!') !!}</p>
         </div>
     </div>
+    </body>
 @endsection

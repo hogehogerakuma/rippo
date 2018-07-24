@@ -7,17 +7,40 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Report;
 use App\Comment;
+use DateTime;
 use Illuminate\Support\Facades\DB;
 
 
 class UserCommentController extends Controller
 {
-    public function index()
+    public function index($id, $thatday_date)
     {
-        $data = [];
+        $user = User::find($id);
+        $report = DB::table('reports')
+        ->where('reports.user_id', $id)
+        ->whereDate('reports.created_at' ,$thatday_date)
+        ->first();
         
+        $comments = [];
+        if (!is_null($report)) {
+        $comments = DB::table('comments')
+        ->join('reports', 'reports.id', '=', 'comments.report_id')
+        ->join('users', 'users.id', '=', 'comments.user_id')
+        ->where('comments.report_id', $report->id)
+        ->whereDate('reports.created_at' ,$thatday_date)
+        ->get();
+        }
+        
+        $data = [
+            'user' => $user,
+            'comments' => $comments,
+            'thatday_date' => $thatday_date,
+        ];
+        
+        
+        return view('reports.comments', $data);
     }
-    
+        
      public function store(Request $request, $id)
     {
         $report = Report::find($id);
@@ -54,12 +77,12 @@ class UserCommentController extends Controller
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
         
-        $day = date("y/m/d");
-        $tomorrow = date("y/m/d", strtotime("-1 day"));
-        $aftertwo = date("y/m/d", strtotime("-2 day"));
-        $afterthree = date("y/m/d", strtotime("-3 day"));
-        $afterfour = date("y/m/d", strtotime("-4 day"));
-        $afterfive = date("y/m/d", strtotime("-5 day"));
+        $day = date("Y/m/d");
+        $tomorrow = date("Y/m/d", strtotime("-1 day"));
+        $aftertwo = date("Y/m/d", strtotime("-2 day"));
+        $afterthree = date("Y/m/d", strtotime("-3 day"));
+        $afterfour = date("Y/m/d", strtotime("-4 day"));
+        $afterfive = date("Y/m/d", strtotime("-5 day"));
         // var_dump($month);
         // exit;
         
