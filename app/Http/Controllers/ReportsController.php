@@ -224,10 +224,15 @@ public function commentsFromUser($id) {
         ->first();
         
         if (!is_null($report)) {
-        $report->favCnt = DB::table('user_favorite')
+            $report->favCnt = DB::table('user_favorite')
             ->where('report_id', $report->id)
             ->count();
         }
+        else {
+            return redirect()->back();
+        }
+            
+        
         
         $data = [
             'user' => $user,
