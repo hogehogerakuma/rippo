@@ -179,6 +179,27 @@ public function commentsFromUser($id) {
         return view('reports.favoriters', $data);
     }
     
+     public function followR ($id) {
+        date_default_timezone_set('Asia/Tokyo');
+            
+        $user = \Auth::user();
+        $reports = Report::orderBy('created_at', 'desc')->paginate(10);
+        $followreports = $reports-> follow()->where('user_favorite.created_at', '>', $value)->get()->count();
+        $followers = $user->followers()->where('user_follow.created_at', '>', $value)->get()->count();
+        
+        foreach($reports as $report)
+        {
+            $report->favCnt = DB::table('user_favorite')
+            ->where('report_id', $report->id)
+            ->count();
+        }
+        $data = [
+            'user' => $user,
+            'reports' => $reports,
+        ];
+        return view('feed', $data);
+    }
+    
     public function graphs($id)
     {
         $user = User::find($id);

@@ -3,6 +3,7 @@
 $bgimage = '/images/hosizora.jpg';
 ?>
 @endif
+
 @extends('layouts.app')
 
 @section('content')
@@ -42,11 +43,9 @@ $bgimage = '/images/hosizora.jpg';
                 
                 <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="padding-top:20px; font-family: 'Gaegu', cursive;">
                 <h2 style="color:black; background-color:pink; font-family: 'Lobster', cursive;"><b>Today's Daily Reports</b></h2>
-                @if (count($reports) > 0)
-                    @include('reports.reports', ['reports' => $reports])
-                @endif
-                   </div>
+                 </div>
          </ul>
          </div>
          </div>
-
+@endif
+@endsection

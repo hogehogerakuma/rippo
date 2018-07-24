@@ -1,9 +1,4 @@
-@if (Auth::check())
-<?php
-$bgimage = '/images/hosizora.jpg';
-?>
-@endif
-@extends('layouts.app')
+
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');

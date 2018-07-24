@@ -47,5 +47,6 @@ Route::group(['middleware' => ['auth']], function(){
        
         Route::get('reports' , 'ReportsController@reportsFromUser')->name('reports.reports');
         Route::get('graphs' , 'ReportsController@graphs')->name('users.other');
+        Route::get('feed' , 'ReportsController@followR')->name('feed.feed');
     });
 });
