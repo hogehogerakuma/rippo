@@ -17,7 +17,7 @@ $bgimage = '/images/hosizora.jpg';
 <h3 style="color:lightskyblue;">
 <?php
 
-    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
+    $today_reports = App\Report::whereDate('created_at', DB::raw('current_date'))->orderBy('created_at','desc')->get();
     
     if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
     $number = 0;
@@ -59,7 +59,7 @@ $bgimage = '/images/hosizora.jpg';
 
 <?php
 
-    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
+    $today_reports = App\Report::whereDate('created_at', DB::raw('current_date'))->orderBy('created_at','desc')->get();
     if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
     $number = 1;
     } else {      
