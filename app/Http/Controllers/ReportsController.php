@@ -250,9 +250,6 @@ public function commentsFromUser($id) {
         else {
             return redirect()->back();
         }
-            
-        
-        
         $data = [
             'user' => $user,
             'report' => $report,

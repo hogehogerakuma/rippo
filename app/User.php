@@ -151,7 +151,11 @@ class User extends Authenticatable
     public function respectuser_reports()
     {
         $follow_user_ids = $this->followings()-> pluck('users.id')->toArray();
+<<<<<<< HEAD
         $follow_user_ids[] = $this->id;
+=======
+        // $follow_user_ids[] = $this->id;
+>>>>>>> 381980a87bc0d65dc2d1eff4f852bb2d01e465aa
         return Report::whereIn('user_id', $follow_user_ids);
     }
     
