@@ -86,8 +86,8 @@ class UserCommentController extends Controller
         // var_dump($month);
         // exit;
         
-        $graph_data = [
-            ['Date', 'Favorites','Favorited', 'Comments'],
+       $graph_data = [
+            ['Date', 'Followers','Favorited', 'Comments'],
         ];
     
         $searches = [$day,$tomorrow,$aftertwo,$afterthree,$afterfour,$afterfive];
@@ -103,11 +103,15 @@ class UserCommentController extends Controller
             // $favorited = $user->favorited()->where('user_follow.created_at', '>', $value)->get()->count();
             // $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id', $user->id )->count();
 
-            $graph_data = array_merge($graph_data, [[$value, $favorites,$favorited,$feedfeed]]);
-        
+            $graph_data = array_merge($graph_data, [[$value, $followers,$favorited,$feedfeed]]);
+         //   var_dump($followers);
+        //    var_dump($favorites);
+
         }
-// var_dump($graph_data);
-// exit;
+
+
+// var_dump($followers);
+//exit;
         $data = [
             'user' => $user,
             'reports' => $reports,

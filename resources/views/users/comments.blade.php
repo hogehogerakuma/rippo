@@ -69,6 +69,7 @@ $bgimage = '/images/hosizora.jpg';
     }
 ?>
 </h3>
+
 </div>
 
 <div class="col-lg-12">

@@ -14,6 +14,7 @@
                 {!! link_to_route('users.show', $user->username, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $report->created_at }}</span>
             </div>
             <div>
+                nl2br(e($report)) = {!! nl2br(e($report->content)) !!}
                 <h4 style = "color:black;"><b>Thoughts on Today</b></h4>
                 <p style= "color:black;">{!! nl2br(e($report->content)) !!}</p>
                 <br>
@@ -60,7 +61,7 @@
                 @endif
                 @include('user_favorite.favorite_button', ['report' => $report])
                 <a href="{{route('reports.show', ['id' => $report->id])}}" class="btn btn-success btn- btn-xs" role="button">Show Report</a>
-    
+                
                 <div style="color: black">
                     {!! link_to_route('reports.favoriters', 'いいね　'.$report->favCnt. '件', ['id' => $report->id, 'user' => $user, 'report' => $report]) !!}
                 </div>

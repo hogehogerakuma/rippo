@@ -25,6 +25,7 @@
                         <li><a href='{{route('reports.create')}}'><span class = "glyphicon glyphicon-pencil"></span> POST</a></li>
                         <li><a href='{{route('commons.calendar', ['id' => Auth::user()->id])}}'><span class = "glyphicon glyphicon-calendar" aria-hidden="true"></span> CALENDAR</a></li>
                         <li><a href='{{route('users.index',['id' => Auth::user()->id])}}'><span class = "glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> ANALYTICS</a></li>
+                        <li><a href='{{route('users.followings',['id' => Auth::user()->id])}}'><span class = "glyphicon glyphicon-check" aria-hidden="true"></span> Following/Follower</a></li>
                        
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="glyphicon glyphicon-user" aria-hidden="true""></span></a>
