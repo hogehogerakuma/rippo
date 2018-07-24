@@ -1,9 +1,14 @@
+@if (Auth::check())
+<?php
+$bgimage = '/images/hosizora.jpg';
+?>
+@endif
 @extends('layouts.app')
 
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Lobster|Oswald:500|Roboto+Condensed');
 </style>
 
 @if (Auth::check())
@@ -33,14 +38,24 @@
         @endif
     </div>
     @else
+    <head></head>
+    
+    
         <div class="center jumbotron" style="background:rgba(0,0,0,0.0); font-family: 'Lobster', cursive;">
             <div class="text-center">
-                <h1 style= "font-family: 'Lobster', cursive;">Welcome To The</h1>
-                <h1 style= "font-family: 'Lobster', cursive;">RIPPO:)</h1><br>
-                <h4 style= "font-family: 'Lobster', cursive;">Havana, ooh na-na (ay)Half of my heart is in Havana, ooh-na-na (ay, ay)</h4>
-                <h4 style= "font-family: 'Lobster', cursive;">Oh, but my heart is in Havana (ay)There's somethin' 'bout his manners (uh huh)Havana</h4><br>
+                <br>
+                <br>
+                <h1 style= "color:black; font-family: 'Lobster', cursive;">Welcome To The</h1>
+                <h1 style= "color:black; font-family: 'Lobster', cursive;">RIPPO:)</h1><br>
+               </div>
+            
+            <div class="text-center" style="font-family: 'Oswald', sans-serif;">
+                <h4 style= "color:black; font-family: 'Oswald', sans-serif;">Havana, ooh na-na (ay)Half of my heart is in Havana, ooh-na-na (ay, ay)</h4>
+                <h4 style= "color:black; font-family: 'Oswald', sans-serif;">Oh, but my heart is in Havana (ay)There's somethin' 'bout his manners (uh huh)Havana</h4><br>
                 {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-danger']) !!}
             </div>
+            
         </div>
+        </body>
     @endif
 @endsection
