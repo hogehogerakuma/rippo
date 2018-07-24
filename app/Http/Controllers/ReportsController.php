@@ -97,25 +97,24 @@ class ReportsController extends Controller
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
         foreach($reports as $report)
             {
-                $report->thatday_date = DateTime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
-                // thatday_dateをもったレポートをいいねしてくれた人を表示する？
+                $report->thatday_date = Datetime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
+                
                 $favoriters = DB::table('user_favorite')
                 ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
                 ->join('users', 'users.id', '=', 'user_favorite.user_id')
                 ->whereDay('reports.created_at' ,$report->thatday_date)
                 ->select('users.username')
                 ->get();
+                
                 $report->favCnt = count($favoriters);
                 
        
             }
-         
-        // $reports = $user->reports()->orderBy('created_at','desc')->paginate(10);
-        // // dd($report->thatday_date); exit;
-        $day = date("y/m/d");
-        $week = date("y/m/d", strtotime("-1 week"));
-        $month = date("y/m/d", strtotime("-1 month"));
         
+        $day = date("Y/m/d");
+        $week = date("Y/m/d", strtotime("-1 week"));
+        $month = date("Y/m/d", strtotime("-1 month"));
+    
         $graph_data = [
             ['Date', 'Favorites', 'Followings', 'Followers'],
         ];
@@ -132,7 +131,6 @@ class ReportsController extends Controller
             'reports' => $reports,
             'graph_data' => $graph_data,
             'comments' => $comments,
-            // 'favoriters' => $favoriters,
         ];
         return view('users.reports', $data);
     }
@@ -142,9 +140,9 @@ public function commentsFromUser($id) {
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
         
-        $day = date("y/m/d");
-        $week = date("y/m/d", strtotime("-1 week"));
-        $month = date("y/m/d", strtotime("-1 month"));
+        $day = date("Y/m/d");
+        $week = date("Y/m/d", strtotime("-1 week"));
+        $month = date("Y/m/d", strtotime("-1 month"));
         
         $graph_data = [
             ['Date', 'Favorites', 'Followings', 'Followers'],
@@ -164,7 +162,6 @@ public function commentsFromUser($id) {
             'comments' => $comments,
         ];
         
-        // $data += $this->counts($user);
         return view('users.reports', $data);
     }
     public function show($id)
@@ -206,39 +203,34 @@ public function commentsFromUser($id) {
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
         
-        $day = date("y/m/d");
-        $tomorrow = date("y/m/d", strtotime("-1 day"));
-        $aftertwo = date("y/m/d", strtotime("-2 day"));
-        $afterthree = date("y/m/d", strtotime("-3 day"));
-        $afterfour = date("y/m/d", strtotime("-4 day"));
-        $afterfive = date("y/m/d", strtotime("-5 day"));
-        // var_dump($month);
-        // exit;
+        $day = date("Y/m/d");
+        $tomorrow = date("Y/m/d", strtotime("-1 day"));
+        $aftertwo = date("Y/m/d", strtotime("-2 day"));
+        $afterthree = date("Y/m/d", strtotime("-3 day"));
+        $afterfour = date("Y/m/d", strtotime("-4 day"));
+        $afterfive = date("Y/m/d", strtotime("-5 day"));
         
         $graph_data = [
             ['Date', 'Followers','Favorited', 'Comments'],
         ];
     
         $searches = [$day,$tomorrow,$aftertwo,$afterthree,$afterfour,$afterfive];
+        
         foreach ($searches as $value) {
             $favorites = $user-> favorites()->where('user_favorite.created_at', '>', $value)->get()->count();
             $followers = $user->followers()->where('user_follow.created_at', '>', $value)->count();
             $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->where( 'reports.user_id', '=', $user->id )->where('reports.created_at', '>', $value)->get()->count();
             $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->where( 'reports.user_id', '=', $user->id )->where( 'reports.created_at','>', $value )->get()->count();
-   
-            // DB::table('user_favorite')->join('reports', 'reports.use_id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id.created_at', $value )->get()->count();
-            // $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id.created_at', $value )->get()->count();
-   
-            // $favorited = $user->favorited()->where('user_follow.created_at', '>', $value)->get()->count();
-            // $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id', $user->id )->count();
-            $graph_data = array_merge($graph_data, [[$value, $followers,$favorited,$feedfeed]]);
+            $graph_data = array_merge($graph_data, [[$value, $favorites,$favorited,$feedfeed]]);
         }
+                
         $data = [
             'user' => $user,
             'reports' => $reports,
             'graph_data' => $graph_data,
             'comments' => $comments,
         ];
+        
         return view('users.other', $data);
     }
     
@@ -250,9 +242,16 @@ public function commentsFromUser($id) {
         ->whereDate('reports.created_at' ,$thatday_date)
         ->first();
         
-        $report->favCnt = DB::table('user_favorite')
+        if (!is_null($report)) {
+            $report->favCnt = DB::table('user_favorite')
             ->where('report_id', $report->id)
             ->count();
+        }
+        else {
+            return redirect()->back();
+        }
+            
+        
         
         $data = [
             'user' => $user,

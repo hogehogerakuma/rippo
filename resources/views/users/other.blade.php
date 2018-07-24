@@ -12,30 +12,32 @@ $bgimage = '/images/hosizora.jpg';
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
-
 <div class="row col-lg-10" style="margin-left:80px;">
     <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
 <h3 style="color:lightskyblue;">
 <?php
 
-    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
+    $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user_id', $user->id )->limit(1)->get();
+              
+    if($recent_reports == false || empty($recent_reports) || 0 == count($recent_reports)) {
     
-    if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
     $number = 0;
     }
     
-    elseif ($today_reports[0]->result_2 == false || empty($today_reports) || 0 == count($today_reports) && $today_reports[0]->result_3 ==false || empty($today_reports) || 0 == count($today_reports)){
-        $number = $today_reports[0]->result_1;
+    elseif ($recent_reports[0]->result_2 == false || empty($recent_reports) || 0 == count($recent_reports) && $recent_reports[0]->result_3 ==false || empty($recent_reports) || 0 == count($recent_reports)){
+        $number = $recent_reports[0]->result_1;
     }
     
-    elseif ($today_reports[0]->result_3 == false || empty($today_reports) || 0 == count($today_reports)) {
-        $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2) /2 ;
+    elseif ($recent_reports[0]->result_3 == false || empty($recent_reports) || 0 == count($recent_reports)) {
+        $number = ($recent_reports[0]->result_1 +  $recent_reports[0]->result_2) /2 ;
     }
     
     else {
-        $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
+        $number = ($recent_reports[0]->result_1 +  $recent_reports[0]->result_2 +  $recent_reports[0]->result_3) /3 ;
     }
     
+if (Auth::id() == $user->id) {
+        
     if ($number > 99) {
         print 'Your accomplishment is ' . $number . '% Congrats!! ' . PHP_EOL;
     }
@@ -55,18 +57,31 @@ $bgimage = '/images/hosizora.jpg';
      else {
         print 'Your accomplishement is '. $number . '% Need a motivation boost?' . PHP_EOL;
     }
+    
+   }elseif(Auth::id() != $user->id){
+           
+    if ($number > 99) {
+        print $user->username."'s accomplishment is ". $number . "% Congrats!! " . PHP_EOL;
+    }
+    
+    elseif ($number >= 80) {
+        print $user->username."'s accomplishment is ". $number ."% It is very close! " . PHP_EOL;
+    }
+    
+    elseif ($number >= 60) {
+        print $user->username."'s accomplishment is ". $number . "% Keep this going!" . PHP_EOL;
+    }
+    
+    elseif ($number >= 40) {
+        print $user->username."'s accomplishment is ". $number . "% Hwaiting!" . PHP_EOL;
+    }
+    
+     else {
+        print $user->username."'s accomplishment is ". $number . "% Need a motivation boost." . PHP_EOL;
+    }
+}
 ?>
 @include('commons.curdateiine')
-
-<?php
-
-    $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
-    if($today_reports == false || empty($today_reports) || 0 == count($today_reports)) {
-    $number = 1;
-    } else {      
-    $number = ($today_reports[0]->result_1 +  $today_reports[0]->result_2 +  $today_reports[0]->result_3) /3 ;
-    }
-?>
 
 </h3>
 </div>

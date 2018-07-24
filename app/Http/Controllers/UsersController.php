@@ -18,14 +18,12 @@ class UsersController extends Controller
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
         
-        $day = date("y/m/d");
-        $tomorrow = date("y/m/d", strtotime("-1 day"));
-        $aftertwo = date("y/m/d", strtotime("-2 day"));
-        $afterthree = date("y/m/d", strtotime("-3 day"));
-        $afterfour = date("y/m/d", strtotime("-4 day"));
-        $afterfive = date("y/m/d", strtotime("-5 day"));
-        // var_dump($month);
-        // exit;
+        $day = date("Y/m/d");
+        $tomorrow = date("Y/m/d", strtotime("-1 day"));
+        $aftertwo = date("Y/m/d", strtotime("-2 day"));
+        $afterthree = date("Y/m/d", strtotime("-3 day"));
+        $afterfour = date("Y/m/d", strtotime("-4 day"));
+        $afterfive = date("Y/m/d", strtotime("-5 day"));
         
         $graph_data = [
             ['Date', 'Followers','Favorited', 'Comments'],
@@ -38,11 +36,6 @@ class UsersController extends Controller
             $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->where( 'reports.user_id', '=', $user->id )->where('reports.created_at', '>', $value)->get()->count();
             $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->where( 'reports.user_id', '=', $user->id )->where( 'reports.created_at','>', $value )->get()->count();
    
-            // DB::table('user_favorite')->join('reports', 'reports.use_id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id.created_at', $value )->get()->count();
-            // $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id.created_at', $value )->get()->count();
-   
-            // $favorited = $user->favorited()->where('user_follow.created_at', '>', $value)->get()->count();
-            // $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id', $user->id )->count();
 
             $graph_data = array_merge($graph_data, [[$value, $followers,$favorited,$feedfeed]]);
          //   var_dump($followers);
@@ -68,9 +61,9 @@ class UsersController extends Controller
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
         
-        $day = date("y/m/d");
-        $week = date("y/m/d", strtotime("-1 week"));
-        $month = date("y/m/d", strtotime("-1 month"));
+        $day = date("Y/m/d");
+        $week = date("Y/m/d", strtotime("-1 week"));
+        $month = date("Y/m/d", strtotime("-1 month"));
         
         $graph_data = [
             ['Date', 'Favorites', 'Followers'],
@@ -90,9 +83,7 @@ class UsersController extends Controller
             'graph_data' => $graph_data,
             'comments' => $comments,
         ];
-
         
-        // $data += $this->counts($user);
         return view('users.show', $data);
     }
     
@@ -156,29 +147,6 @@ class UsersController extends Controller
             ->get();
         }
 
-
-
-/*
-        $user = User::find($id);
-        $reports = DB::table('reports')
-        ->where('user_id', $id)
-        ->get();
-        
-        dd($reports->toArray());
-
-    foreach ($reports as $report) {
-
-        $favoriters = DB::table('user_favorite')
-        ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
-        ->join('users', 'users.id', '=', 'user_favorite.user_id')
-        ->where('user_favorite.report_id', $report->id)
-        ->whereDate('reports.created_at' ,$thatday_date)
-        // ->select('users.username')
-        ->select()
-        ->get()->toArray();
-    }
-    dd($favoriters);
-*/    
         $data = [
             'user' => $user,
             'favoriters' => $favoriters,
@@ -187,8 +155,4 @@ class UsersController extends Controller
         
         return view('users.favoriters', $data);
     }
-    
-    
-    
-    
 }

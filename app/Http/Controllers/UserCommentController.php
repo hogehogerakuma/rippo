@@ -77,12 +77,12 @@ class UserCommentController extends Controller
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
         
-        $day = date("y/m/d");
-        $tomorrow = date("y/m/d", strtotime("-1 day"));
-        $aftertwo = date("y/m/d", strtotime("-2 day"));
-        $afterthree = date("y/m/d", strtotime("-3 day"));
-        $afterfour = date("y/m/d", strtotime("-4 day"));
-        $afterfive = date("y/m/d", strtotime("-5 day"));
+        $day = date("Y/m/d");
+        $tomorrow = date("Y/m/d", strtotime("-1 day"));
+        $aftertwo = date("Y/m/d", strtotime("-2 day"));
+        $afterthree = date("Y/m/d", strtotime("-3 day"));
+        $afterfour = date("Y/m/d", strtotime("-4 day"));
+        $afterfive = date("Y/m/d", strtotime("-5 day"));
         // var_dump($month);
         // exit;
         
