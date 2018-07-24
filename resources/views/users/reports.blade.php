@@ -9,7 +9,7 @@ $bgimage = '/images/hosizora.jpg';
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
 </style>
 
 @include('commons.curdateiine')
@@ -89,7 +89,4 @@ $bgimage = '/images/hosizora.jpg';
 <a href="{{route('users.show', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button">Show Calendar</a>
 
             </div>
-            
 @endsection
-
-            

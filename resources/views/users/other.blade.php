@@ -12,6 +12,10 @@ $bgimage = '/images/hosizora.jpg';
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
+<div>
+    @include(user_follow.follow_button, ['user' => $user])
+</div>
+
 <div class="row col-lg-10" style="margin-left:80px;">
     <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
 <h3 style="color:lightskyblue;">

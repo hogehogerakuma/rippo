@@ -26,7 +26,7 @@ $bgimage = '/images/hosizora.jpg';
     
         <div class="form-group">
          {!! Form::label('content', '■ Thoughts on Today ■') !!}
-         {!! Form::text('content', null, ['class' => 'form-control', 'rows' => '2']) !!}    
+         {!! Form::textarea('content', null, ['class' => 'form-control', 'rows' => '10']) !!}
         </div>
         
         <div class="form-group form-inline" style='display:inline-block'>
@@ -55,17 +55,17 @@ $bgimage = '/images/hosizora.jpg';
         
         <div class="form-group">
          {!! Form::label('object_1', '■ SMART GOAL1/Reason ■') !!}
-         {!! Form::text('object_1', null, ['class' => 'form-control']) !!}   
+         {!! Form::textarea('object_1', null, ['class' => 'form-control', 'rows' => '2']) !!}   
         </div>
         
         <div class="form-group">
          {!! Form::label('object_2', '■ SMART GOAL2/Reason ■') !!}
-         {!! Form::text('object_2', null, ['class' => 'form-control']) !!}   
+         {!! Form::textarea('object_2', null, ['class' => 'form-control', 'rows' => '2']) !!}   
         </div>
         
         <div class="form-group">
          {!! Form::label('object_3', '■ SMART GOAL3/Reason ■') !!}
-         {!! Form::text('object_3', null, ['class' => 'form-control']) !!}   
+         {!! Form::textarea('object_3', null, ['class' => 'form-control', 'rows' => '2']) !!}   
         </div>
         
         <div class="form-check">

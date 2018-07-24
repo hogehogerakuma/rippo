@@ -62,8 +62,7 @@
                 <a href="{{route('reports.show', ['id' => $report->id])}}" class="btn btn-success btn- btn-xs" role="button">Show Report</a>
     
                 <div style="color: black">
-                    <?php $thatday_date = $report->thatday_date; ?>
-                    {!! link_to_route('users.favoriters', 'いいね　'.$report->favCnt. '件', ['id' => $user->id, 'thatday_date' => $thatday_date]) !!}
+                    {!! link_to_route('reports.favoriters', 'いいね　'.$report->favCnt. '件', ['id' => $report->id, 'user' => $user, 'report' => $report]) !!}
                 </div>
             </div>
         </div>

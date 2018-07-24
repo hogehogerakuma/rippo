@@ -30,9 +30,9 @@
     background-image:url({{$bgimage}});
     background-color:pink;
     background-size: 100% 110%;
-    background-repeat: no-repeat;">
-        
-        @include('commons.navbar')
+    background-repeat: no-repeat;
+    background-attachment: fixed;">
+                @include('commons.navbar')
 
         <div class="container" >
             @include('commons.error_messages')

@@ -12,9 +12,19 @@ use Illuminate\Support\Facades\DB;
 
 class UserCommentController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $data = [];
+        $user = User::find($id);
+        $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
+        $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
+        
+         $data = [
+            'user' => $user,
+            'reports' => $reports,
+            'comments' => $comments,
+        ];
+            
+        return view('comments.comments', $data);
         
     }
     
