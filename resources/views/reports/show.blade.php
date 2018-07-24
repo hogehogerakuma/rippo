@@ -22,14 +22,14 @@
                     <p style="color:red; font-family: 'Merienda', cursive;">→{!! nl2br(e($report->result_1)) !!}%</p>
             
                     <!--空欄の要素は表示しない-->
-                    @if (count($report->goal_2) != 0) 
+                    @if (isset($report->goal_2)) 
                         <h4 style= "color:black; font-family: 'Merienda', cursive;" ><b>2. GOAL</b></h4>
                         <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->goal_2)) !!}</p>
                         <p style="color:red; font-family: 'Merienda', cursive;">→{!! nl2br(e($report->result_2)) !!}%</p>
                 
                     @endif
                 
-                    @if (count($report->goal_3) != 0) 
+                    @if (isset($report->goal_3)) 
                         <h4 style="color:black; font-family: 'Merienda', cursive;"><b>3. GOAL</b></h4>
                         <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->goal_3)) !!}</p>
                         <p style="color:red; font-family: 'Merienda', cursive;">→{!! nl2br(e($report->result_3)) !!}%</p>
@@ -39,13 +39,13 @@
                     <h4 style="color:black; font-family: 'Merienda', cursive;"><b>1. SMART GOAL</b></h4>
                     <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->object_1)) !!}</p>
                 
-                    @if (count($report->object_2) != 0) 
+                    @if (isset($report->object_2)) 
                         <h4 style = "color:black; font-family: 'Merienda', cursive;"><b>2. SMART GOAL</b></h4>
                         <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->object_2)) !!}</p>
                 
                     @endif
                 
-                    @if (count($report->object_3) != 0) 
+                    @if (isset($report->object_3)) 
                         <h4 style="color:black; font-family: 'Merienda', cursive;"><b>3. SMART GOAL</b></h4>
                         <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->object_3)) !!}</p>
                         <br>                
