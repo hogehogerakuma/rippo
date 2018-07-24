@@ -46,7 +46,7 @@
                 
                 @endif
                 
-                @if (count($report->object_3) != 0) 
+                @if (isset($report->object_3)) 
                     <h4 style="color:black;"><b>3. SMART GOAL</b></h4>
                     <p style="color:black;">>>{!! nl2br(e($report->object_3)) !!}</p>
                     <br>                
