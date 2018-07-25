@@ -13,6 +13,18 @@ $bgimage = '/images/hosizora.jpg';
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CCabin+Sketch%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
+<link href="/css/animate.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" >
+        
+$(document).ready(function(){
+$('#ani').hover(function(e){
+e.preventDefault();
+$('#ani').removeClass().addClass(' bounceInRight ' + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+$(this).removeClass();
+                });
+            });
+        });
+    </script>
 
 @if (Auth::check())
 <div class="row col-lg-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-1">
@@ -62,9 +74,10 @@ $bgimage = '/images/hosizora.jpg';
             <div class="text-center">
                 <br>
                 <br>
+                <div id="ani" class="animated bounceIn">
                 <h1 style= "color:black; font-family: 'Cabin Sketch', cursive;">Welcome To The</h1>
                 <h1 style= "color:black; font-family: 'Cabin Sketch', cursive;">RIPPO:)</h1><br>
-
+                </div>
             </div>
 
             
