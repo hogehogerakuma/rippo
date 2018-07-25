@@ -20,6 +20,7 @@ class UserCommentController extends Controller
         ->where('reports.user_id', $id)
         ->whereDate('reports.created_at' ,$thatday_date)
         ->first();
+        // dd($id); exit;
         $report = Report::find($report->id);
         $comments = $report->comments()->get();
         // $comments = [];
