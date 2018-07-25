@@ -13,7 +13,7 @@
                 {{ $user->username }}
             </div>
             <div>
-                <p style="font-family: 'Lobster Two', cursive;">{!! link_to_route('users.show', 'View profile', ['id' => $user->id]) !!}</p>
+                <p style="font-family: 'Lobster Two', cursive;">{!! link_to_route('reports.reports', 'View profile', ['id' => $user->id]) !!}</p>
             </div>
         </div>
     </div>

@@ -151,6 +151,7 @@ class UsersController extends Controller
             'user' => $user,
             'favoriters' => $favoriters,
             'thatday_date' => $thatday_date,
+            'report' => $report,
         ];
         
         return view('users.favoriters', $data);
