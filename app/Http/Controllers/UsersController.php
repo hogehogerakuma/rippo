@@ -148,7 +148,7 @@ class UsersController extends Controller
 
         }
         
-        if(!is_null($report) || is_null($favoriters)) {
+        if(!is_null($report) && is_null($favoriters)) {
             return redirect()->back();
         }
         
