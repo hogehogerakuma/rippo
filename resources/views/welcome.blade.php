@@ -1,12 +1,16 @@
 @extends('layouts.app')
 
-@section('content')
-
+@section('content');
 <style>
+<<<<<<< HEAD
+@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
+@import url('https://fonts.googleapis.com/css?family=Anton%7CMarkazi+Text%7CPT+Sans+Narrow');
+=======
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One%7CLobster%7COswald:500%7CRoboto+Condensed');
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CCabin+Sketch%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
+>>>>>>> 381980a87bc0d65dc2d1eff4f852bb2d01e465aa
 </style>
 
 @if (Auth::check())
@@ -49,17 +53,18 @@
     @else
         <div class="center jumbotron" style="background:rgba(0,0,0,0.0); font-family: 'font-family: 'Vast Shadow', cursive;">
             <div class="text-center">
-                <br>
-                <br>
-                <h1 style= "color:black; font-family: 'Cabin Sketch', cursive;">Welcome To The</h1>
-                <h1 style= "color:black; font-family: 'Cabin Sketch', cursive;">RIPPO:)</h1><br>
-            </div>
-            
-            <div class="text-center" style="font-family: 'Oswald', sans-serif;">
-                <br>
-                <br>
-                
+                <h1 style= "font-family: 'Anton', cursive;">Welcome To The</h1>
+                <h1 style= "font-family: 'Anton',cursive;">RIPPO</h1>
+                <h1 style= "font-family: '', cursive;">:)</h1>
+
                 {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-danger']) !!}
+                <link href="signupbotton.css" rel="stylesheet" type="text/css">
+
+
+<!--hover埋めたい-->
+
+
+                
             </div>
         </div>
     @endif
