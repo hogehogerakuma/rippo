@@ -3,8 +3,11 @@
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
-
-    <nav class="navbar navbar-inverse navbar-static-top" style="background:rgba(0,0,0,0.0); font-family: 'Merienda', cursive;">
+@if (Auth::check())
+<nav class="navbar navbar-inverse navbar-static-top" style="height:80px; height:60px; background-color: transparent; width:100%; font-family: 'Merienda', cursive;">
+@else
+<nav class="navbar navbar-inverse navbar-static-top" style="height:80px; height:60px; width:100%; font-family: 'Merienda', cursive;">
+@endif
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -22,6 +25,7 @@
                         <li><a href='{{route('reports.create')}}'><span class = "glyphicon glyphicon-pencil"></span> POST</a></li>
                         <li><a href='{{route('commons.calendar', ['id' => Auth::user()->id])}}'><span class = "glyphicon glyphicon-calendar" aria-hidden="true"></span> CALENDAR</a></li>
                         <li><a href='{{route('users.index',['id' => Auth::user()->id])}}'><span class = "glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> ANALYTICS</a></li>
+                        <li><a href='{{route('users.followings',['id' => Auth::user()->id])}}'><span class = "glyphicon glyphicon-check" aria-hidden="true"></span> Following/Follower</a></li>
                        
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="glyphicon glyphicon-user" aria-hidden="true""></span></a>

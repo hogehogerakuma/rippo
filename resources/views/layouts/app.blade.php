@@ -19,16 +19,20 @@
             }
         </style>
     </head>
+    <?php
+    if(!isset($bgimage)) {
+        $bgimage = '/images/notebook.jpg';
+    }
+    ?>
     <body style=
     "color: white; 
     min-height: 100vh;
-    background-image:url('/images/hosizora.jpg');
-    background-size: 100% 100%;
+    background-image:url({{$bgimage}});
+    background-color:pink;
+    background-size: 100% 110%;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    ">
-        
-        @include('commons.navbar')
+    background-attachment: fixed;">
+                @include('commons.navbar')
 
         <div class="container" >
             @include('commons.error_messages')

@@ -43,9 +43,12 @@ Route::group(['middleware' => ['auth']], function(){
         Route::get('comments' , 'UserCommentController@show')->name('users.comments');
         Route::get('calendar' , 'CommonsController@show')->name('commons.calendar');
         
-        Route::get('comments/{report->id}', 'UserCommentController@index')->name('comments.comments');
+        Route::get('comments/{thatday_date}', 'UserCommentController@index')->name('reports.comments');
+        Route::get('report/{thatday_date}', 'ReportsController@thatday_report')->name('users.report');
        
         Route::get('reports' , 'ReportsController@reportsFromUser')->name('reports.reports');
         Route::get('graphs' , 'ReportsController@graphs')->name('users.other');
+        
+        Route::get('feed' , 'ReportsController@indextwo')->name('users.feed');
     });
 });

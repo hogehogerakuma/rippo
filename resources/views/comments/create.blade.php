@@ -1,3 +1,4 @@
+
 <div class="col-xs-10" style= "font-family: 'Merienda', cursive;">
     
     {!! Form::open(['route' => ['user.comment', $report->id]]) !!}

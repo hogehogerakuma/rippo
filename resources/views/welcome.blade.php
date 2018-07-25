@@ -2,14 +2,21 @@
 
 @section('content');
 <style>
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
 @import url('https://fonts.googleapis.com/css?family=Anton%7CMarkazi+Text%7CPT+Sans+Narrow');
+=======
+@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One%7CLobster%7COswald:500%7CRoboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
+@import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CCabin+Sketch%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
+>>>>>>> 381980a87bc0d65dc2d1eff4f852bb2d01e465aa
 </style>
 
 @if (Auth::check())
-
-<div class="panel panel-default col-lg-10 col-md-10 col-sm-12 col-xs-12" style="padding-top:0px; padding-bottom:20px; margin-left:90px;"> 
-<h2 style="color:black; background-color:pink; font-family: 'Lobster', cursive;"><b>Today's Daily Reports</b></h2>
+<div class="row col-lg-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-1">
+<div class="RIKONOZOMI" style="color:lightgreen; font-family: 'lobster', cursive; margin-left:15px;">
+<h3>
 <?php
         date_default_timezone_set('Asia/Tokyo');
         $hour = (int)date('H');
@@ -17,43 +24,40 @@
         $msg = "";
     
     if($hour>= 6&& $hour<12){
-        $msg = "おはよう！今日も頑張っていこう！". PHP_EOL;
+        $msg = "Good Morning Guys! Good day to you:)". PHP_EOL;
     }
     
     elseif($hour>=12 && $hour<19){
-        $msg = "こんにちは！お昼は何を食べたのかな？". PHP_EOL;
+        $msg = "Good Afternoon!". PHP_EOL;
     }
 
-    else {$msg = "こんばんは！良い一日を過ごせたかな？" . PHP_EOL;
+    else {$msg = "GOOD Evening! Take a rest!" . PHP_EOL;
     }
         print $msg
 ?>
-        @if (count($reports) > 0)
-
-        @endif
+</h3>
+</div>
+    <div class="Qoo col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:0px; padding-bottom:20px;">
+        <ul class="nav nav-tabs">
+            <li role="activate" style="color:yellow; font-family: 'Lobster', cursive; font-size:20px; "><a href='{{route('home')}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-th-list"></span>&nbsp&nbspDoukie's FEED&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+            <li role="activate" style="color:yellow; font-family: 'Lobster', cursive; font-size:20px; "><a href="{{route('users.feed', ['id' => $user->id])}}">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-tags"></span>&nbsp&nbspFollowings Feed&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+                
+            <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="padding-top:20px; font-family: 'Gaegu', cursive;">
+                @if (count($reports) > 0)
+                    @include('reports.reports', ['reports' => $reports])
+                @endif
+            </div>
+        </ul>
     </div>
+</div>
     @else
-        <div class="center jumbotron" style="background:rgba(0,0,0,0.0); font-family: 'Lobster', cursive;">
+        <div class="center jumbotron" style="background:rgba(0,0,0,0.0); font-family: 'font-family: 'Vast Shadow', cursive;">
             <div class="text-center">
                 <h1 style= "font-family: 'Anton', cursive;">Welcome To The</h1>
                 <h1 style= "font-family: 'Anton',cursive;">RIPPO</h1>
                 <h1 style= "font-family: '', cursive;">:)</h1>
-                <h2 style="font-family: 'Playdair Display', serif;">Have you ever felt like you are not motivated to write a daily report?<br>
-<br>Here we can provide the solution to that. <br>
 
-<br>Rippo is a pleasing function which you can enjoy writing your Daily Report.<br>
-
-<br>On Rippo, you can follow your favorite doukis and you can easily give them feedbacks and likes! <br>
-
-<br>You can also see how many doukis are following you on a visualized graphics. <br>
-
-<br>There's also a comment bot that could boost up your motivation on smart goals!! <br>
-
-<br>Sign up now and enjoy your Nippo!</h2><br>
-
-               
                 {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-danger']) !!}
-
                 <link href="signupbotton.css" rel="stylesheet" type="text/css">
 
 
