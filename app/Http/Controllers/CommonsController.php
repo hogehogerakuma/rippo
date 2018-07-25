@@ -24,7 +24,7 @@ class CommonsController extends Controller
             }
         $data = [
             'user' => $user,
-            'report' => $report,
+            'reports' => $reports,
         ];
         return view('commons.calendar', $data);
     }

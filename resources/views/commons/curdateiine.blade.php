@@ -10,7 +10,7 @@
  
  $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $now_date)->where( 'reports.user_id', $user->id )->count();
 
-$popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user_id', $user->id)->get();
+$popopo = App\Report::whereDate('created_at', DB::raw('current_date'))->where('user_id', $user->id)->get();
         
         if (isset ($popopo) && count($popopo)>0 ) {
 
@@ -21,7 +21,7 @@ $popopo = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->where('user
             $dashitaka =  'Please submit your Daily Report';
         }
         
-     
+        
 $favoriters = DB::table('user_favorite')
         ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
         ->join('users', 'users.id', '=', 'user_favorite.user_id')
@@ -51,6 +51,7 @@ $favoriters = DB::table('user_favorite')
    }
 
    if(count($favoriters)>0) {
+
         $goukei = "got ".$favorited." ".$like."  ";
     }
     else{
@@ -82,7 +83,7 @@ if (  $numfeedtoday !== 0 || $favorited !== 0){
     }
         
 ?>
-
+@include('user_follow.follow_button', ['user' => $user])
 <h2>
 
 <?php 
