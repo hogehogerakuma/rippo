@@ -94,6 +94,7 @@ class UserCommentController extends Controller
         
         $comment->delete();
              
-        return view('reports.comments');
+        // return view('reports.comments');
+        return redirect()->back();
     }
 }
