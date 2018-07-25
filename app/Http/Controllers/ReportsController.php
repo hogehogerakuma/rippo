@@ -91,7 +91,7 @@ class ReportsController extends Controller
     public function reportsFromUser($id) {
         
         date_default_timezone_set('Asia/Tokyo');
- 
+
         $user = User::find($id);
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
