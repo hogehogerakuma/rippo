@@ -20,20 +20,21 @@ class UserCommentController extends Controller
         ->where('reports.user_id', $id)
         ->whereDate('reports.created_at' ,$thatday_date)
         ->first();
-        
-        $comments = [];
+        $report = Report::find($report->id);
+        $comments = $report->comments()->get();
+        // $comments = [];
         if (!is_null($report)) {
-        $comments = DB::table('comments')
-        ->join('reports', 'reports.id', '=', 'comments.report_id')
-        ->join('users', 'users.id', '=', 'comments.user_id')
-        ->where('comments.report_id', $report->id)
-        ->whereDate('reports.created_at' ,$thatday_date)
-        ->get();
+        // $comments = DB::table('comments')
+        // ->join('reports', 'reports.id', '=', 'comments.report_id')
+        // ->join('users', 'users.id', '=', 'comments.user_id')
+        // ->where('comments.report_id', $report->id)
+        // ->whereDate('reports.created_at' ,$thatday_date)
+        // ->get();
         }
         else {
             return redirect()->back();
         }
-        
+
         $data = [
             'user' => $user,
             'comments' => $comments,
@@ -97,10 +98,8 @@ class UserCommentController extends Controller
     {
         $comment = \App\Comment::find($id);
         
-        if (\Auth::id() == $comment->user_id) {
-            $comment->delete();
-        }
+        $comment->delete();
              
-        return redirect()->back();
+        return view('reports.comments');
     }
 }
