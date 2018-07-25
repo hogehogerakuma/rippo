@@ -22,7 +22,7 @@
                 {{ $favoriter->username }}
             </div>
             <div>
-                <p>{!! link_to_route('reports.reports', 'View profile', ['id' => $user->id]) !!}</p>
+                <p>{!! link_to_route('reports.reports', 'View profile', ['id' => $favoriter->id]) !!}</p>
             </div>
         </div>
     </div>
