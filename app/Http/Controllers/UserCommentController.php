@@ -21,27 +21,19 @@ class UserCommentController extends Controller
         ->whereDate('reports.created_at' ,$thatday_date)
         ->first();
         
-        $report = Report::find($report->id);
+         if (is_null($report)) {
+             return redirect()->back();
+         }
         
+        $report = Report::find($report->id);
         $comments = $report->comments()->get();
-        // $comments = [];
-        if (!is_null($report)) {
-        // $comments = DB::table('comments')
-        // ->join('reports', 'reports.id', '=', 'comments.report_id')
-        // ->join('users', 'users.id', '=', 'comments.user_id')
-        // ->where('comments.report_id', $report->id)
-        // ->whereDate('reports.created_at' ,$thatday_date)
-        // ->get();
-        }
-        else {
-            return redirect()->back();
-        }
-
+        
         $data = [
             'user' => $user,
             'comments' => $comments,
             'thatday_date' => $thatday_date,
         ];
+        
         return view('reports.comments', $data);
     }
         

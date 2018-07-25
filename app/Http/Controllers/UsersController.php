@@ -145,7 +145,17 @@ class UsersController extends Controller
             ->whereDate('reports.created_at' ,$thatday_date)
             ->select('users.username')
             ->get();
+
         }
+        
+        if(!is_null($report) || is_null($favoriters)) {
+            return redirect()->back();
+        }
+        
+        if(is_null($report)) {
+            return redirect()->back();
+        }
+        
         
         $data = [
             'user' => $user,

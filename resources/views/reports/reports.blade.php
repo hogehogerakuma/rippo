@@ -68,6 +68,7 @@
             </div>
         </div>
     </li>
+    <hr>
 @endforeach
 </ul>
 {!! $reports->render() !!}
