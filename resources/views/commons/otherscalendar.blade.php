@@ -91,6 +91,9 @@
             font-size:12px;
             word-wrap: break-word;
         }
+        .workday a {
+            color: white;
+        }
         
     </style>
     <div class="table-responsive" style="font-family: 'Merienda', cursive;">
@@ -163,7 +166,7 @@
     }
     else {
         //平日
-        echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="'.url('users/'.$user->id.'/report/'.$dayD->format('Y-m-d')).'">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$dayD->format('Y-m-d')).'">Like&nbsp;<span class="badge">'.$favorited. '</span><br><a href="'.url('users/'.$user->id.'/comments/'.$dayD->format('Y-m-d')).'">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class = "workday"><span>'.$dayD->format('j').$dd['hori'].'<br><a href="'.url('users/'.$user->id.'/report/'.$dayD->format('Y-m-d')).'">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$dayD->format('Y-m-d')).'">Like&nbsp;<span class="badge">'.$favorited. '</span><br><a href="'.url('users/'.$user->id.'/comments/'.$dayD->format('Y-m-d')).'">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
       }
 
 
