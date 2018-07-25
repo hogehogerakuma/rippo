@@ -1,5 +1,5 @@
 
-<div class="col-xs-10" style= "font-family: 'Merienda', cursive;">
+<div class="col-xs-10" style= "font-family: 'Roboto Condensed', sans-serif;">
     
     {!! Form::open(['route' => ['user.comment', $report->id]]) !!}
 

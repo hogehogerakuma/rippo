@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
-<ul class="media-list" style="color:black; font-family: 'Roboto Condensed', sans-serif; padding-bottom:20px;">
+<ul class="media-list" style="color:white; font-family: 'Roboto Condensed', sans-serif; padding-bottom:20px;">
 @foreach ($comments as $comment)
     <?php $user = $comment->user; ?>
     <li class="media">
