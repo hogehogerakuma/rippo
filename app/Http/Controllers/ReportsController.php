@@ -89,15 +89,20 @@ class ReportsController extends Controller
     }
     
     public function reportsFromUser($id) {
-        
+       
         date_default_timezone_set('Asia/Tokyo');
 
         $user = User::find($id);
         $reports = $user->reports()->orderBy('created_at', 'desc')->paginate(10);
         $comments = $user->comments()->orderBy('created_at', 'desc')->paginate(10);
+       
         foreach($reports as $report)
             {
                 $report->thatday_date = Datetime::createFromFormat('Y-m-d H:i:s', $report->created_at)->format('d');
+                
+                $report->favCnt =  DB::table('user_favorite')
+                ->where('report_id', $report->id)
+                ->count();
                 
                 $favoriters = DB::table('user_favorite')
                 ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
@@ -106,9 +111,6 @@ class ReportsController extends Controller
                 ->select('users.username')
                 ->get();
                 
-                $report->favCnt = count($favoriters);
-                
-       
             }
         
         $day = date("Y/m/d");

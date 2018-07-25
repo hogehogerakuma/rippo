@@ -1,7 +1,5 @@
 <style>
 @import url('https://fonts.googleapis.com/css?...');
-@import url('https://fonts.googleapis.com/css?...');
-
 </style>
 
 <ul class="media-list" style= "font-family: 'Roboto Condensed', sans-serif;">
