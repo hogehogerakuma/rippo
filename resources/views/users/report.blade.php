@@ -1,11 +1,17 @@
+@if (Auth::check())
+<?php
+$bgimage = '/images/hosizora.jpg';
+?>
+@endif
 @extends('layouts.app')
+
 @section('content')
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 <div class="row col-lg-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
 <div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-left:auto;margin-right:auto; padding-top:20px; padding-bottom:20px;">
-<ul class="media-list" style="font-family: 'Merienda', cursive;">
+<ul class="media-list" style="font-family: 'Roboto Condensed', sans-serif;">
 
     <li class="media">
         <div class="media-left">

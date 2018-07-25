@@ -6,9 +6,22 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CCabin+Sketch%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
+<link href="/css/animate.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" >
+        
+$(document).ready(function(){
+$('#ani').hover(function(e){
+e.preventDefault();
+$('#ani').removeClass().addClass(' bounceInRight ' + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+$(this).removeClass();
+                });
+            });
+        });
+    </script>
 
 
 @section('content')
+<div id="ani" class="animated bounceInRight">
     <div class="text-center" style= "color:black; font-family: 'Cabin Sketch', cursive;">
         <br>
         <br>
@@ -41,5 +54,6 @@
                 {!! Form::submit('Sign up', ['class' => 'btn btn-danger btn-block']) !!}
             {!! Form::close() !!}
         </div>
+    </div>
     </div>
 @endsection
