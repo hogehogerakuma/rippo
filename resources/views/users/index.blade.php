@@ -24,7 +24,7 @@ $(this).removeClass();
             });
         });
     </script>
-
+<div class="row col-lg-offset-1 col-lg-11">
 <h1 style="font-family: 'Roboto Condensed', sans-serif;>
     <div id="ani" class="animated bounceInRight">
 <?php
@@ -78,5 +78,6 @@ $(this).removeClass();
                         @include('users.google', ['graph_data' => $graph_data])
                     </div>
                     </div>
+</div>                    
 
 @endsection

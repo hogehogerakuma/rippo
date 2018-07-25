@@ -70,10 +70,9 @@ $bgimage = '/images/hosizora.jpg';
             
             <div class="text-center" style="font-family: 'Oswald', sans-serif;">
                 <br>
-                <br>
-                
-                {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-danger']) !!}
+            {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-danger']) !!}
             </div>
         </div>
+       
     @endif
 @endsection
