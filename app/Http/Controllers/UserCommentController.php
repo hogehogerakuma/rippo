@@ -30,14 +30,11 @@ class UserCommentController extends Controller
         ->whereDate('reports.created_at' ,$thatday_date)
         ->get();
         }
-        
         $data = [
             'user' => $user,
             'comments' => $comments,
             'thatday_date' => $thatday_date,
         ];
-        
-        
         return view('reports.comments', $data);
     }
         
