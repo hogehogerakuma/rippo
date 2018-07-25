@@ -1,12 +1,14 @@
 <header>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
 </style>
 @if (Auth::check())
-<nav class="navbar navbar-inverse navbar-static-top" style="height:50px; height:60px; background-color: transparent; width:100%; font-family: 'Merienda', cursive;">
+<nav class="navbar navbar-inverse navbar-static-top" style="height:80px; height:60px; background-color: transparent; width:100%; font-family: 'Roboto Condensed', sans-serif;">
 @else
-<nav class="navbar navbar-inverse navbar-static-top" style="height:50px; height:60px; width:100%; font-family: 'Merienda', cursive;">
+<nav class="navbar navbar-inverse navbar-static-top" style="height:80px; height:60px; width:100%; font-family: 'Roboto Condensed', sans-serif;">
 @endif
         <div class="container">
             <div class="navbar-header">
@@ -35,8 +37,8 @@
                             </ul>
                         </li>
                     @else
-                        <li style= "font-family: 'Lobster', cursive;"><a href='{{route('signup.get')}}'><span class = "glyphicon glyphicon-globe" aria-hidden="true" ></span> Sign UP</a></li>
-                        <li style= "font-family: 'Lobster', cursive;"><a href='{{route('login')}}'><span class = "glyphicon glyphicon-log-in" aria-hidden="true"></span> Log in</a></li>
+                        <li style= "font-family: 'Roboto Condensed', sans-serif;"><a href='{{route('signup.get')}}'><span class = "glyphicon glyphicon-globe" aria-hidden="true" ></span> Sign Up</a></li>
+                        <li style= "font-family: 'Roboto Condensed', sans-serif;"><a href='{{route('login')}}'><span class = "glyphicon glyphicon-log-in" aria-hidden="true"></span> Log In</a></li>
                     @endif
                 </ul>
             </div>

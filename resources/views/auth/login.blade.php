@@ -2,15 +2,17 @@
 <head></head>
 <body>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CCabin+Sketch%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
 </style>
 
 @section('content')
     <div class="text-center">
-        <h1 style= "color:black; margin-top:120px; font-family: 'Lobster', cursive;">Log in</h1>
+        <h1 style= "color:black; margin-top:120px; font-family: 'Cabin Sketch', cursive;">Log in</h1>
     </div>
 
-    <div class="row" style= "color:black; font-family: 'Lobster', cursive;">
+    <div class="row" style= "color:black; font-family:'Roboto Condensed', sans-serif;">
         <div class="col-md-6 col-md-offset-3" style="margin-top:20px;">
 
             {!! Form::open(['route' => 'login.post']) !!}

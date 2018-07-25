@@ -8,7 +8,9 @@ $bgimage = '/images/hosizora.jpg';
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Lobster|Oswald:500|Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One%7CLobster%7COswald:500%7CRoboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
+@import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CCabin+Sketch%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
 </style>
 
 @if (Auth::check())
@@ -52,20 +54,21 @@ $bgimage = '/images/hosizora.jpg';
 
 
     @else
-    <head></head>
+      <head></head>
     
     
-        <div class="center jumbotron" style="background:rgba(0,0,0,0.0); font-family: 'Lobster', cursive;">
+        <div class="center jumbotron" style="background:rgba(0,0,0,0.0); font-family: 'font-family: 'Vast Shadow', cursive;">
             <div class="text-center">
                 <br>
                 <br>
-                <h1 style= "color:black; font-family: 'Lobster', cursive;">Welcome To The</h1>
-                <h1 style= "color:black; font-family: 'Lobster', cursive;">RIPPO:)</h1><br>
+                <h1 style= "color:black; font-family: 'Cabin Sketch', cursive;">Welcome To The</h1>
+                <h1 style= "color:black; font-family: 'Cabin Sketch', cursive;">RIPPO:)</h1><br>
                </div>
             
             <div class="text-center" style="font-family: 'Oswald', sans-serif;">
-                <h4 style= "color:black; font-family: 'Oswald', sans-serif;">Havana, ooh na-na (ay)Half of my heart is in Havana, ooh-na-na (ay, ay)</h4>
-                <h4 style= "color:black; font-family: 'Oswald', sans-serif;">Oh, but my heart is in Havana (ay)There's somethin' 'bout his manners (uh huh)Havana</h4><br>
+                <br>
+                <br>
+                
                 {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-danger']) !!}
             </div>
             
