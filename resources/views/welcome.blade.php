@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('content')
-
+@section('content');
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
+@import url('https://fonts.googleapis.com/css?family=Anton%7CMarkazi+Text%7CPT+Sans+Narrow');
 </style>
 
 @if (Auth::check())
@@ -35,11 +35,32 @@
     @else
         <div class="center jumbotron" style="background:rgba(0,0,0,0.0); font-family: 'Lobster', cursive;">
             <div class="text-center">
-                <h1 style= "font-family: 'Lobster', cursive;">Welcome To The</h1>
-                <h1 style= "font-family: 'Lobster', cursive;">RIPPO:)</h1><br>
-                <h4 style= "font-family: 'Lobster', cursive;">Havana, ooh na-na (ay)Half of my heart is in Havana, ooh-na-na (ay, ay)</h4>
-                <h4 style= "font-family: 'Lobster', cursive;">Oh, but my heart is in Havana (ay)There's somethin' 'bout his manners (uh huh)Havana</h4><br>
+                <h1 style= "font-family: 'Anton', cursive;">Welcome To The</h1>
+                <h1 style= "font-family: 'Anton',cursive;">RIPPO</h1>
+                <h1 style= "font-family: '', cursive;">:)</h1>
+                <h2 style="font-family: 'Playdair Display', serif;">Have you ever felt like you are not motivated to write a daily report?<br>
+<br>Here we can provide the solution to that. <br>
+
+<br>Rippo is a pleasing function which you can enjoy writing your Daily Report.<br>
+
+<br>On Rippo, you can follow your favorite doukis and you can easily give them feedbacks and likes! <br>
+
+<br>You can also see how many doukis are following you on a visualized graphics. <br>
+
+<br>There's also a comment bot that could boost up your motivation on smart goals!! <br>
+
+<br>Sign up now and enjoy your Nippo!</h2><br>
+
+               
                 {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-danger']) !!}
+
+                <link href="signupbotton.css" rel="stylesheet" type="text/css">
+
+
+<!--hover埋めたい-->
+
+
+                
             </div>
         </div>
     @endif

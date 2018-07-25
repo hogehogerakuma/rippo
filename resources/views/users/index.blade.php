@@ -3,10 +3,26 @@
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
 </style>
 
-<h3 style="font-family: 'Merienda', cursive; color:lightskyblue; margin-left:110px;">
+<link href="/css/animate.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" >
+        
+        $(document).ready(function(){
+            $('#ani').hover(function(e){
+                e.preventDefault();
+                $('#ani').removeClass().addClass(' bounceInRight ' + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                    $(this).removeClass();
+                });
+            });
+        });
+    </script>
+
+<h1 style="font-family: 'Roboto Condensed', sans-serif;>
+    <div id="ani" class="animated bounceInRight">
 <?php
 
     $today_reports = App\Report::whereDate('created_at', DB::raw('CURDATE()'))->orderBy('created_at','desc')->get();
@@ -47,7 +63,8 @@
         print 'Your accomplishement is '. $number . '% Need a motivation boost?' . PHP_EOL;
     }
 ?>
-</h3>
+</div>
+</h1>
 
 <div class="panel panel-default col-lg-10 col-md-10 col-sm-12 col-xs-12" style="width:auto: height:auto; margin-left:110px; font-family: 'Lobster', cursive; margin-top:20px; margin-right:60px;">                
                         

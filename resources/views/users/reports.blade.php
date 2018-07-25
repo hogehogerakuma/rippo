@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 </style>
 
 @include('commons.curdateiine')
@@ -17,8 +17,8 @@
                         </div>
                     
 <div class="row col-lg-8">
-    <div class="col-lg-12" style="margin-top:20px; font-family: 'Merienda', cursive;">
-<h3 style="color:lightskyblue;">
+    <div class="col-lg-12" style="margin-top:20px; font-family: 'Roboto Condensed', sans-serif;>
+<h2 style="color:white;">
     
 <?php // CSSをうめこみたい   ?>
 <?php ('Content-Type: text/css; charset=utf-8'); ?>
@@ -88,7 +88,7 @@ $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user
     
    }
 ?>
-</h3>
+</h2>
 </div>
 
                 
@@ -105,7 +105,7 @@ $recent_reports = App\Report::orderBy('created_at','desc')->where( 'reports.user
          </div>
 </div>
 </div>
-<div class="row col-lg-10" style="margin-right:200px; margin-left:120px; font-family: 'Lobster', cursive;">
+<div class="row col-lg-10" style="margin-right:200px; margin-left:120px; "font-family: 'Roboto Condensed', sans-serif;s">
 <a href="{{route('users.show', ['id' => $user->id])}}" class="btn btn-success btn-lg btn-block" role="button">Show Calendar</a>
 
             </div>
