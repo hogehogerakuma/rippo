@@ -11,6 +11,7 @@ $bgimage = '/images/hosizora.jpg';
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One%7CLobster%7COswald:500%7CRoboto+Condensed');
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CCabin+Sketch%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
+@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
 @if (Auth::check())
@@ -38,18 +39,18 @@ $bgimage = '/images/hosizora.jpg';
 </h3>
 </div>
 <div class="Qoo col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:0px; padding-bottom:20px;">
-            <ul class="nav nav-tabs">
-            <li role="activate" style="color:yellow; font-family: 'Lobster', cursive; font-size:20px; "><a href='{{route('home')}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-th-list"></span>&nbsp&nbspDoukie's FEED&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
-            <li role="activate" style="color:yellow; font-family: 'Lobster', cursive; font-size:20px; "><a href="{{route('users.feed', ['id' => $user->id])}}">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-tags"></span>&nbsp&nbspFollowings Feed&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+  <ul class="nav nav-tabs">
+    <li role="activate" style="color:yellow; font-family: 'Lobster', cursive; font-size:20px; "><a href='{{route('home')}}'>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-th-list"></span>&nbsp&nbspDoukie's FEED&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
+    <li role="activate" style="color:yellow; font-family: 'Lobster', cursive; font-size:20px; "><a href="{{route('users.feed', ['id' => $user->id])}}">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-tags"></span>&nbsp&nbspFollowings Feed&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</a></li>
                 
-                <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="padding-top:10px; font-family: 'Gaegu', cursive;">
-                <h2 style="color:black; background-color:pink; font-family: 'Lobster', cursive;"><b>Doukie's Daily Reports</b></h2>
-                @if (count($reports) > 0)
-                    @include('reports.reports', ['reports' => $reports])
-                @endif
-                   </div>
-         </ul>
-         </div>
+    <div class="panel panel-default col-lg-12 col-md-8 col-sm-12 col-xs-12" style="padding-top:10px; font-family: 'Gaegu', cursive;">
+      <h2 style="color:black; background-color:pink; font-family: 'Lobster', cursive;"><b>Doukie's Daily Reports</b></h2>
+      @if (count($reports) > 0)
+        @include('reports.reports', ['reports' => $reports])
+      @endif
+    </div>
+  </ul>
+</div>
          </div>
 
 
@@ -69,10 +70,9 @@ $bgimage = '/images/hosizora.jpg';
             
             <div class="text-center" style="font-family: 'Oswald', sans-serif;">
                 <br>
-                <br>
-                
-                {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-danger']) !!}
+            {!! link_to_route('signup.get', 'Sign up now!', null, ['class' => 'btn btn-lg btn-danger']) !!}
             </div>
         </div>
+       
     @endif
 @endsection

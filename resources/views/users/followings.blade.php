@@ -5,7 +5,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="row">
 <div class="Qoo col-lg-10 col-md-12 col-sm-12 col-xs-12" style="padding-top:0px; padding-bottom:20px;">
         @include('user_follow.follow_button', ['user' => $user])

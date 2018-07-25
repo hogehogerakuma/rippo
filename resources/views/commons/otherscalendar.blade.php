@@ -151,20 +151,20 @@
    
     if ($dd['hori']){
         //祝日
-        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="'.url('users/'.$user->id.'/report/'.$dayD->format('Y-m-d')).'">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$dayD->format('Y-m-d')).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="'.url('users/'.$user->id.'/comments/'.$dayD->format('Y-m-d')).'">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     } 
     elseif($j == 0) {
         //日曜日
-     echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="danger"><span class="text-danger">'.$dayD->format('j').$dd['hori'].'<br><a href="'.url('users/'.$user->id.'/report/'.$dayD->format('Y-m-d')).'">Report&nbsp;'.$ok_post.'</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$dayD->format('Y-m-d')).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="'.url('users/'.$user->id.'/comments/'.$dayD->format('Y-m-d')).'">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     }
     elseif($j == 6) {
         //土曜日
-    echo '<td class="info"><span class="text-info">'.$dayD->format('j').'<br>Report&nbsp;'.$ok_post.'</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+        echo '<td class="info"><span class="text-info">'.$dayD->format('j').$dd['hori'].'<br><a href="'.url('users/'.$user->id.'/report/'.$dayD->format('Y-m-d')).'">Report&nbsp;'.$ok_post.'</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$dayD->format('Y-m-d')).'">Like&nbsp;</a><span class="badge">'.$favorited. '</span><br><a href="'.url('users/'.$user->id.'/comments/'.$dayD->format('Y-m-d')).'">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
     }
     else {
         //平日
-    echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="#">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$thatday_date).'">Like&nbsp;<span class="badge">'.$favorited. '</span><br><a href="#">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
-            }
+        echo '<td><span>'.$dayD->format('j').$dd['hori'].'<br><a href="'.url('users/'.$user->id.'/report/'.$dayD->format('Y-m-d')).'">Report&nbsp;'. $ok_post . '</a><br><a href="'.url('users/'.$user->id.'/favoriters/'.$dayD->format('Y-m-d')).'">Like&nbsp;<span class="badge">'.$favorited. '</span><br><a href="'.url('users/'.$user->id.'/comments/'.$dayD->format('Y-m-d')).'">Feedback&nbsp;<span class="badge">'.$feedfeed.'</span></a></td>';
+      }
 
 
       $j = $j + 1;

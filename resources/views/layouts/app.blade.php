@@ -28,13 +28,13 @@
     "color: white; 
     min-height: 100vh;
     background-image:url({{$bgimage}});
-    background-color:pink;
-    background-size: 100% 110%;
+    background-color:black;
+    background-size: 100% 90%;
     background-repeat: no-repeat;
     background-attachment: fixed;">
                 @include('commons.navbar')
 
-        <div class="container" >
+        <div class="container">
             @include('commons.error_messages')
 
             @yield('content')

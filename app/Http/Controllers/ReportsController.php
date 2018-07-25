@@ -35,16 +35,11 @@ class ReportsController extends Controller
         if (\Auth::check()) {
             $user = \Auth::user();
             $reports = $user->respectuser_reports()->orderBy('created_at', 'desc')->paginate(10);
-        
-        foreach($reports as $report) {
-            $report->favCnt = DB::table('user_favorite')
-            ->where('report_id', $report->id)
-            ->count();
-        }
-    $data = [
-            'user' => $user,
-            'reports' => $reports,
-    ];
+
+            $data = [
+                'user' => $user,
+                'reports' => $reports,
+            ];
         }
         return view('users.feed', $data);
 }    
@@ -185,20 +180,17 @@ public function commentsFromUser($id) {
     
     public function favoriters ($id) {
         $report = Report::find($id);
-        $user = $report->user;
-        
+       
         $favoriters = DB::table('user_favorite')
          ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
          ->join('users', 'users.id', '=', 'user_favorite.user_id')
          ->where('report_id', $report->id)
-         ->select('users.username')
+        //  ->select('users.username')
          ->get();
-         
+          
         $data = [
-            'user' => $user,
             'favoriters' => $favoriters,
         ];
-        
         return view('reports.favoriters', $data);
     }
     
@@ -255,7 +247,6 @@ public function commentsFromUser($id) {
         else {
             return redirect()->back();
         }
-            
         $data = [
             'user' => $user,
             'report' => $report,

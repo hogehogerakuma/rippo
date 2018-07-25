@@ -30,14 +30,15 @@ class UserCommentController extends Controller
         ->whereDate('reports.created_at' ,$thatday_date)
         ->get();
         }
+        else {
+            return redirect()->back();
+        }
         
         $data = [
             'user' => $user,
             'comments' => $comments,
             'thatday_date' => $thatday_date,
         ];
-        
-        
         return view('reports.comments', $data);
     }
         
@@ -50,27 +51,9 @@ class UserCommentController extends Controller
             'report_id' => $request->report_id,
             'comment' => $request->comment,
         ]);
-        // var_dump($id); exit;
         return redirect()->back();
     }
 
-//  public function favorited($id, $thatday_date) {
-    //     $user = User::find($id);
-    //     $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id', $user->id )->count();
-
-    
-    //     $report = Report::find($id);
-    //     // $favoriters = $report->favoriters();
-         
-         
-    //     $data = [
-    //         'user' => $user,
-    //         'report' => $report,
-    //         'favoriters' => $favoriters,
-    //     ];
-        
-    //     return view('users.favoriters', $data);
-    // }    
     public function show($id)
     {  
         $user = User::find($id);
@@ -83,8 +66,6 @@ class UserCommentController extends Controller
         $afterthree = date("Y/m/d", strtotime("-3 day"));
         $afterfour = date("Y/m/d", strtotime("-4 day"));
         $afterfive = date("Y/m/d", strtotime("-5 day"));
-        // var_dump($month);
-        // exit;
         
        $graph_data = [
             ['Date', 'Followers','Favorited', 'Comments'],
@@ -97,21 +78,9 @@ class UserCommentController extends Controller
             $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->where( 'reports.user_id', '=', $user->id )->where('reports.created_at', '>', $value)->get()->count();
             $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->where( 'reports.user_id', '=', $user->id )->where( 'reports.created_at','>', $value )->get()->count();
    
-            // DB::table('user_favorite')->join('reports', 'reports.use_id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id.created_at', $value )->get()->count();
-            // $feedfeed = DB::table('comments')->join('reports', 'reports.id', '=', 'comments.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id.created_at', $value )->get()->count();
-   
-            // $favorited = $user->favorited()->where('user_follow.created_at', '>', $value)->get()->count();
-            // $favorited = DB::table('user_favorite')->join('reports', 'reports.id', '=', 'user_favorite.report_id')->whereDay('reports.created_at', $day)->where( 'reports.user_id', $user->id )->count();
-
             $graph_data = array_merge($graph_data, [[$value, $followers,$favorited,$feedfeed]]);
-         //   var_dump($followers);
-        //    var_dump($favorites);
-
         }
 
-
-// var_dump($followers);
-//exit;
         $data = [
             'user' => $user,
             'reports' => $reports,
