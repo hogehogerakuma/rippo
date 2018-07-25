@@ -180,20 +180,17 @@ public function commentsFromUser($id) {
     
     public function favoriters ($id) {
         $report = Report::find($id);
-        $user = $report->user;
-        
+       
         $favoriters = DB::table('user_favorite')
          ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
          ->join('users', 'users.id', '=', 'user_favorite.user_id')
          ->where('report_id', $report->id)
-         ->select('users.username')
+        //  ->select('users.username')
          ->get();
-         
+          
         $data = [
-            'user' => $user,
             'favoriters' => $favoriters,
         ];
-        
         return view('reports.favoriters', $data);
     }
     

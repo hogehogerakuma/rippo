@@ -14,7 +14,7 @@
         </div>
         <div class="media-body">
             <div>
-                {!! link_to_route('users.show', $comment->username, ['id' => $comment->user_id]) !!} <span class="text-muted">posted at {{ $comment->created_at }}</span>
+                {!! link_to_route('reports.reports', $comment->username, ['id' => $comment->user_id]) !!} <span class="text-muted">posted at {{ $comment->created_at }}</span>
             </div>
             <div style="color:black">
                 <p>{!! nl2br(e($comment->comment)) !!}</p>

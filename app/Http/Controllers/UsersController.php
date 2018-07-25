@@ -137,7 +137,12 @@ class UsersController extends Controller
         ->first();
 
         $favoriters = [];
-        if (!is_null($report)) {
+        
+        if(is_null($report)){
+            return redirect()->back();
+        }
+        
+        else {
             $favoriters = DB::table('user_favorite')
             ->join('reports', 'reports.id', '=', 'user_favorite.report_id')
             ->join('users', 'users.id', '=', 'user_favorite.user_id')
@@ -145,8 +150,12 @@ class UsersController extends Controller
             ->whereDate('reports.created_at' ,$thatday_date)
             ->select('users.username')
             ->get();
-        }
-
+          
+          if (is_null($favoriters)) {
+          return redirect()->back();
+          }
+        }    
+        
         $data = [
             'user' => $user,
             'favoriters' => $favoriters,
