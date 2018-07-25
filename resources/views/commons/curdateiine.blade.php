@@ -83,7 +83,7 @@ if (  $numfeedtoday !== 0 || $favorited !== 0){
     }
         
 ?>
-@include('user_follow.follow_button', ['user' => $user])
+
 <h2>
 
 <?php 

@@ -18,9 +18,9 @@ $bgimage = '/images/hosizora.jpg';
     $now_date = (int)date("d");
 ?>
     
-    <p style= "font-family: 'Merienda', cursive;"><?php print $now_month; ?>&nbsp/&nbsp<?php print $now_date; ?> Posting Page</p>
+    <p style= " font-size:25px; font-family: 'Roboto Condensed', sans-serif;"><?php print $now_month; ?>&nbsp/&nbsp<?php print $now_date; ?> Posting Page</p>
         
-<div class="row" style="font-family: 'Merienda', cursive;">
+<div class="row" style="font-size:20px; font-family: 'Roboto Condensed', sans-serif;">
     <div class="col-xs-10">
     {!! Form::model($report, ['route' => 'reports.store']) !!}
     
@@ -45,7 +45,7 @@ $bgimage = '/images/hosizora.jpg';
          {!! Form::text('result_2', null, ['class' => 'form-control']) !!}%   
         </div>
         
-        <div class="form-group form-inline" style="display:inline-block">
+        <div class="form-group form-inline" style="display:inline-block width:100px;">
          {!! Form::label('goal_3', '■ Goal of Today3 ■') !!}
          {!! Form::text('goal_3', null, ['class' => 'form-control']) !!}    
          
@@ -70,10 +70,10 @@ $bgimage = '/images/hosizora.jpg';
         
         <div class="form-check">
          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-         <label class="form-check-label" for="exampleCheck1">終業時間になったことを確認しました。</label>
+         <label class="form-check-label" for="exampleCheck1"  style="font-size:15px;">終業時間になったことを確認しました。</label>
         </div>
        
-       {!! Form::submit('Submit', ['class' => 'btn btn-primary']) !!}
+       {!! Form::submit('Submit', ['class' => 'btn btn-primary btn-lg btn-block']) !!}
 
     {!! Form::close() !!}
     </div>
