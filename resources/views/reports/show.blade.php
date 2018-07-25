@@ -36,24 +36,24 @@ $bgimage = '/images/hosizora.jpg';
                     @endif
                 
                     @if (isset($report->goal_3)) 
-                        <h4 style="color:black; font-family: 'Merienda', cursive;"><b>3. GOAL</b></h4>
-                        <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->goal_3)) !!}</p>
-                        <p style="color:red; font-family: 'Merienda', cursive;">→{!! nl2br(e($report->result_3)) !!}%</p>
+                        <h4 style="color:black; font-family: 'Roboto Condensed', sans-serif;"><b>3. GOAL</b></h4>
+                        <p style="color:black; font-family: 'Roboto Condensed', sans-serif;">>>{!! nl2br(e($report->goal_3)) !!}</p>
+                        <p style="color:red; font-family: 'Roboto Condensed', sans-serif;">→{!! nl2br(e($report->result_3)) !!}%</p>
                     @endif
                 
                     <br>
-                    <h4 style="color:black; font-family: 'Merienda', cursive;"><b>1. SMART GOAL</b></h4>
-                    <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->object_1)) !!}</p>
+                    <h4 style="color:black; font-family: 'Roboto Condensed', sans-serif;"><b>1. SMART GOAL</b></h4>
+                    <p style="color:black; font-family: 'Roboto Condensed', sans-serif;">>>{!! nl2br(e($report->object_1)) !!}</p>
                 
                     @if (isset($report->object_2)) 
-                        <h4 style = "color:black; font-family: 'Merienda', cursive;"><b>2. SMART GOAL</b></h4>
-                        <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->object_2)) !!}</p>
+                        <h4 style = "color:black; font-family: 'Roboto Condensed', sans-serif;"><b>2. SMART GOAL</b></h4>
+                        <p style="color:black; font-family: 'Roboto Condensed', sans-serif;">>>{!! nl2br(e($report->object_2)) !!}</p>
                 
                     @endif
                 
                     @if (isset($report->object_3)) 
-                        <h4 style="color:black; font-family: 'Merienda', cursive;"><b>3. SMART GOAL</b></h4>
-                        <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->object_3)) !!}</p>
+                        <h4 style="color:black; font-family: 'Roboto Condensed', sans-serif;"><b>3. SMART GOAL</b></h4>
+                        <p style="color:black; font-family: 'Roboto Condensed', sans-serif;">>>{!! nl2br(e($report->object_3)) !!}</p>
                         <br>                
                     @endif
             </div>
@@ -70,10 +70,11 @@ $bgimage = '/images/hosizora.jpg';
                     </div>
     </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" style="margin-left:30px; margin-top:-20px font-family: 'Merienda', cursive;"> 
-                <h2 style= "font-family: 'Merienda', cursive;">Replies</h2>
-
+    <div class="panel panel-default col-lg-4 col-md-4 col-sm-12 col-xs-12" style="margin-left:30px; margin-top:-20px font-family: 'Merienda', cursive;"> 
+                <h2 style= "font-family: 'Lobster', cursive; color:black;">Replies</h2>
+<br>
                 @include('comments.comments', ['comments' =>$comments])
+
     </div>
     <div style="font-family: 'Merienda', cursive;">
     @include('comments.create', ['report' => $report])

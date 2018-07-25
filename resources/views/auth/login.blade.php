@@ -6,8 +6,21 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CCabin+Sketch%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
 </style>
+<link href="/css/animate.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" >
+        
+$(document).ready(function(){
+$('#ani').hover(function(e){
+e.preventDefault();
+$('#ani').removeClass().addClass(' bounceInRight ' + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+$(this).removeClass();
+                });
+            });
+        });
+    </script>
 
 @section('content')
+<div id="ani" class="animated bounceInRight">
     <div class="text-center">
         <h1 style= "color:black; margin-top:120px; font-family: 'Cabin Sketch', cursive;">Log in</h1>
     </div>
@@ -31,6 +44,7 @@
 
             <p style= "font-family: 'Lobster', cursive;">New user? {!! link_to_route('signup.get', 'Sign up now!') !!}</p>
         </div>
+    </div>
     </div>
     </body>
 @endsection

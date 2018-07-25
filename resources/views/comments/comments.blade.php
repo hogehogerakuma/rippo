@@ -1,5 +1,4 @@
 
-
 <style>
 @import url('https://fonts.googleapis.com/css?family=Fjalla+One%7CLobster%7COswald:500%7CRoboto+Condensed');
 @import url('https://fonts.googleapis.com/css?family=Cabin+Condensed%7CHind+Siliguri%7CNews+Cycle%7CVast+Shadow');
@@ -7,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
 
-<ul class="media-list" style="color:white; font-family: 'Roboto Condensed', sans-serif; padding-bottom:20px;">
+<ul class="media-list" style="color:black; font-family: 'Roboto Condensed', sans-serif; padding-bottom:20px;">
 @foreach ($comments as $comment)
     <?php $user = $comment->user; ?>
     <li class="media">
