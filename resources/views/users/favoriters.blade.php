@@ -1,3 +1,8 @@
+@if (Auth::check())
+<?php
+$bgimage = '/images/hosizora.jpg';
+?>
+@endif
 @extends('layouts.app')
 
 @section('content')
@@ -6,7 +11,7 @@
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
 </style>
     
-<h3 style="font-family: 'Lobster', cursive;">&nbsp&nbsp&nbspThe person who likes your Daily Report</h3><br>
+<h3 style="font-family: 'Lobster', cursive; color:#ff8a80;">&nbsp&nbsp&nbspThe person who likes your Daily Report</h3><br>
 
 
 <ul class="media-list">

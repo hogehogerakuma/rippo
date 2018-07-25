@@ -1,8 +1,13 @@
+@if (Auth::check())
+<?php
+$bgimage = '/images/hosizora.jpg';
+?>
+@endif
 @extends('layouts.app')
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
+@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
 </style>
 
 <div class="panel panel-default col-lg-7 col-md-7 col-sm-12 col-xs-12" style="font-family: 'Merienda', cursive; padding-top:20px; padding-bottom:20px; margin-left:15px;"> 
