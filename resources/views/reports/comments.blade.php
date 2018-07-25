@@ -8,7 +8,7 @@
 <div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-left:auto;margin-right:auto; padding-top:20px; padding-bottom:20px;">
 <ul class="media-list" style="font-family: 'Merienda', cursive;">
 @foreach ($comments as $comment)
-<? php $user = $comment->user; ?>
+<?php $user = $comment->user; ?>
     <li class="media">
         <div class="media-left">
             <img class="media-object img-rounded" src="{{ Gravatar::src($user->username, 50) }}" alt="">
