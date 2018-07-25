@@ -130,5 +130,4 @@ if (Auth::id() == $user->id) {
         </ul>
     </div>
 </div>
-</div>
 @endsection

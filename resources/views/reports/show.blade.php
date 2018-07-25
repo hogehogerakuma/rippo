@@ -7,10 +7,11 @@ $bgimage = '/images/hosizora.jpg';
 @section('content')
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Gaegu%7CLobster%7CLobster+Two%7CMerienda');
+@import url('https://fonts.googleapis.com/css?...');
+@import url('https://fonts.googleapis.com/css?...');
 </style>
 
-<div class="panel panel-default col-lg-7 col-md-7 col-sm-12 col-xs-12" style="font-family: 'Merienda', cursive; padding-top:20px; padding-bottom:20px; margin-left:15px;"> 
+<div class="panel panel-default col-lg-7 col-md-7 col-sm-12 col-xs-12" style="font-family: 'Roboto Condensed', sans-serif; padding-top:20px; padding-bottom:20px; margin-left:15px;"> 
     <div class="media-left">
         <img class="media-object img-rounded" src="{{ Gravatar::src($user->username, 50) }}" alt="">
     </div>
@@ -19,18 +20,18 @@ $bgimage = '/images/hosizora.jpg';
                     {!! link_to_route('users.show', $user->username, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $report->created_at }}</span>
                 </div>
             <div>
-                    <h4 style = "color:black; font-family: 'Merienda', cursive;"><b>Thoughts on Today</b></h4>
-                    <p style= "color:black; font-family: 'Merienda', cursive;">{!! nl2br(e($report->content)) !!}</p>
+                    <h4 style = "color:black; font-family: 'Roboto Condensed', sans-serif;"><b>Thoughts on Today</b></h4>
+                    <p style= "color:black; font-family: 'Roboto Condensed', sans-serif;">{!! nl2br(e($report->content)) !!}</p>
                     <br>
-                    <h4 style = "color:black; font-family: 'Merienda', cursive;"><b>1. GOAL</b></h4>
-                    <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->goal_1)) !!}</p>
-                    <p style="color:red; font-family: 'Merienda', cursive;">→{!! nl2br(e($report->result_1)) !!}%</p>
+                    <h4 style = "color:black; font-family: 'Roboto Condensed', sans-serif;"><b>1. GOAL</b></h4>
+                    <p style="color:black; font-family: 'Roboto Condensed', sans-serif;">>>{!! nl2br(e($report->goal_1)) !!}</p>
+                    <p style="color:red; font-family: 'Roboto Condensed', sans-serif;">→{!! nl2br(e($report->result_1)) !!}%</p>
             
                     <!--空欄の要素は表示しない-->
                     @if (isset($report->goal_2)) 
-                        <h4 style= "color:black; font-family: 'Merienda', cursive;" ><b>2. GOAL</b></h4>
-                        <p style="color:black; font-family: 'Merienda', cursive;">>>{!! nl2br(e($report->goal_2)) !!}</p>
-                        <p style="color:red; font-family: 'Merienda', cursive;">→{!! nl2br(e($report->result_2)) !!}%</p>
+                        <h4 style= "color:black; font-family: 'Roboto Condensed', sans-serif;" ><b>2. GOAL</b></h4>
+                        <p style="color:black; font-family: 'Roboto Condensed', sans-serif;">>>{!! nl2br(e($report->goal_2)) !!}</p>
+                        <p style="color:red; font-family: 'Roboto Condensed', sans-serif;">→{!! nl2br(e($report->result_2)) !!}%</p>
                 
                     @endif
                 
