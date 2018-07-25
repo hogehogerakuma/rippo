@@ -11,7 +11,7 @@
         </div>
         <div class="media-body" style="padding-top: 10px; padding-bottom:20px;">
             <div>
-                {!! link_to_route('users.show', $user->username, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $report->created_at }}</span>
+                {!! link_to_route('reports.reports', $user->username, ['id' => $user->id]) !!} <span class="text-muted">posted at {{ $report->created_at }}</span>
             </div>
             <div>
                 nl2br(e($report)) = {!! nl2br(e($report->content)) !!}
