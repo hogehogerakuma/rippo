@@ -39,8 +39,6 @@ class UserCommentController extends Controller
             'comments' => $comments,
             'thatday_date' => $thatday_date,
         ];
-        
-        
         return view('reports.comments', $data);
     }
         

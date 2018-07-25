@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 <style>
 @import url('https://fonts.googleapis.com/css?family=Gaegu|Lobster|Lobster+Two|Merienda');
@@ -13,7 +14,7 @@
         </div>
         <div class="media-body">
             <div>
-                {!! link_to_route('users.show', $comment->username, ['id' => $comment->id]) !!} <span class="text-muted">posted at {{ $comment->created_at }}</span>
+                {!! link_to_route('reports.reports', $comment->username, ['id' => $comment->user_id]) !!} <span class="text-muted">posted at {{ $comment->created_at }}</span>
             </div>
             <div style="color:black">
                 <p>{!! nl2br(e($comment->comment)) !!}</p>
@@ -23,7 +24,7 @@
                     {!! Form::open(['route' => ['user.uncomment', $comment->id], 'method' => 'delete', 'style'=>'display:inline-block;']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!}
                     {!! Form::close() !!}
-                @endif
+                 @endif
             </div>
         </div>
     </li>
