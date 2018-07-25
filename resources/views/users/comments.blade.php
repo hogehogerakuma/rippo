@@ -23,11 +23,18 @@ $bgimage = '/images/hosizora.jpg';
     $number = ($recent_reports[0]->result_1 +  $recent_reports[0]->result_2 +  $recent_reports[0]->result_3) /3 ;
     }
 ?>
-
-
-
-    <div class="col-lg-12" style="margin-top:20px; margin-bottom:20px; font-family: 'Merienda', cursive;">
-<h3 style="color:lightskyblue;">
+<div class="col-lg-12" style="margin-top:20px; margin-bottom:20px; font-family: 'Merienda', cursive;">
+<div class="box">  
+<head>
+    <style type="text/css">
+.box {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    border: double 5px #4ec4d3;
+}
+    </style>
+</head>
+<h3 style="color:white;">
 <?php
     // $recent_reports = App\Report::whereDate('created_at', DB::raw('current_date'))->orderBy('created_at','desc')->get();
     
@@ -49,53 +56,56 @@ $bgimage = '/images/hosizora.jpg';
     else {
         $number = ($recent_reports[0]->result_1 +  $recent_reports[0]->result_2 +  $recent_reports[0]->result_3) /3 ;
     }
+    $kirisutenumber = floor($number * 100) / 100;
     
 if (Auth::id() == $user->id) {
         
-    if ($number > 99) {
-        print 'Your accomplishment is ' . $number . '% Congrats!! ' . PHP_EOL;
+    if ($kirisutenumber > 99) {
+        print 'Your accomplishment is ' . $kirisutenumber . '% Congrats!! ' . PHP_EOL;
     }
     
-    elseif ($number >= 80) {
-        print 'Your accomplishment is '. $number . '% You are very close! ' . PHP_EOL;
+    elseif ($kirisutenumber >= 80) {
+        print 'Your accomplishment is '. $kirisutenumber . '% You are very close! ' . PHP_EOL;
     }
     
-    elseif ($number >= 60) {
-        print 'Your accomplishment is '. $number . '% Keep this going!' . PHP_EOL;
+    elseif ($kirisutenumber >= 60) {
+        print 'Your accomplishment is '. $kirisutenumber . '% Keep this going!' . PHP_EOL;
     }
     
-    elseif ($number >= 40) {
-        print 'Your accomplishement is '. $number . '% You can do this! Hwaiting!' . PHP_EOL;
+    elseif ($kirisutenumber >= 40) {
+        print 'Your accomplishement is '. $kirisutenumber . '% You can do this! Hwaiting!' . PHP_EOL;
     }
     
      else {
-        print 'Your accomplishement is '. $number . '% Need a motivation boost?' . PHP_EOL;
+        print 'Your accomplishement is '. $kirisutenumber . '% Need a motivation boost?' . PHP_EOL;
     }
     
    }elseif(Auth::id() != $user->id){
            
-    if ($number > 99) {
-        print $user->username."'s accomplishment is ". $number . "% Congrats!! " . PHP_EOL;
+    if ($kirisutenumber > 99) {
+        print $user->username."'s accomplishment is ". $kirisutenumber . "% Congrats!! " . PHP_EOL;
     }
     
-    elseif ($number >= 80) {
-        print $user->username."'s accomplishment is ". $number ."% It is very close! " . PHP_EOL;
+    elseif ($kirisutenumber >= 80) {
+        print $user->username."'s accomplishment is ". $kirisutenumber ."% It is very close! " . PHP_EOL;
     }
     
-    elseif ($number >= 60) {
-        print $user->username."'s accomplishment is ". $number . "% Keep this going!" . PHP_EOL;
+    elseif ($kirisutenumber >= 60) {
+        print $user->username."'s accomplishment is ". $kirisutenumber . "% Keep this going!" . PHP_EOL;
     }
     
-    elseif ($number >= 40) {
-        print $user->username."'s accomplishment is ". $number . "% Hwaiting!" . PHP_EOL;
+    elseif ($kirisutenumber >= 40) {
+        print $user->username."'s accomplishment is ". $kirisutenumber . "% Hwaiting!" . PHP_EOL;
     }
     
      else {
-        print $user->username."'s accomplishment is ". $number . "% Need a motivation boost." . PHP_EOL;
+        print $user->username."'s accomplishment is ". $kirisutenumber . "% Need a motivation boost." . PHP_EOL;
     }
+    
 }
 ?>
 </h3>
+</div>
 </div>
   <div class="row">
  <aside class="col-xs-3">
@@ -130,5 +140,6 @@ if (Auth::id() == $user->id) {
             </div>
         </ul>
     </div>
+</div>
 </div>
 @endsection
